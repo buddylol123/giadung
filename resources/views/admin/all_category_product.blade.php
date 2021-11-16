@@ -46,6 +46,7 @@
         @foreach($all_category as $key => $cat_pro)
         <tbody>
           <tr>
+          
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cat_pro->maloai }}</td>
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>

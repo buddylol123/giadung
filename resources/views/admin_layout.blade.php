@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Dashboard</span>
                     </a>
                 </li>
-                @role('nhanvien')
+                @role('nhanvien|quanly')
               
                 <li class="sub-menu">
                     <a href="javascript:;">

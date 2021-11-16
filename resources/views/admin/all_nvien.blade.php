@@ -68,7 +68,7 @@
             @endforeach --}}
             <td>
                 <a href="{{URL::to('/phanquyen/'.$nv->id)}}"class="btn btn-success">Phân Vai Trò</a>
-                <a href="" class="btn btn-success">Xóa</a>
+                <a href="" class="btn btn-success">Phân Quyền</a>
                 
             </td>
            

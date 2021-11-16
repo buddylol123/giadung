@@ -46,13 +46,18 @@
         @foreach($all_brand as $key => $brand_pro)
         <tbody>
           <tr>
+            
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $brand_pro->mansx }}</td>
             <td>{{ $brand_pro->tennsx }}</td>
             <td><span class="text-ellipsis">{{ $brand_pro->xuatxu }}</span></td>
             <td>
+              @can('edit')
               <a href="{{URL::to('/edit-brand-product/'.$brand_pro->mansx)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>
+              @endcan
+           @can('delete')
               <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro->mansx)}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+             @endcan
             </td>
          
           </tr>
