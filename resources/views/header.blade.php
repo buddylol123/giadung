@@ -55,14 +55,7 @@
 					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 					@endif
-				
-					
-					
-					
 
-					
-
-					
 					<li></li>
 					
 				</ul>
@@ -82,13 +75,32 @@
 		<div class="left-sidebar">
 			<h2>Danh mục sản phẩm</h2>
 			<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						@foreach($cate_product as $key => $value)
-						<h4 class="panel-title"><a href="{{URL::to('/danhmucsanpham/'.$value->maloai)}}">{{$value->tenloai}}</a></h4>
-						@endforeach
+				@foreach($cate_product as $key => $value)
+					<div class="panel panel-default">
+						@if($value->category_parent=='0')
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="#{{$value->slug_loaisp}}">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										{{$value->tenloai}}
+									</a>
+								</h4>
+								
+							</div>
+							<div id="{{$value->slug_loaisp}}" class="panel-collapse collapse">
+								<div class="panel-body">
+									<ul>
+										@foreach($cate_product as $key => $cate_sub)
+											@if($cate_sub->category_parent==$value->maloai)
+												<li><a href="{{URL::to('/danhmucsanpham/'.$cate_sub->slug_loaisp)}}"> {{$cate_sub->tenloai}} </a></li>
+											@endif
+										@endforeach
+									</ul>
+								</div>
+							</div>
+						@endif
 					</div>
-				</div>
+				@endforeach
 			</div><!--/category-products-->
 			
 			<div class="brands_products"><!--brands_products-->
@@ -111,3 +123,4 @@
 </div>
 </div>
 </section>
+<!-- {{URL::to('/danhmucsanpham/'.$value->maloai)}} -->
