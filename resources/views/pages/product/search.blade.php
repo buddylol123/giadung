@@ -11,8 +11,21 @@
                                                 <img width="100" height="300" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
                                                 <h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
                                                 <p>{{$product->tensp}}</p>
+                                                <?php
+                                                $cus = Session()->get('makh');
+                                                if($cus)
+                                                {
+                                                ?>
                                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
+                                                </a>
+                                                <?php
+                                                }else {
+                                                ?>
+                                                    <a href="{{URL::to('/dangnhap')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                </a>
+                                                <?php 
+                                                }
+                                                ?>                                            </div>
                                     </div>
                                 </div>
                             </div>

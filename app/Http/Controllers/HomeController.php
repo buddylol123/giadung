@@ -15,10 +15,18 @@ class HomeController extends Controller
     	$cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
 
-        $all_product = DB::table('sanpham')->orderby('masp','desc')->limit(8)->get();
-
+        $all_product = DB::table('sanpham')
+        ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->limit(10)->get();
+        $hinh = DB::table('hinhanh')->limit(1)->get();
+        // select sanpham.tensp,chitietsp.mactsp,hinhanh.tenhinh,loaisanpham.tenloai
+        // FROM sanpham  INNER JOIN chitietsp on sanpham.masp=chitietsp.masp
+        // INNER JOIN hinhanh ON chitietsp.mactsp=hinhanh.mactsp
+        // INNER JOIN loaisanpham ON loaisanpham.maloai=sanpham.maloai
         return view('pages.home')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)
-        ->with('all_product',$all_product);
+        ->with('all_product',$all_product)->with('hinh',$hinh);
        
     }
     public function search(Request $request){

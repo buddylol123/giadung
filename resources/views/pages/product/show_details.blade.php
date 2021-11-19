@@ -3,18 +3,37 @@
 @foreach($product_details as $key => $value)
 <div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
-							<div class="view-product">
-								<img src="{{URL::to('public/frontend/img/'.$value->hinh)}}" alt="" />
-								<!-- <h3>ZOOM</h3> -->
-							</div>
+							
+							<ul id="imageGallery">
+								@foreach($hinh as $key=>$pic)
+								<li data-thumb="{{URL::to('public/frontend/img/'.$pic->hinh)}}" data-src="{{URL::to('public/frontend/img/'.$pic->hinh)}}">
+								  <img width="300px" height="300px" src="{{URL::to('public/frontend/img/'.$pic->hinh)}}" />
+								</li>
+							
+								@endforeach
+							  </ul>
+									
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2>{{$value->tensp}}</h2>
-								<p>ID: {{$value->masp}}</p>
+							<?php 
+							$customer = Session()->get('makh');
+						if($customer){
+							?>
 								<img src="images/product-details/rating.png" alt="" />
 								<form action="{{URL::to('/save-cart')}}" method="post">
+									<?php 
+						}else {
+						
+					
+								?>
+								<img src="images/product-details/rating.png" alt="" />
+								<form action="{{URL::to('/dangnhap')}}" method="get">
+								<?php
+								} 
+								?>
 									{{ csrf_field() }}
 									<span>
 										<span>{{number_format($value->gia).'VND'}}</span>
@@ -27,10 +46,16 @@
 										</button>
 									</span>
 								</form>
+							
+								
+							
 								<p><b>Tình trạng:</b> Còn hàng</p>
 								<p><b>Điều kiện:</b> New 100%</p>
 								<p><b>Thương hiệu:</b> {{$value->tennsx}}</p>
 								<p><b>Loại:</b> {{$value->tenloai}}</p>
+								<p><b>Khối lượng:</b> {{$value->khoiluong}}</p>
+								<p><b>Kích thước:</b> {{$value->kichthuoc}}</p>
+								<p><b>Màu Sắc:</b> {{$value->mausac}}</p>
 								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
@@ -48,9 +73,10 @@
 							
 							
 						</div>
-</div><!--/category-tab-->
+</div>
+<!--/category-tab-->
 @endforeach
-<div class="recommended_items">
+{{-- <div class="recommended_items">
 	<h2 class="title text-center">Sản Phẩm Liên Quan</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -59,25 +85,26 @@
 									@foreach($relate as $key => $recommend)
 										<div class="col-sm-4">
 											<div class="product-image-wrapper">
+												
 												<div class="single-products">
+												
                                             		<div class="productinfo text-center">
 		                                                <img width="100" height="100" src="{{URL::to('public/frontend/img/'.$recommend->hinh)}}" alt="" />
 		                                                <h2>{{number_format($recommend->gia).' '.'VND'}}</h2>
 		                                                <p>{{$recommend->tensp}}</p>
 		                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                             		</div>
+												
                                     			</div>
+											
 											</div>
 										</div>
-									@endforeach
+										@endforeach
+									
 								</div>
 							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
+							 
 						</div>
-</div>
+</div> --}}
+
 @endsection

@@ -4,18 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Home | SHOP BÁN ĐỒ GIA DỤNG</title>
+        <title>Home | SHOP ĐỒ GIA DỤNG</title>
 
 
-        <base href="{{asset('')}}">
-        <link href="{{('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/price-range.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/animate.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/main.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/responsive.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+        
+        <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/price-range.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/lightslider.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/prettify.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/lightgallery.min.css')}}" rel="stylesheet">
+
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
@@ -31,27 +35,30 @@
             @include('header')
             
             @include('footer')
-            <script src="{{('public/frontend/js/jquery.js')}}"></script>
-            <script src="{{('public/frontend/js/bootstrap.min.js')}}"></script>
-            <script src="{{('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
-            <script src="{{('public/frontend/js/price-range.js')}}"></script>
-            <script src="{{('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
-            <script src="{{('public/frontend/js/main.js')}}"></script>
-            <script src="{{('public/frontend/js/sweetalert.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
+            <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/price-range.js')}}"></script>
+            <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
+            <script src="{{asset('public/frontend/js/main.js')}}"></script>
+            <script src="{{asset('public/frontend/js/lightslider.js')}}"></script>
+            <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/lightgallery-all.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/prettify.js')}}"></script>
             <script type="text/javascript">
-                    const ipnElement = document.querySelector('#ipnPassword')
-        const btnElement = document.querySelector('#btnPassword')
+        //             const ipnElement = document.querySelector('#ipnPassword')
+        // const btnElement = document.querySelector('#btnPassword')
         
-        // step 2
-        btnElement.addEventListener('click', function() {
-          // step 3
-          const currentType = ipnElement.getAttribute('type')
-          // step 4
-          ipnElement.setAttribute(
-            'type',
-            currentType === 'password' ? 'text' : 'password'
-          )
-        })
+        // // step 2
+        // btnElement.addEventListener('click', function() {
+        //   // step 3
+        //   const currentType = ipnElement.getAttribute('type')
+        //   // step 4
+        //   ipnElement.setAttribute(
+        //     'type',
+        //     currentType === 'password' ? 'text' : 'password'
+        //   )
+        // })
             // $(document).ready(function(){
             // $('.add-to-cart').click(function(){
             // var id = $(this).data('id_sp');
@@ -84,6 +91,24 @@
             // });
             // });
             // });
+            // </script>
+            <script type="text/javascript">
+            $(document).ready(function() {
+    $('#imageGallery').lightSlider({
+        gallery:true,
+        item:1,
+        loop:true,
+        thumbItem:3,
+        slideMargin:0,
+        enableDrag: false,
+        currentPagerPosition:'left',
+        onSliderLoad: function(el) {
+            el.lightGallery({
+                selector: '#imageGallery .lslide'
+            });
+        }   
+    });  
+  });
             </script>
         </body>
     </html>

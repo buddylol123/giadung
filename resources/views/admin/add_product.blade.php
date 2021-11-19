@@ -45,10 +45,7 @@
                                     <textarea type="Text" name="product_qty" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">San Pham Da Ban</label>
-                                    <textarea type="Text" name="product_sold" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
-                                </div>
+            
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Gia </label>
@@ -65,7 +62,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">loai san pham</label>
+                                    <label for="exampleInputPassword1">Loai san pham</label>
                                    <select name="product_maloai" class="form-control input-sm m-bot15">
                                     @foreach($cate_product as $key => $catepro)
                                    <option value="{{$catepro->maloai}}">{{$catepro->tenloai}}</option>

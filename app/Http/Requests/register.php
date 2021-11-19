@@ -32,6 +32,7 @@ class register extends FormRequest
         'address' => 'required|max:50',
 
         'password' => 'required|max:50|min:11',
+        'repassword' => 'required|max:50|min:11|same:password',
         ];
     }
     public function messages()
@@ -58,6 +59,7 @@ class register extends FormRequest
             'address.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
             'password.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
             'password.min'=>'Vui lòng nhập nhập trên 11 ký tự',
+            'repassword.same'=>'Password không khớp với nhau',
 
 
           

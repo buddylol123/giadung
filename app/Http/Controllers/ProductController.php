@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Sanphamreq;
+use App\hinhanh;
 session_start();
 
 class ProductController extends Controller
@@ -48,12 +49,11 @@ class ProductController extends Controller
         $data = array();
         $data['masp'] = $request->product_id;
         $data['tensp'] = $request->product_name;
-        $data['soluong'] = $request->product_qty;
-        $data['sanphamdaban'] = $request->product_sold;
+       
         $data['gia'] = $request->product_price;
         $data['hinh'] = $request->product_img;
-        $data['mota'] = $request->product_img;
-        $data['mota'] = $request->product_inf;
+
+        $data['soluong'] = $request->product_qty;
         $data['mansx'] = $request->product_mansx;
         $data['maloai'] = $request->product_maloai;
     
@@ -121,18 +121,44 @@ class ProductController extends Controller
 
     }
     //end admin page
+    //front end
     public function show_details_product($product_id)
     {
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
 
-        $details_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->where('sanpham.masp', $product_id)->get();
+        $product = DB::table('sanpham')
+        // ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        // ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->where('sanpham.masp', $product_id)
+        ->get();
 
-        foreach ($details_product as $key => $value) {
-            $category_id = $value->maloai;
-        }
-        $related_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->where('loaisanpham.maloai', $category_id)->whereNotIn('sanpham.masp', [$product_id])->get();
-        return view('pages.product.show_details')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('product_details',$details_product)->with('relate',$related_product);
+        $details_product = DB::table('sanpham')
+        ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        // ->join('sanpham', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->where('chitietsp.mactsp', $product_id)
+        // ->where('sanpham.masp', $product_id)
+        ->get();
+        $hinh = hinhanh::where('mactsp',$product_id)->get();
+        // $dt_product = DB::table('chitietsp')
+        // ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        // ->get();
+
+        // foreach ($details_product as $key => $value) {
+        //     $category_id = $value->maloai;
+        // }
+        // $related_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        // ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        // ->where('loaisanpham.maloai', $category_id)->whereNotIn('sanpham.masp', [$product_id])
+        // ->limit(3)->get();
+        return view('pages.product.show_details')->with('product',$product)
+        ->with('cate_product',$cate_product)->with('brand_product',$cate_brand)
+        ->with('product_details',$details_product)
+        ->with('hinh',$hinh);
+        
     }
     
 }

@@ -58,7 +58,6 @@
             <td>{{ $cat_pro->masp }}</td>
             <td>{{ $cat_pro->tensp }}</td>
             <td>{{ $cat_pro->soluong }}</td>
-            <td>{{ $cat_pro->sanphamdaban }}</td>
             <td>{{ $cat_pro->gia }}</td>
             <td>{{ $cat_pro->hinh }}</td>
             <td>{{ $cat_pro->mota }}</td>
