@@ -30,6 +30,13 @@ Route::get('/editinfo/{info_id}','Admincontroller@edit_info');
 Route::post('/update-acc','Admincontroller@update_acc');
 Route::get('/logout','Admincontroller@logout');
 Route::post('/save-quyen/{id}','Admincontroller@save_quyen');
+Route::get('/binh-luan','comment@binh_luan');//binhluan
+Route::get('/trang-thai/{id}','comment@trang_thai_cmt');
+Route::post('/save-status-bl/{id}','comment@save_status_bl');
+Route::get('/tra-loi-bl/{id}','comment@tra_loi_cmt');
+Route::post('/save-tl-bl/{id}','comment@save_tl_bl');
+
+
 //loaisp
 Route::get('/add-category-product','CategoryProduct@add_category');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category');
@@ -67,6 +74,11 @@ Route::get('/update-product-detail/{product_id}','ProductdetailController@update
 Route::get('/edit-product-detail/{product_id}','Productdetailcontroller@edit_product_detail');
 Route::get('/del-product-detail/{product_id}','Productdetailcontroller@del_product_detail');
 
+//donhang
+Route::get('/payment-admin','Payment@payment_admin');
+Route::get('/detail-dh/{id}','Payment@detail_dh');
+Route::get('/status/{id}','Payment@status');
+Route::post('/save-status/{id}','Payment@save_status');
 //frontened
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu','HomeController@index');
@@ -95,10 +107,22 @@ Route::get('/thuonghieusanpham/{brand_id}', 'NhaSanXuat@show_brand_home');
 
 //Chi tiet san pham
 Route::get('/chitietsanpham/{product_id}', 'ProductController@show_details_product');
-
+Route::post('/danhgia/{id}', 'ProductController@danh_gia');
 
 
 Route::post('/tim-kiem','HomeController@search');
+//Giohang Mua hang Xem don hang 
+
+Route::get('/show-cart','CartController@show_cart');
+Route::post('/save-cart','CartController@save_cart');
+Route::get('/del-cart/{rowId}','CartController@del_cart');
+Route::post('/update-cart','CartController@update_cart');
+Route::post('/save-payment','CartController@save_payment');
+Route::get('/payment','CartController@payment_show');
+Route::get('/thanh-cong','CartController@thanhcong');
+Route::get('/check-history','CartController@check');
+Route::get('/check-detail/{id}','CartController@check_detail');
+
 
 
 

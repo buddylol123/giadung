@@ -13,12 +13,13 @@
         <link href="{{asset('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/price-range.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
-        <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('public/frontend/css/main.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/lightslider.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/prettify.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/lightgallery.min.css')}}" rel="stylesheet">
+        
 
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>

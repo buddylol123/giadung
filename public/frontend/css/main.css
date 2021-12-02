@@ -151,15 +151,12 @@ a#scrollUp i{
 .header-middle .container .row .col-sm-8 {
 	padding-right:0;
 }
-<<<<<<< HEAD
 .container .row3{
       margin-right: -15px;
       margin-left: -15px;
       margin-bottom: 50px;
   
 }
-=======
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 
 .usa {
   border-radius: 0;
@@ -862,6 +859,7 @@ h2.title {
 
 .single-products {
   position: relative;
+  height:400px
 }
 
 .new, .sale {
@@ -908,7 +906,7 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
+
 }
 
 .single-products:hover .product-overlay {

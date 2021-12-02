@@ -66,9 +66,8 @@ class Pagecontroller extends Controller
         //dd($re->all());
         $email = $request->email;
         $matkhau = $request->password;
-        $result = DB::table('khachhang')->where('email',$email)->where('password',$matkhau)->first();//lay gioi han 1 user
-        
-        if($result) // check login chưa
+        $result = DB::table('khachhang')->where('email',$email)->first();//lay gioi han 1 user
+        if($result && Hash::check($matkhau,$result->password)) // check login chưa
         {     Session()->put('name',$result->name);
             Session()->put('email',$result->email);
           

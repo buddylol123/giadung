@@ -31,8 +31,7 @@
                 ?>
                 <div class="panel-body">  
                
-                       
-                   
+               
                     <div class="position-center">
                         <form role="form"   method="POST" action="{{URL::to('/save-quyen/'.$user->id)}}">
                             {{ csrf_field() }}

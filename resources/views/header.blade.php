@@ -47,9 +47,9 @@
 						if($customer){
 					?>
 					
-				
+					<li><a href="{{URL::to('/check-history')}}"><i class="fa fa-crosshairs"></i>Đơn hàng</a></li>
 					<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+					<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 					<li><a href="{{ URL::to('/getinfo/'.Session()->get('makh')) }}"><i  class="fa fa-user"></i><?php echo $email ?></a></li>
 					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
 				<?php

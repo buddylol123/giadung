@@ -187,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 
-                        <li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
+                        <li><a href="{{URL::to("/payment-admin")}}">Liet ke</a></li>
                         
 
 					
@@ -203,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 
-                        <li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
+                        <li><a href="{{URL::to("/binh-luan")}}">Liet ke</a></li>
                         
 
 					

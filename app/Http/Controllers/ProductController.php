@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Sanphamreq;
 use App\hinhanh;
+
+use Illuminate\Support\Carbon;
+
 session_start();
 
 class ProductController extends Controller
@@ -143,6 +146,15 @@ class ProductController extends Controller
         // ->where('sanpham.masp', $product_id)
         ->get();
         $hinh = hinhanh::where('mactsp',$product_id)->get();
+        //show danh gia
+        foreach($details_product as $a)
+        {
+            $danhgia =DB::table('danhgia')
+            ->join('chitietdh', 'danhgia.mactdh', '=','chitietdh.id')
+            ->where('chitietdh.masp',$a->masp)
+            ->get();
+        }
+     
         // $dt_product = DB::table('chitietsp')
         // ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         // ->get();
@@ -154,11 +166,49 @@ class ProductController extends Controller
         // ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
         // ->where('loaisanpham.maloai', $category_id)->whereNotIn('sanpham.masp', [$product_id])
         // ->limit(3)->get();
+
         return view('pages.product.show_details')->with('product',$product)
         ->with('cate_product',$cate_product)->with('brand_product',$cate_brand)
         ->with('product_details',$details_product)
-        ->with('hinh',$hinh);
+        ->with('hinh',$hinh)
+        ->with('danhgia',$danhgia);
+          
         
+    }
+    public function danh_gia($id,Request $rq)
+    {
+        $b=DB::table('chitietdh')->select('chitietdh.madh','chitietdh.id','donhang.makh','chitietdh.soluong as slban','sanpham.soluong as slton','sanpham.masp','donhang.trangthai')
+        ->join('sanpham', 'chitietdh.masp','=','sanpham.masp')
+        ->join('donhang', 'chitietdh.madh','=','donhang.madh')
+        ->where('chitietdh.masp',$id)
+        ->where('donhang.trangthai',"Đã giao")
+        ->where('donhang.makh',Session::get('makh'))
+        ->first();
+     
+      if($b)
+      {
+    
+        $a = array();
+      
+        $a['mactdh']=$b->id;
+        $a['ten']=Session::get('name');
+        $a['noidung']=$rq->content;
+        $a['parent_id']=0;
+        $a['trangthai']='Hiện';
+       
+        DB::table('danhgia')->insert($a);
+        return redirect()->back();
+       
+      
+    
+        }
+   
+      
+      else
+      { 
+        return redirect()->back()->with('loibinhluan', 'Bạn chưa mua hàng hoặc sản phẩm chưa giao tới bạn!');
+      }
+    
     }
     
 }

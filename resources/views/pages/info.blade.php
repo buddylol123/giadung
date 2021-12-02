@@ -29,20 +29,20 @@
                 <form action="{{URL::to('/save-info')}}" method="POST" role="form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div>
-                        <input type="hidden" value="<?php echo $id ?>" class="form-control" name="id" placeholder="<?php echo $id ?>">
+                        <input type="hidden" value="<?php echo $id ?>" class="form-control" name="id" placeholder="Tên">
  
                     </div>
                     <div>
-                        <input type="text" value="<?php echo $name ?>" class="form-control" name="name" placeholder="<?php echo $name ?>">
+                        <input type="text" value="<?php echo $name ?>" class="form-control" name="name" placeholder="Tên">
  
                     </div>
                     <div>
-                        <input type="email" value="<?php echo $email ?>" readonly name="email" placeholder="<?php echo $email ?>"/>
+                        <input type="email" value="<?php echo $email ?>" readonly name="email" placeholder="Email"/>
                     </div>
                     <div>
-                        <input type="text" value="<?php echo $add?>"class="form-control"name="address"placeholder="<?php echo $add ?>"/>
+                        <input type="text" value="<?php echo $add?>"class="form-control"name="address"placeholder="Địa chỉ"/>
                     </div>
-                        <input type="text" value="<?php echo $phone ?>"class="form-control" name="phone" placeholder="<?php echo $phone ?>"/>
+                        <input type="text" value="<?php echo $phone ?>"class="form-control" name="phone" placeholder="Số điện thoại"/>
                     <div class="form-group" >
                         <input type="password" name="password"class="form-control" id="ipnPassword" placeholder="Nhập Mật khẩu">
                         {{-- <button style="background: #FE980F;
@@ -62,6 +62,10 @@
                     </div>
                 <div>
                     <button type="submit" class="btn btn-default">Submit</button>
+                 
+                </div>
+                <div>
+                    <a>Thay Đổi Mật Khẩu</a>
                 </div>
               
                 </form>
