@@ -1,13 +1,22 @@
 @extends('welcome')
 @section('content')
+
+
+				
 <div class="features_items"><!--features_items-->
-	@foreach($product_km as $key => $product)
-	@if($time < $product->ngaykt)
-	<h2 class="title text-center">{{ $product->tenkhuyenmai }}</h2>
+	
+
+	
+	<h2 class="title text-center">Sản phẩm đang khuyến mãi</h2>
+	
 	<div class="col-sm-4">
+	
 	<div class="product-image-wrapper">
+	
 		<div class="single-products">
 			<div class="productinfo text-center">
+				@foreach($product_km as $key => $product)
+				@if($time < $product->ngaykt)
 					<a  href="{{URL::to('/chitietsanpham/'.$product->mactsp)}}">
 					<img width="200px" height="200px" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
 			
@@ -31,17 +40,22 @@
 					<?php 
 					}
 					?>
-
-			</div>
-		</div>
-	</div>
-</div>
 @endif
 @endforeach
+			</div>
+
+		</div>
+	
+	</div>
+	
+</div>
+
+
 
 
 
 </div>
+
 <div class="features_items"><!--features_items-->
 	<h2 class="title text-center">Sản phẩm mới</h2>
 	@foreach($all_product as $key => $product)

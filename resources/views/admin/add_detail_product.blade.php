@@ -26,7 +26,7 @@
           </ul>
       </div>
   @endif
-                            <div class="position-center">
+                        <div class="position-center">
                            <form role="form" action="{{URL::to('/save-product-detail')}}" method="post" enctype="multipart/form-data">
                            {{csrf_field()}}
 

@@ -21,7 +21,7 @@
 							<ul id="imageGallery">
 								@foreach($hinh as $key=>$pic)
 								<li data-thumb="{{URL::to('public/frontend/img/'.$pic->hinh)}}" data-src="{{URL::to('public/frontend/img/'.$pic->hinh)}}">
-								  <img width="300px" height="300px" src="{{URL::to('public/frontend/img/'.$pic->hinh)}}" />
+								  <img width="300px" height="300px" src="{{URL::to('public/frontend/img/'.$pic->hinh)}}"/>
 								</li>
 							
 								@endforeach
@@ -50,7 +50,20 @@
 								?>
 									{{ csrf_field() }}
 									<span>
+										
+										<?php
+										if($product_km && $product_km->masp==$value->masp)
+										{ 
+										?>
+										<span>{{number_format($product_km->giagiam).'VND'}}</span>
+										<?php 
+										}else{
+										?>
 										<span>{{number_format($value->gia).'VND'}}</span>
+										<?php } ?>
+									
+									
+										
 										<label>Số lượng:</label>
 										<input name="sl" type="number" min="1" value="1" />
 										<input name="productid_hidden" type="hidden" value="{{$value->masp}}" />

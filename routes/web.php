@@ -36,7 +36,12 @@ Route::post('/save-status-bl/{id}','comment@save_status_bl');
 Route::get('/tra-loi-bl/{id}','comment@tra_loi_cmt');
 Route::post('/save-tl-bl/{id}','comment@save_tl_bl');
 
-
+//quanlykhyen mai
+Route::get('/add-discount','DiscountController@add_dis');
+Route::post('/save-discount','DiscountController@save_dis');
+Route::get('/all-discount','DiscountController@all_dis');
+Route::get('/chi-tiet-km/{id}','DiscountController@all_discount_detail');
+Route::post('/save-product-dis/{id}','DiscountController@save_product_discount');
 //loaisp
 Route::get('/add-category-product','CategoryProduct@add_category');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category');

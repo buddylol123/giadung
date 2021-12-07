@@ -61,9 +61,9 @@ class Productdetailcontroller extends Controller
         $data['kichthuoc'] = $request->product_kt;
         $data['masp'] = $request->product_masp;
       
-          echo'<pre>';
-       print_r($data);
-      echo'</pre>';
+    //       echo'<pre>';
+    //    print_r($data);
+    //   echo'</pre>';
         DB::table('chitietsp')->where('mactsp',$product_id)->update($data);
         Session()->put('message','cap nhat chi tiet san pham thanh cong thanh cong');
         return Redirect::to('all-product-detail');

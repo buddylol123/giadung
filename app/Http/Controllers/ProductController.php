@@ -153,8 +153,16 @@ class ProductController extends Controller
             ->join('chitietdh', 'danhgia.mactdh', '=','chitietdh.id')
             ->where('chitietdh.masp',$a->masp)
             ->get();
+            $product_km = DB::table('sanpham')
+            ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+            ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+            ->where('chitietkm.masp',$a->masp)
+            ->first();
+           
+
         }
-     
+       
+        $time=Carbon::now('Asia/Ho_Chi_Minh');
         // $dt_product = DB::table('chitietsp')
         // ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         // ->get();
@@ -171,8 +179,10 @@ class ProductController extends Controller
         ->with('cate_product',$cate_product)->with('brand_product',$cate_brand)
         ->with('product_details',$details_product)
         ->with('hinh',$hinh)
-        ->with('danhgia',$danhgia);
-          
+        ->with('danhgia',$danhgia)
+        ->with('product_km',$product_km)
+        ->with('time',$time);
+   
         
     }
     public function danh_gia($id,Request $rq)

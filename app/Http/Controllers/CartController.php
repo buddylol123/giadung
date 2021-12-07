@@ -23,10 +23,24 @@ class CartController extends Controller
         // ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         ->where('masp',$product_id)
         ->first();
+        $product_km = DB::table('sanpham')
+        ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+        ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+        ->where('sanpham.masp',$product_id)
+        ->first();
+
         $data['id']=$sp->masp;
         $data['qty']=$sl;
         $data['name']=$sp->tensp;
-        $data['price']=$sp->gia;
+      
+        if($product_km)
+        {
+            $data['price']=$product_km->giagiam;
+        }
+        else
+        {
+            $data['price']=$sp->gia;   
+        } 
         $data['weight']='123';
         $data['options']['hinh']=$sp->hinh;
         if($sp->soluong > 0)
