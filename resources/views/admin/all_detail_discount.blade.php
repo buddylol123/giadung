@@ -32,20 +32,25 @@
                             {{ csrf_field() }}
                         <div class="form-group">
                           
-                            
+                        
                             <label for="exampleInputEmail1">Tên chương trình khuyến mãi</label>
                             <select name="masp" class="form-control input-sm m-bot15">
                                 
                               
-                                    
+                                @if($count>0)
                                 @foreach($product as $key=>$c)
-
+                              
                                <option selected value="{{($c->masp)}}">{{ $c->tensp }}</option>
-                               
-                               
-                    
+                          
+                           
+                              
+                       
                                @endforeach
+                               @else
+                               <option selected value="">Rỗng</option>
+                               @endif
                                </select>
+                              
                         </div>
                        <button type="submit" class="btn btn-info">Submit</button>
                         </form>

@@ -84,6 +84,8 @@ Route::get('/payment-admin','Payment@payment_admin');
 Route::get('/detail-dh/{id}','Payment@detail_dh');
 Route::get('/status/{id}','Payment@status');
 Route::post('/save-status/{id}','Payment@save_status');
+Route::get('/dh-pdf/{id}','Payment@dh_pdf');
+Route::get('/import-pdf/{id}','Payment@import_pdf');
 //frontened
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu','HomeController@index');

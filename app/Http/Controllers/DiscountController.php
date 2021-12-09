@@ -66,10 +66,10 @@ class DiscountController extends Controller
    
         }
      $result=$product->get();
-
+     $count=$product->count();
         $manager_discount = view('admin.all_detail_discount')
         ->with('product_km',$product_km)->with('product',$result)
-        ->with('product_km_add',$product_km_add);
+        ->with('product_km_add',$product_km_add)->with('count',$count);
         
 
         return view ('admin_layout')->with('admin.all_detail_discount',$manager_discount);

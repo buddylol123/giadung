@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Sanphamreq;
 use App\hinhanh;
+use Barryvdh\DomPDF\Facade as PDF;
+
+
 session_start();
 
 class Payment extends Controller
@@ -90,10 +93,27 @@ class Payment extends Controller
     Session()->put('messcapnhat','Cập nhật thành công');
     return Redirect::to('payment-admin');
     }
-    
-      
-    
     }
+    public function dh_pdf($id)
+    {  $dh2 = DB::table('donhang')->select('donhang.madh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.ngaydathang','donhang.trangthai','donhang.tenkh','donhang.diachi','donhang.sodienthoai')
+      ->where('donhang.madh',$id)->orderby('donhang.madh','desc')
+      ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
+      ->join('chitietdh', 'donhang.madh', '=', 'chitietdh.madh')
+      ->join('sanpham', 'sanpham.masp', '=', 'chitietdh.masp')
+      ->get();
+    //   $manager_payment = view('pdf.hd')
+    //   ->with('dh',$dh2);
+    //   $pdf = PDF::loadView('pdf.hd')->with('dh',$manager_payment);
+    //   return $pdf->stream('hd.pdf');
+    return view('pdf.hd')->with('dh',$dh2);
+       
+    }
+    public function import_pdf($id)
+    {  
+        $pdf = PDF::loadHTML($this->dh_pdf($id));
+         return $pdf->stream('hd.pdf');
+    }
+
 }
 
 
