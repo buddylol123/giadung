@@ -65,8 +65,8 @@ class DiscountController extends Controller
          
    
         }
-     $result=$product->get();
-     $count=$product->count();
+        $result=$product->get();
+        $count=$product->count();
         $manager_discount = view('admin.all_detail_discount')
         ->with('product_km',$product_km)->with('product',$result)
         ->with('product_km_add',$product_km_add)->with('count',$count);
@@ -79,16 +79,54 @@ class DiscountController extends Controller
     }
     public function save_product_discount(Request $rq,$id)
     {
-        
-    
-
+     $time =Carbon::now('Asia/Ho_Chi_Minh');
     $product_km_add = DB::table('khuyemai')
     ->where('makm',$id)
     ->get();
     $product = DB::table('sanpham')
     ->where('masp',$rq->masp)
     ->get();
-  
+    $product_check = DB::table('chitietkm')
+    ->join('khuyemai','khuyemai.makm','=','chitietkm.makm')
+    ->where('chitietkm.masp',$rq->masp)->count();
+    // echo '<pre>';
+    // print_r($product_check);
+    // echo '</pre>';
+  if($product_check>0)
+  {
+    $product_check = DB::table('chitietkm')
+    ->join('khuyemai','khuyemai.makm','=','chitietkm.makm')
+    ->where('chitietkm.masp',$rq->masp)->get();
+    foreach($product_check as $a)
+    {
+        foreach($product_km_add as $b)
+        {
+        if($a->ngaykt < $b->ngaybd )
+        {
+            foreach($product as $p)
+            {
+             $data = array();
+                $data['masp']=$rq->masp;
+                $data['makm']=$id;
+                $data['giagiam']=$p->gia*((100-$a->phantramkm)/100);
+                $data['giachuagiam']=$p->gia;
+              DB::table('chitietkm')->insert($data);
+              return Redirect()->back()->with('message','Thêm thành công');
+                echo $p->gia*((100-$a->phantramkm)/100);
+               
+            }
+              
+        }
+        else
+        {
+            
+            return Redirect()->back()->with('message','k them dc!');
+        }
+    }
+    }
+  }
+  else
+  {
     foreach($product_km_add as $a)
     {   
         foreach($product as $p)
@@ -98,9 +136,32 @@ class DiscountController extends Controller
             $data['giagiam']=$p->gia*((100-$a->phantramkm)/100);
             $data['giachuagiam']=$p->gia;
           DB::table('chitietkm')->insert($data);
-          return Redirect()->back()->with('message','thành công');
+          return Redirect()->back()->with('message','Thêm thành công');
             // echo $p->gia*((100-$a->phantramkm)/100);
         }
     }
+  }
+
+    
+    }
+    public function del_dis($id)
+    {
+       
+        $a=  DB::table('chitietkm')->where('makm',$id)->count();
+      
+        if($a==0)
+        {
+            DB::table('khuyemai')->where('makm',$id)->delete();
+            return Redirect()->back()->with('message','Xóa thành công');
+        }
+        else
+        {
+            return Redirect()->back()->with('message','Vui lòng xóa sản phẩm khuyến mãi trước');
+        }
+    }
+    public function del_dis_detail($id)
+    {
+        DB::table('chitietkm')->where('id',$id)->delete();
+        return Redirect()->back()->with('message','Xóa thành công');
     }
 }

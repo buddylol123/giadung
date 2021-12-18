@@ -1,9 +1,26 @@
 @extends('welcome')
 @section('content')
+@if(Session('message'))
+
+<div class="alert alert-danger">
+    <ul><li>{{Session('message')}} </li></ul>
+</div>
+
+       @endif
 <section id="main-content">
 <section class="wrapper">
         <?php $i= 1?>
        <h2>Chi tiết đơn hàng</h2>
+       @foreach($dh2 as $b)
+       @if($b->trangthai !="Hủy đơn" && $b->trangthai =="Đang chờ xử lý") 
+       <div class="" style="padding-bottom: 22px;text-align: right">
+ 
+        <input type="hidden" id="check" value="{{$id}}">
+       
+        <a id="test" href="{{ URL::to('/huydon/'.$id) }}" style="width: 100px;height:35px;" type="button" class="btn btn-danger">Hủy đơn</a>
+            </div>
+            @endif
+            @endforeach
 		<div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">

@@ -7,6 +7,19 @@
     <div class="panel-heading">
     Chương trình khuyến mãi
     </div>
+    @if(Session('message'))
+
+    <div class="alert alert-danger">
+        <ul>
+            
+                <li>
+                  {{Session('message')}}
+                </li>
+           
+        </ul>
+    </div>
+
+      @endif
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
@@ -62,7 +75,7 @@
             <td>
               <a href="{{URL::to('/edit-product/')}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
-              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/')}}" class="active" ui-toggle-class="">
+              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-dis/'.$cat_pro->makm)}}" class="active" ui-toggle-class="">
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>

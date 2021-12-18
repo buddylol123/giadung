@@ -36,11 +36,17 @@ Route::post('/save-status-bl/{id}','comment@save_status_bl');
 Route::get('/tra-loi-bl/{id}','comment@tra_loi_cmt');
 Route::post('/save-tl-bl/{id}','comment@save_tl_bl');
 
+Route::get('/send-e','CartController@send_e');
+
+Route::get('/send-sms','ProductController@sendsms');
+
 //quanlykhyen mai
 Route::get('/add-discount','DiscountController@add_dis');
 Route::post('/save-discount','DiscountController@save_dis');
 Route::get('/all-discount','DiscountController@all_dis');
 Route::get('/chi-tiet-km/{id}','DiscountController@all_discount_detail');
+Route::get('/del-dis-detail/{id}','DiscountController@del_dis_detail');
+Route::get('/del-dis/{id}','DiscountController@del_dis');
 Route::post('/save-product-dis/{id}','DiscountController@save_product_discount');
 //loaisp
 Route::get('/add-category-product','CategoryProduct@add_category');
@@ -84,9 +90,13 @@ Route::get('/payment-admin','Payment@payment_admin');
 Route::get('/detail-dh/{id}','Payment@detail_dh');
 Route::get('/status/{id}','Payment@status');
 Route::post('/save-status/{id}','Payment@save_status');
+//PDF ĐƠN Hàng
+
 Route::get('/dh-pdf/{id}','Payment@dh_pdf');
 Route::get('/import-pdf/{id}','Payment@import_pdf');
+
 //frontened
+
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu','HomeController@index');
 Route::post('/tim-kiem','HomeController@search');
@@ -105,6 +115,8 @@ Route::get('/dangxuat','Pagecontroller@getdangxuat');
 Route::post('/save-account','Pagecontroller@postdangky');
 Route::get('/getinfo/{info_id}','Pagecontroller@getinfo');
 Route::post('/save-info','Pagecontroller@save_info');
+
+
 
 //Danh muc san pham trang chu
 Route::get('/danhmucsanpham/{category_id}','CategoryProduct@show_category_home');
@@ -126,10 +138,11 @@ Route::get('/del-cart/{rowId}','CartController@del_cart');
 Route::post('/update-cart','CartController@update_cart');
 Route::post('/save-payment','CartController@save_payment');
 Route::get('/payment','CartController@payment_show');
-Route::get('/thanh-cong','CartController@thanhcong');
+Route::get('/thanh-cong/{id}','CartController@thanhcong');
 Route::get('/check-history','CartController@check');
 Route::get('/check-detail/{id}','CartController@check_detail');
-
+Route::get('/huydon/{id}','CartController@huy_don');
+Route::post('/confirm-payment/{id}','CartController@confirm_payment');
 
 
 

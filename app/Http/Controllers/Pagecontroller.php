@@ -126,9 +126,11 @@ class Pagecontroller extends Controller
         $data['password']=($request->password);
         $data['phone']=$request->phone;
         $data['diachi']=$request->address;
-        
+
 
         DB::table('khachhang')->where('id',$a)->update($data);
+
+            
 
         return Redirect::to('getinfo/'.$a);
     }

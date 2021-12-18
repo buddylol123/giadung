@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Sanphamreq;
 use App\hinhanh;
-
+use Illuminate\Support\Facades\Mail;
+use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Carbon;
 
 session_start();
@@ -158,7 +159,9 @@ class ProductController extends Controller
             ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
             ->where('chitietkm.masp',$a->masp)
             ->first();
-           
+           //       echo'<pre>';
+    //    print_r($data);
+    //   echo'</pre>';
 
         }
        
@@ -220,5 +223,21 @@ class ProductController extends Controller
       }
     
     }
+    public function sendsms()
+    { 
+        // Nexmo::message()->send([
+        //     'to'   => '84879327833',
+        //     'from' => '84879327833',
+        //     'text' => 'Email được xác nhận ',
+        // ]);
+        // $length=2;
+        // $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        // $charactersLength = strlen($characters);
+        // $randomString = '';
+        // for ($i = 0; $i < $length; $i++) {
+        //     $randomString .= $characters[rand(0, $charactersLength -1)];
+        // }
+        // echo $randomString;
+        }
     
 }

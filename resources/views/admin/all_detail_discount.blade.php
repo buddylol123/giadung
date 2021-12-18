@@ -6,6 +6,19 @@
                 <header class="panel-heading">
                     Thêm sản phẩm khuyến mãi
                 </header>
+                @if(Session('message'))
+
+                <div class="alert alert-danger">
+                    <ul>
+                        
+                            <li>
+                              {{Session('message')}}
+                            </li>
+                       
+                    </ul>
+                </div>
+
+                       @endif
                 @if(count($errors)>0)
                    <div class="alert alert-danger">
                        <ul>
@@ -18,14 +31,7 @@
                     </div>
                 @endif
                 <div class="panel-body">
-                    <?php
-                    $mess =Session::get('message');
-                    if($mess)
-                    {
-                        echo'<span class="text-alert">'.$mess.'</span>';
-                        Session::put('message',null);
-                    }
-                    ?>
+                 
                     @foreach($product_km_add as $a)
                     <div class="position-center">
                         <form role="form"   method="POST" action="{{ URL::to('/save-product-dis/'.$a->makm) }}">
@@ -118,9 +124,10 @@
             <td>{{number_format( $cat_pro->giachuagiam)}} VNĐ</td>
            
             
-           <td>
+        
                <td>
-         
+                <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-dis-detail/'.$cat_pro->id)}}" class="active" ui-toggle-class="">
+                  <i class="fa fa-times text-danger text"></i></a>
           </tr>
           @endforeach
         </tbody>

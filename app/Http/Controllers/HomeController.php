@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Carbon;
 session_start();
+use Barryvdh\DomPDF\Facade as PDF;
 
 class HomeController extends Controller
 {
@@ -22,15 +23,21 @@ class HomeController extends Controller
         ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         ->limit(10)->get();
         $hinh = DB::table('hinhanh')->limit(1)->get();
-
-        $product_km = DB::table('sanpham')
+       
+  
+    $product_km = DB::table('sanpham')
         ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
         ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
         ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
-        ->get();
-        $time=Carbon::now('Asia/Ho_Chi_Minh');
+        ->get(); 
+ 
+
+
+ 
+   $time=Carbon::now('Asia/Ho_Chi_Minh');
+    
         // select sanpham.tensp,chitietsp.mactsp,hinhanh.tenhinh,loaisanpham.tenloai
         // FROM sanpham  INNER JOIN chitietsp on sanpham.masp=chitietsp.masp
         // INNER JOIN hinhanh ON chitietsp.mactsp=hinhanh.mactsp
@@ -42,6 +49,7 @@ class HomeController extends Controller
         ->with('time',$time);
        
     }
+
     public function search(Request $request){
     	$cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Sanphamreq;
 use App\hinhanh;
+use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
@@ -68,7 +69,8 @@ class Payment extends Controller
     if( $data['trangthai']=='Hủy đơn')
     {
         
-        $b=DB::table('chitietdh')->select('chitietdh.madh','chitietdh.soluong as slban','sanpham.soluong as slton','sanpham.masp')
+        $b=DB::table('chitietdh')->select('chitietdh.madh','chitietdh.soluong as 
+        slban','sanpham.soluong as slton','sanpham.masp')
         ->join('sanpham', 'chitietdh.masp','=','sanpham.masp')
         ->where('madh',$id)->get();
     //    dd($b);
@@ -77,15 +79,14 @@ class Payment extends Controller
        
       $e=  $q->slban + $q->slton;
          $d =(string)$e;
-        // echo '<pre>';
-        // print_r($e);
-        // echo '</pre>';
+       
         
         DB::table('sanpham')->where('masp',$q->masp)->update(['soluong' =>$d]);
         DB::table('donhang')->where('madh',$id)->update($data);
-        Session()->put('message','Cập nhật thành công');
-        return Redirect::to('payment-admin');      
+            
         }
+        Session()->put('message','Cập nhật thành công');
+        return Redirect::to('payment-admin'); 
     }
     else
     {
@@ -95,23 +96,33 @@ class Payment extends Controller
     }
     }
     public function dh_pdf($id)
-    {  $dh2 = DB::table('donhang')->select('donhang.madh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.ngaydathang','donhang.trangthai','donhang.tenkh','donhang.diachi','donhang.sodienthoai')
+    {  $dh2 = DB::table('donhang')->select('khachhang.email','khachhang.name','donhang.madh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.ngaydathang','donhang.trangthai','donhang.tenkh','donhang.diachi','donhang.sodienthoai')
       ->where('donhang.madh',$id)->orderby('donhang.madh','desc')
       ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
       ->join('chitietdh', 'donhang.madh', '=', 'chitietdh.madh')
       ->join('sanpham', 'sanpham.masp', '=', 'chitietdh.masp')
       ->get();
-    //   $manager_payment = view('pdf.hd')
-    //   ->with('dh',$dh2);
-    //   $pdf = PDF::loadView('pdf.hd')->with('dh',$manager_payment);
-    //   return $pdf->stream('hd.pdf');
-    return view('pdf.hd')->with('dh',$dh2);
+   
+                   
+
+    return view('pdf.hd')->with('dh2',$dh2);
        
     }
     public function import_pdf($id)
     {  
-        $pdf = PDF::loadHTML($this->dh_pdf($id));
-         return $pdf->stream('hd.pdf');
+       
+        $pdf = PDF::loadHTML( $this->dh_pdf($id));
+        $pdf->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        //  return $pdf->stream('hd.pdf');
+        $data = array();
+        $data['a']='ok';
+         Mail::send('pdf.pdf',$data,function($message)use($pdf){
+            $message->from('thanhloi486@gmail.com','Thanh Loi');
+            $message->to('dh51705268@student.stu.edu.vn');
+            $message->subject('Test'); 
+            $message->attachData($pdf->output(),"invoice.pdf");
+        });
+    echo 'dc';
     }
 
 }

@@ -105,10 +105,8 @@
     </div>
 	<div class="invoice-box">
 		<div class="col-xs-12">
-			<h1 style="color: red"><center>Hóa đơn điện tử</center></h1>
+			<h1 style="color: red"><center>Công ty TNHH E-PIE</center></h1>
 		</div>
-      
-      @foreach ($dh2 as $d )
 
 			<table cellpadding="0" cellspacing="0">
 				<tr  class="top" style="" >
@@ -118,7 +116,7 @@
 								
 
 								<td>
-									<h2 style="color:orangered">Công ty TNHH:E-PIE</h2><h3> Mã hóa đơn: {{ $d->madh }}</h3><br />
+									<h2 style="color:orangered">Đây là thư tự động.Vui lòng không trả lời</h2><br />
 								</td>
 							</tr>
 						</table>
@@ -130,9 +128,11 @@
 						<table>
 							<tr>
 								<td style=" font-size: 20px">
-									Họ và tên : {{ $d->tenkh }}<br />
-									Địa chỉ : {{ $d->diachi }}<br />
-									Số điện thoại : {{ $d->sodienthoai }}
+									Mã Đơn hàng:{{ $data_madh['madh'] }}<br/>
+									Họ và tên người nhận : {{ $data_dh['tenkh'] }}<br />
+									Địa chỉ giao : {{  $data_dh['diachi'] }}<br />
+									Số điện thoại người nhận: {{  $data_dh['sodienthoai'] }}<br/>
+                                    Ghi chú: {{  $data_dh['ghichu'] }}
 								</td>
 
 								<td>
@@ -163,22 +163,24 @@
           <td >SL</td>
 					<td>Giá</td>
 				</tr>
-
+				@foreach( $data_ctdh as $data_mail)
 				<tr class="item">
-					<td >{{ $d->tensp }}</td>
-          <td >{{ $d->soluong }}</td>
-					<td>{{ $d->gia }}</td>
+					
+					<td >{{ $data_mail['tensp'] }}</td>
+          			<td >{{ $data_mail['soluong']}}</td>
+					<td>{{ $data_mail['gia'] }}</td>
+				
 				</tr>
-
+				@endforeach
 
 				<tr class="total">
 					<td></td>
       
 				
-					<td >Tổng cộng:{{$d->tongtien }}</td>
+					<td >Tổng cộng:{{ $data_dh['tongtien']}}</td>
 				</tr>
 			</table>
-      @endforeach
+
 		</div>
 	</body>
 </html>

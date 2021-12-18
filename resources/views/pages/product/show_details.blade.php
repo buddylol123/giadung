@@ -52,7 +52,7 @@
 									<span>
 										
 										<?php
-										if($product_km && $product_km->masp==$value->masp)
+										if($product_km && $product_km->masp==$value->masp && $time <= $product_km->ngaykt && $time >=$product_km->ngaybd)
 										{ 
 										?>
 										<span>{{number_format($product_km->giagiam).'VND'}}</span>
