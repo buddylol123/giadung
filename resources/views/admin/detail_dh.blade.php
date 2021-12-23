@@ -35,7 +35,7 @@
               echo $i;
               ?>
             </td>
-            <td>{{ $d->tensp }}</td>
+            <td>{{ $d->tensp }} ({{ $d->mausac }})</td>
             <td>{{ $d->soluong }}</td>
             <td>{{ $d->ngaydathang }}</td>
            
@@ -88,8 +88,11 @@
                   </tr>
                   <tr>
                       <td>Tổng cộng</td>
-                      <td><span>{{ $d->tongtien }}</span></td>
-             
+                      @foreach($dh as $key => $c)
+                      @if($loop->first)
+                      <td><span>{{ $c->tongtien }}</span></td>
+                      @endif
+                    @endforeach
               </table>
             </ul>
           </div>

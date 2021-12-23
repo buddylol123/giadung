@@ -30,7 +30,7 @@
                 <div class="panel-body">  
   
                     <div class="position-center">
-                        <form role="form"   method="POST" action="{{ URL::to('/update-acc') }}">
+                        <form role="form"   method="POST" action="{{ URL::to('/update-acc') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                         <div class="form-group " >
                             
@@ -41,7 +41,7 @@
                         <div class="form-group " >
                             
                             <label for="exampleInputEmail1">Email</label>
-                            <input  type="text" value="{{Auth::user()->email}}" name="email" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
+                            <input  type="text" readonly value="{{Auth::user()->email}}" name="email" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
                             
                         </div>
                         <div class="form-group " >
@@ -62,12 +62,16 @@
                             <input  type="date" value="{{Auth::user()->ngaysinh}}" name="date" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
                             
                         </div>
-                        <div class="form-group " >
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Hình</label>
+                            <input type="file" name="img" class="form-control" id="exampleInputPassword1" value="{{Auth::user()->hinh}}" placeholder="Password">
+                        </div>
+                        {{-- <div class="form-group " >
                             
                             <label for="exampleInputEmail1">Password</label>
                             <input  type="password" value="" name="password" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
                             
-                        </div>
+                        </div> --}}
                        
                         
                         <button type="submit" class="btn btn-info">Submit</button>

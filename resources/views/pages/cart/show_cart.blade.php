@@ -46,9 +46,10 @@
                             <a href=""><img src="{{URL::to('public/frontend/img/'.$c->options->hinh)}}" width="50px" height="50px" alt=""></a>
                         </td>
                         <td class="cart_description">
-                            <h4><a href="">{{ $c->name }}</a></h4>
+                            <h4><a href="">{{ $c->name }}(màu {{$c->options->mau}})</a></h4>
                        
                         </td>
+                        
                         <td class="cart_price">
                             <p>{{number_format($c->price).' '.'VNĐ'}}</p>
                         </td>
@@ -56,9 +57,10 @@
                             <div class="cart_quantity_button">
                                 <form action="{{ URL::to('/update-cart') }}" method="POST">
                                     {{ csrf_field() }}
-                                <input class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" autocomplete="off" size="2">
+                                <input style="width: 80px" class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" autocomplete="off" size="2">
                                 <input type="hidden" value="{{ $c->rowId }}" name="rowId" class="form-control">
                                 <input type="hidden" value="{{ $c->id }}" name="masp" class="form-control">
+                                <input type="hidden" value="{{ $c->options->mau }}" name="mau" class="form-control">
                                 <input class="btn btn-default btn-sm" type="submit" Value="Cập Nhật">
                                 </form>
                             </div>

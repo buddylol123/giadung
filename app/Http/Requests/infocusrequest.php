@@ -31,8 +31,8 @@ class infocusrequest extends FormRequest
 
         'address' => 'required|max:50',
 
-        'password' => 'required|max:50|min:11',
-        're_password' => 'required|max:50|same:password',
+        // 'password' => 'required|max:50|min:11',
+        // 're_password' => 'required|max:50|same:password',
         ];
     }
     public function messages()
@@ -44,7 +44,7 @@ class infocusrequest extends FormRequest
 
             'address.required'=>'Vui lòng không bỏ trống',
 
-            'password.required'=>'Vui lòng không bỏ trống',
+            // 'password.required'=>'Vui lòng không bỏ trống',
             'email.required'=>'Vui lòng không bỏ trống',
             'name.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
             'name.min'=>'Vui lòng nhập nhập trên 10 ký tự',
@@ -55,9 +55,9 @@ class infocusrequest extends FormRequest
 
             'address.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
 
-            'password.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
-            'password.min'=>'Vui lòng nhập nhập trên 11 ký tự',
-            're_password.same'=>'Password không khớp với nhau',
+            // 'password.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
+            // 'password.min'=>'Vui lòng nhập nhập trên 11 ký tự',
+            // 're_password.same'=>'Password không khớp với nhau',
 
           
             ];

@@ -25,7 +25,6 @@ class DiscountController extends Controller
     $data['tenkhuyenmai']=$request->name;
     $data['ngaybd']=$request->ngaybd;
     $data['ngaykt']=$request->ngaykt;
-    $data['phantramkm']=$request->discount;
     DB ::table('khuyemai')->insert($data);
     return redirect('/add-discount')->with('message','Thêm Khuyến mãi thành công');
 
@@ -33,20 +32,21 @@ class DiscountController extends Controller
     }
 
     public function all_dis()
-    {
+    { $time = Carbon::now('Asia/Ho_Chi_Minh');
         $product_km = DB::table('khuyemai')
         ->get();
     
         
         $manager_discount = view('admin.all_discount')
-        ->with('product_km',$product_km);
+        ->with('product_km',$product_km)->with('time',$time);;
         
-
+       
         return view ('admin_layout')->with('admin.all_discount',$manager_discount);
+   
         
     }
     public function all_discount_detail($id)
-    {
+    {   $time = Carbon::now('Asia/Ho_Chi_Minh');
         $product_km = DB::table('chitietkm')
         ->join('khuyemai','khuyemai.makm','=','chitietkm.makm')
         ->join('sanpham','chitietkm.masp','=','sanpham.masp')
@@ -69,7 +69,7 @@ class DiscountController extends Controller
         $count=$product->count();
         $manager_discount = view('admin.all_detail_discount')
         ->with('product_km',$product_km)->with('product',$result)
-        ->with('product_km_add',$product_km_add)->with('count',$count);
+        ->with('product_km_add',$product_km_add)->with('count',$count)->with('time',$time);
         
 
         return view ('admin_layout')->with('admin.all_detail_discount',$manager_discount);
@@ -79,7 +79,7 @@ class DiscountController extends Controller
     }
     public function save_product_discount(Request $rq,$id)
     {
-     $time =Carbon::now('Asia/Ho_Chi_Minh');
+    
     $product_km_add = DB::table('khuyemai')
     ->where('makm',$id)
     ->get();
@@ -108,8 +108,9 @@ class DiscountController extends Controller
              $data = array();
                 $data['masp']=$rq->masp;
                 $data['makm']=$id;
-                $data['giagiam']=$p->gia*((100-$a->phantramkm)/100);
+                $data['giagiam']=$p->gia*((100-$rq->discount)/100);
                 $data['giachuagiam']=$p->gia;
+                $data['phantramkm']=$rq->discount;
               DB::table('chitietkm')->insert($data);
               return Redirect()->back()->with('message','Thêm thành công');
                 echo $p->gia*((100-$a->phantramkm)/100);
@@ -127,19 +128,19 @@ class DiscountController extends Controller
   }
   else
   {
-    foreach($product_km_add as $a)
-    {   
+      
         foreach($product as $p)
         {  $data = array();
             $data['masp']=$rq->masp;
             $data['makm']=$id;
-            $data['giagiam']=$p->gia*((100-$a->phantramkm)/100);
+            $data['giagiam']=$p->gia*((100-$rq->discount)/100);
             $data['giachuagiam']=$p->gia;
+            $data['phantramkm']=$rq->discount;
           DB::table('chitietkm')->insert($data);
           return Redirect()->back()->with('message','Thêm thành công');
             // echo $p->gia*((100-$a->phantramkm)/100);
         }
-    }
+   
   }
 
     

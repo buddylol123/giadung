@@ -56,12 +56,11 @@ class NhaSanXuat extends Controller
         if($a==0)
         {
             DB::table('nhasx')->where('mansx',$brand_product_id)->delete();
-            Session::put('message','xóa nhà sản xuất thành công');
-            return Redirect::to('all-brand-product');
+            return Redirect::to('all-brand-product')->with('message','xóa nhà sản xuất thành công');
         }
         else
         {
-            echo 'Erorr!!!';
+            return Redirect::to('all-brand-product')->with('message','Xóa không được');
         }
     }
 

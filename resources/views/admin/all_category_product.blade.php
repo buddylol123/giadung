@@ -1,12 +1,24 @@
 @extends('admin_layout')
 @section('admin_content')
     
+@if(Session('message'))
 
+<div class="alert alert-danger">
+    <ul>
+        
+            <li>
+              {{Session('message')}}
+            </li>
+       
+    </ul>
+</div>
+@endif
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
       Chi Tiết Loại Sản Phẩm
     </div>
+   
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">

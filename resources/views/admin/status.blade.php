@@ -16,13 +16,15 @@
               
                 
                 <div class="col-lg-6">
-                   
-                
-                    <select name="status" class="form-control m-bot15">
-                        <option>Đang chờ xử lý</option>
-                        <option>Đang Vận Chuyển</option>
+                   <select name="status" class="form-control m-bot15">
+                    @if($d->trangthai=="Đang Vận Chuyển")
+                       
                         <option>Đã giao</option>
                         <option>Hủy đơn</option>
+                        @else
+                        <option>Đang Vận Chuyển</option>
+                        @endif
+                       
                     </select>
                     
                 </div>

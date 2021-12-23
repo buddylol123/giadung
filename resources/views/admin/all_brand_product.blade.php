@@ -1,7 +1,18 @@
 @extends('admin_layout')
 @section('admin_content')
     
+@if(Session('message'))
 
+<div class="alert alert-danger">
+    <ul>
+        
+            <li>
+              {{Session('message')}}
+            </li>
+       
+    </ul>
+</div>
+@endif
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">

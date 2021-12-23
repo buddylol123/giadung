@@ -41,15 +41,15 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">So Luong</label>
-                                    <textarea type="Text" name="product_qty" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
+                                    <label for="exampleInputPassword1">Số lượng</label>
+                                    <input type="number" name="product_qty" class="form-control" id="exampleInputPassword1"/>
                                 </div>
 
             
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Gia </label>
-                                    <textarea type="Text" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
+                                    <label for="exampleInputPassword1">Giá </label>
+                                    <input type="number" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
                                 </div>
 
                                 <div class="form-group">
@@ -57,12 +57,7 @@
                                     <input type="file" name="product_img" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mô tả </label>
-                                    <textarea type="Text" name="product_inf" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Loai san pham</label>
+                                    <label for="exampleInputPassword1">Loại sản phẩm</label>
                                    <select name="product_maloai" class="form-control input-sm m-bot15">
                                     @foreach($cate_product as $key => $catepro)
                                    <option value="{{$catepro->maloai}}">{{$catepro->tenloai}}</option>
@@ -71,7 +66,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword2">ma sx</label>
+                                    <label for="exampleInputPassword2">Mã nhà sản xuất</label>
                                    <select name="product_mansx" class="form-control input-sm m-bot15">
 
                                    @foreach($brand_product as $key => $cate)

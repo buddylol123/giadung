@@ -25,7 +25,7 @@ class CategoryProduct extends Controller
     $data['maloai']=$request->category_product_id;
     $data['tenloai']=$request->category_product_name;
     $data['slug_loaisp']=$request->slug_category_product;
-    $data['parent']=$request->category_product_parent;
+    $data['category_parent']=$request->category_product_parent;
     // echo'<pre>';
     //     print_r($data);
     //  echo'</pre>';
@@ -46,7 +46,7 @@ class CategoryProduct extends Controller
     $data['maloai']=$request->category_product_id;
     $data['tenloai']=$request->category_product_name;
     $data['slug_loaisp']=$request->slug_category_product;
-    $data['parent']=$request->category_product_parent;
+    $data['category_parent']=$request->category_product_parent;
     // echo'<pre>';
     //     print_r($data);
     //  echo'</pre>';
@@ -60,12 +60,11 @@ class CategoryProduct extends Controller
         if($a==0)
         {
             DB::table('loaisanpham')->where('maloai',$category_product_id)->delete();
-            Session::put('message','xóa loại sản phẩm thành công');
-            return Redirect::to('all-category-product');
+            return Redirect::to('all-category-product')->with('message','xóa loại sản phẩm thành công');
         }
         else
         {
-            echo 'Erorr!!!';
+            return Redirect::to('all-category-product')->with('message','Không thể xóa được');
         }
     }
     //End Admin Page

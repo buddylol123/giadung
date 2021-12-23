@@ -37,8 +37,9 @@
                                 <input type="text" name="add" placeholder="Địa chỉ giao hàng" value="{{ $add  }}">
                                 <input type="text" name="phone" placeholder="Số điện thoại người nhận" value="{{ $phone }}">
                                 <textarea name="mess"  placeholder="Ghi chú thêm" rows="16"></textarea>
-                               
+                               @if(Cart::count()>0)
                                <input type="submit" value="Mua hàng" name="send" class="btn btn-primary btn-sm" >
+                               @endif
                             </form>
                          
                         </div>
@@ -130,7 +131,7 @@
                 </tbody>
             </table>
         </div>
-        <h3 style="margin:40px 0;front-size:20px">Hình thức thanh toán</h3>
+        {{-- <h3 style="margin:40px 0;front-size:20px">Hình thức thanh toán</h3>
         <div class="payment-options">
                 <span>
                     <label><input type="checkbox"> Direct Bank Transfer</label>
@@ -141,7 +142,7 @@
                 <span>
                     <label><input type="checkbox"> Paypal</label>
                 </span>
-        </div>
+        </div> --}}
     </div>
 </section> <!--/#cart_items-->
 

@@ -20,10 +20,6 @@
                </div>
            @endif
            <?php 
-                        $name = Session()->get('name');
-						$add = Session()->get('diachi');
-                        $phone = Session()->get('phone');
-                        $email = Session()->get('email');
                         $id = Session()->get('makh');
            ?>
                 <form action="{{URL::to('/save-info')}}" method="POST" role="form">
@@ -33,33 +29,33 @@
  
                     </div>
                     <div>
-                        <input type="text" value="<?php echo $name ?>" class="form-control" name="name" placeholder="Tên">
+                        <input type="text" value="<?php echo $info->name ?>" class="form-control" name="name" placeholder="Tên">
  
                     </div>
                     <div>
-                        <input type="email" value="<?php echo $email ?>" readonly name="email" placeholder="Email"/>
+                        <input type="email" value="<?php echo $info->email ?>" readonly name="email" placeholder="Email"/>
                     </div>
                     <div>
-                        <input type="text" value="<?php echo $add?>"class="form-control"name="address"placeholder="Địa chỉ"/>
+                        <input type="text" value="<?php echo $info->diachi ?>"class="form-control"name="address"placeholder="Địa chỉ"/>
                     </div>
-                        <input type="text" value="<?php echo $phone ?>"class="form-control" name="phone" placeholder="Số điện thoại"/>
-                    <div class="form-group" >
-                        <input type="password" name="password"class="form-control" id="ipnPassword" placeholder="Nhập Mật khẩu">
+                    <input type="tel" name="phone" value="<?php echo $info->phone?>" placeholder="Số điện thoại" pattern="(0[3|5|7|8|9])+([0-9]{8})"/>
+                    {{-- <div class="form-group" >
+                        <input type="password" name="password"class="form-control" id="ipnPassword" placeholder="Nhập Mật khẩu"> --}}
                         {{-- <button style="background: #FE980F;
                         border: medium none;
                         border-radius: 0;
                         margin-left: -5px;
                         margin-top: -3px; padding: 7px 17px ;" class="btn btn-danger fomr" type="button" id="btnPassword"> --}}
                             {{-- <i  class="fa fa-eye"></i> --}}
-                          </button>
+                          {{-- </button> --}}
                         
                         
                         
-                    </div>
+                    {{-- </div>
                  
                     <div>
                         <input type="password" name="re_password" placeholder="Nhập lại Mật khẩu"/>
-                    </div>
+                    </div> --}}
                 <div>
                     <button type="submit" class="btn btn-default">Submit</button>
                  

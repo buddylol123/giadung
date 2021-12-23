@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Danh mục cha</label>
-                            <input type="text" name="{{$edit_value->parent}}" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="text" value="{{$edit_value->category_parent}}" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
                         </div>
                         
                        

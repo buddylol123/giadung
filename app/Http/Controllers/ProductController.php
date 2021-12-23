@@ -79,27 +79,27 @@ class ProductController extends Controller
          Session()->put('message','Them san pham thanh cong');
          return Redirect::to('add-product');
     }
-    public function update_product($product_id,Sanphamreq $request)
+    public function update_product($product_id,Request $request)
     {
         $data = array();
         $data['tensp'] = $request->product_name;
         $data['soluong'] = $request->product_qty;
-        $data['sanphamdaban'] = $request->product_sold;
         $data['gia'] = $request->product_price;
         $data['hinh'] = $request->product_img;
        
         $data['mansx'] = $request->product_mansx;
         $data['maloai'] = $request->product_maloai;
         $get_img = $request->file('product_img');
-        if($get_img )
+        if($get_img)
         {   $get_name_img = $get_img->getClientOriginalExtension();
             $name_img = current(explode('.',$get_name_img));
             $new_img = $name_img.rand(0,99).'.'.$get_name_img;
             $get_img->move('public/frontend/img',$new_img);
             $data['hinh'] = $new_img;
-            DB ::table('sanpham')->where('masp',$product_id)->update($data);
-            Session()->put('message','Sua san pham thanh cong');
-            return Redirect::to('all-product');
+            DB::table('sanpham')->where('masp',$product_id)->update($data);
+        Session()->put('message','cap nhat san pham thanh cong thanh cong');
+        return Redirect::to('all-product');
+
         }
 
      
@@ -115,13 +115,45 @@ class ProductController extends Controller
         {
         DB::table('sanpham')->where('masp',$product_id)->delete();
 
-        Session()->put('message','cap nhat danh muc thanh cong');
-        return Redirect::to('all-product');
+
+        return Redirect::to('all-product')->with('message','cap nhat danh muc thanh cong');
         }
         else
         {
-            echo 'ko dc';
+            return Redirect::to('all-product')->with('message','Không thể xóa');
         }
+
+    }
+    public function all_img($id)
+    {   $a = DB::table('hinhanh')->where('mactsp',$id)->get();
+        $manager_product = view('admin.all-img')
+        ->with('images',$a)->with('id',$id);
+        
+
+        return view ('admin_layout')->with('admin.all_product',$manager_product);
+
+    }
+    public function save_img(Request $request)
+    {  $data = array();
+        $data['tenhinh'] = $request->name;
+        $get_img = $request->file('img');
+        if($get_img)
+        {   $get_name_img = $get_img->getClientOriginalExtension();
+            $name_img = current(explode('.',$get_name_img));
+            $new_img = $name_img.rand(0,99).'.'.$get_name_img;
+            $get_img->move('public/frontend/img',$new_img);
+            $data['hinh'] = $new_img;
+            $data['mactsp'] = $request->id;
+            DB::table('hinhanh')->insert($data);
+        return redirect()->back()->with('message','Thêm thành công');
+
+        }
+        else
+        {
+            return redirect()->back()->with('message','Vui lòng chèn file hình');
+        }
+        
+
 
     }
     //end admin page
@@ -153,15 +185,15 @@ class ProductController extends Controller
             $danhgia =DB::table('danhgia')
             ->join('chitietdh', 'danhgia.mactdh', '=','chitietdh.id')
             ->where('chitietdh.masp',$a->masp)
+            ->where('chitietdh.mausac',$a->mausac)
             ->get();
+
             $product_km = DB::table('sanpham')
             ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
             ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
             ->where('chitietkm.masp',$a->masp)
             ->first();
-           //       echo'<pre>';
-    //    print_r($data);
-    //   echo'</pre>';
+      
 
         }
        
@@ -194,6 +226,7 @@ class ProductController extends Controller
         ->join('sanpham', 'chitietdh.masp','=','sanpham.masp')
         ->join('donhang', 'chitietdh.madh','=','donhang.madh')
         ->where('chitietdh.masp',$id)
+        ->where('chitietdh.mausac',$rq->mausac)
         ->where('donhang.trangthai',"Đã giao")
         ->where('donhang.makh',Session::get('makh'))
         ->first();
@@ -210,9 +243,8 @@ class ProductController extends Controller
         $a['trangthai']='Hiện';
        
         DB::table('danhgia')->insert($a);
-        return redirect()->back();
-       
-      
+        return redirect()->back()->with('loibinhluan','them binh luan thanh cong');
+        // return Redirect::to('/chitietsanpham/2','body');
     
         }
    

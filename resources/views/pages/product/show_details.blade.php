@@ -61,12 +61,10 @@
 										?>
 										<span>{{number_format($value->gia).'VND'}}</span>
 										<?php } ?>
-									
-									
-										
 										<label>Số lượng:</label>
 										<input name="sl" type="number" min="1" value="1" />
 										<input name="productid_hidden" type="hidden" value="{{$value->masp}}" />
+										<input name="mau" type="hidden" value="{{$value->mausac}}" />
 										<button type="Submit" class="btn btn-fefault cart">
 											<i class="fa fa-shopping-cart"></i>
 											Add to cart
@@ -76,7 +74,7 @@
 							
 								
 								<?php 
-										if($value->soluong>0)
+										if($value->soluongsp>0)
 										{
 								?>
 								<p><b>Tình trạng:</b> Còn hàng</p>
@@ -168,6 +166,7 @@
 									<p><b>Hãy đánh giá sản phẩm</b></p>
 									<form action="{{ URL::to('/danhgia/'.$value->masp) }}" method="POST">
 										{{ csrf_field() }}
+										<input type="hidden" name="mausac" value=" {{$value->mausac}} ">
 										<textarea name="content" ></textarea>
 										<button type="submit"  class="btn btn-default pull-right">Submit</button>
 									</form>

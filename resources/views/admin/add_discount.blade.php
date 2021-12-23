@@ -41,11 +41,7 @@
                             <label for="exampleInputEmail1">Ngày kết thúc</label>
                             <input  type="datetime-local" name="ngaykt" class="form-control form-control-lg" id="exampleInputEmail1">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">% Khuyến mãi</label>
-                            <input type="number" style="width:75px" name="discount" class="form-control form-control-lg" id="exampleInputEmail1">
-
-                        </div>
+                 
                        
                         <button type="submit" class="btn btn-info">Submit</button>
                     </form>

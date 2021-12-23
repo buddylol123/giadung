@@ -24,7 +24,7 @@ class Chitietspreq extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required|unique:chitietsp,mactsp|max:50',
+
             'product_kl' => 'required|max:200',
             'product_kt' => 'required|max:100'
         ];

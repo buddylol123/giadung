@@ -50,29 +50,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="top-nav clearfix">
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">
-        <li>
-            <input type="text" class="form-control search" placeholder=" Search">
-        </li>
+     
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/2.png">
+                <img alt="" src="{{URL::to('public/backend/images/'.Auth::user()->hinh)}}">
                 <span class="username">
-
-                <?php
-    $name = Session()->get('manv');
-    if($name)
-    {
-        echo $name;
-        
-    }
-    ?>
+                    {{ Auth::user()->name }}
                 </span>
-
-	
-				
-
-                <b class="caret"></b>
+              <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
                 <li><a href="{{URL::to("/editinfo/".Auth::user()->id)}}"><i class=" fa fa-suitcase"></i>Cập nhật tài khoản</a></li>
@@ -248,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer -->
           <div class="footer">
             <div class="wthree-copyright">
-              <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+              <p>© Công ty thành lập vào 2021<a href="http://w3layouts.com">E-PIE</a></p>
             </div>
           </div>
   <!-- / footer -->

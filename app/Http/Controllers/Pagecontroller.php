@@ -80,8 +80,8 @@ class Pagecontroller extends Controller
             return Redirect::to('trang-chu');
         }
         else
-             Session()->put('message','Mật khẩu hoặc tài khoản sai');
-             return Redirect::to('dangnhap');
+            
+             return Redirect::to('dangnhap')->with('message','Tài khoản hoặc mật khẩu sai');
              
 
     }
@@ -116,14 +116,18 @@ class Pagecontroller extends Controller
     {   	$cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
 
             $brand_product = DB::table('nhasx')->orderby('mansx','desc')->get();
-        return view('pages.info')->with('brand_product',$brand_product)->with('cate_product',$cate_product);
+         $info = DB::table('khachhang')->where('id',Session()->get('makh'))->first();
+      
+        return view('pages.info')
+        ->with('brand_product',$brand_product)
+        ->with('cate_product',$cate_product)
+        ->with('info',$info);
     }
     public function save_info(infocusrequest $request)
 {   	  $data = array();
         
         $a=$request->id;
         $data['name']=$request->name;
-        $data['password']=($request->password);
         $data['phone']=$request->phone;
         $data['diachi']=$request->address;
 
@@ -132,7 +136,7 @@ class Pagecontroller extends Controller
 
             
 
-        return Redirect::to('getinfo/'.$a);
+        return redirect()->back();
     }
 
     // public function getGiohang()

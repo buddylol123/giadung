@@ -43,6 +43,14 @@
                                     <label for="exampleInputPassword1">Kích thước</label>
                                     <textarea type="Text" name="product_kt" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Mô tả</label>
+                                    <textarea type="Text" name="mota" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Màu sắc</label>
+                                    <input type="Text" name="mau" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                </div>
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Sản phẩm</label>
                                    <select name="product_ctsp" class="form-control input-sm m-bot15">

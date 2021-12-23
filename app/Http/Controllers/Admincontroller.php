@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\infocusrequest;
-
+session_start();
 class Admincontroller extends Controller
 {   
     
@@ -66,8 +66,8 @@ class Admincontroller extends Controller
 
     }
     else
-    {
-        return Redirect::to('/login');
+    {  
+        return Redirect::to('/admin');
     }
     
 
@@ -156,11 +156,23 @@ class Admincontroller extends Controller
         $data = array();
         $id_user = Auth::user()->id;
         $data['name']=$request->name;
-        $data['password']=bcrypt($request->password);
+        // $data['password']=bcrypt($request->password);
         $data['phone']=$request->phone;
         $data['diachi']=$request->address;
         $data['ngaysinh']=$request->date;
-        
+        $get_img = $request->file('img');
+     
+        if($get_img!='')
+        {   $get_name_img = $get_img->getClientOriginalExtension();
+            $name_img = current(explode('.',$get_name_img));
+            $new_img = $name_img.rand(0,99).'.'.$get_name_img;
+            $get_img->move('public/backend/images',$new_img);
+            $data['hinh'] = $new_img;
+            DB::table('admin')->where('id',$id_user)->update($data);
+            Session()->put('message','Thay đổi thành công');
+            return Redirect::to('editinfo/'.$id_user);
+        }
+        $data['hinh']='NULL';
         DB::table('admin')->where('id',$id_user)->update($data);
         return Redirect::to('editinfo/'.$id_user);
     }

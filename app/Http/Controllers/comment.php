@@ -14,8 +14,6 @@ class comment extends Controller
       $cmt = DB::table('danhgia')->get();
       $manager= view('admin.all_binhluan')
         ->with('cmt',$cmt);
-        
-
         return view ('admin_layout')->with('admin.all_binhluan',$manager);
     }
     public function trang_thai_cmt($id)
@@ -52,8 +50,7 @@ class comment extends Controller
         $data['parent_id']=$id;
         DB::table('danhgia')->insert($data);
         return Redirect('/binh-luan')->with('message','Thêm bình luận thành công');
-      
-    
+        
     }
     
 }

@@ -52,7 +52,6 @@
             </th>
             <th >Mã </th>
             <th>Tên Chương trình</th>
-            <th>Phần trăm khuyến mãi</th>
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>
         
@@ -67,17 +66,18 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cat_pro->makm }}</td>
             <td><a style="color: red" href="{{URL::to('/chi-tiet-km/'.$cat_pro->makm) }}">{{ $cat_pro->tenkhuyenmai }}</a></td>
-            <td>{{ $cat_pro->phantramkm }}%</td>
             <td>{{ $cat_pro->ngaybd }}</td>
             <td>{{ $cat_pro->ngaykt }}</td>
            
-            
+       
             <td>
+              @if($time<=$cat_pro->ngaybd)
               <a href="{{URL::to('/edit-product/')}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
               <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-dis/'.$cat_pro->makm)}}" class="active" ui-toggle-class="">
 
               <i class="fa fa-times text-danger text"></i></a>
+              @endif
             </td>
          
           </tr>

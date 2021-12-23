@@ -222,17 +222,23 @@ footer {
     <main>
       <div id="details" class="clearfix">
         <div id="client">
+          @foreach ($dh2 as $a )
+            @if($loop->first)
           <div class="to">Giao đến:</div>
-          <h2 class="name">Họ và tên:John Doe</h2>
-          <div class="address">796 Silver Harbour, TX 79273, US</div>
-          <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+          <h2 class="name">Họ và tên:{{ $a->tenkh }}</h2>
+          <div class="address">{{ $a->diachi }}</div>
+          <div class="email"><a href="mailto:john@example.com">{{ $a->email }}</a></div>
+          @endif
+        
         </div>
         <div id="invoice">
-          <h1>HÓA ĐƠN Bán Hàng #34</h1>
+          <h1>HÓA ĐƠN Bán Hàng #{{ $a->madh }}</h1>
           <div class="date">Ngày lập: 01/06/2014</div>
           <div class="date">Trạng thái: Đã thanh toán</div>
         </div>
       </div>
+      @endforeach
+      @foreach ($dh2 as $d )
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
@@ -246,25 +252,26 @@ footer {
         <tbody>
           <tr>
             <td class="no"></td>
-            <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">30</td>
-            <td class="total">$1,200.00</td>
+            <td class="desc">{{ $d->tensp }}({{ $d->mausac }})</td>
+            <td class="unit">{{number_format($d->gia) }}</td>
+            <td class="qty">{{ $d->soluong }}</td>
+            <td class="total">{{ number_format($d->soluong*$d->gia) }}</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <td colspan="2"></td>
             <td colspan="2">Tổng cộng</td>
-            <td>$5,200.00</td>
+            <td>{{$d->tongtien}}</td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td colspan="2">Thanh toán</td>
-            <td>$6,500.00</td>
+            <td>{{$d->tongtien}}</td>
           </tr>
         </tfoot>
       </table>
+      @endforeach
       <div id="thanks" style="">Cảm ơn bạn đã ủng hộ!</div>
       <div id="notices">
         <div>Chú ý:</div>

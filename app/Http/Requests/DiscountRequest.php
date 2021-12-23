@@ -27,7 +27,7 @@ class DiscountRequest extends FormRequest
         'name' => 'required|max:100',
         'ngaybd' => 'required|after_or_equal:'.$yesterday,
         'ngaykt' => 'required|after:ngaybd',
-        'discount' => 'required|numeric|max:100|min:0',
+        // 'discount' => 'required|numeric|max:100|min:0',
         
         ];
     }
@@ -38,8 +38,8 @@ class DiscountRequest extends FormRequest
             'ngaybd.required'=>'Vui lòng không bỏ trống ngày tháng bắt đầu',
             'ngaykt.required'=>'Vui lòng không bỏ trống ngày tháng kết thúc',
             'discount.required'=>'Vui lòng nhập số khuyến mãi',
-            'discount.max'=>'Phần trăm khuyến mãi nhỏ hơn 100%',
-            'discount.min'=>'Phần trăm khuyến mãi lớn hơn 0',
+            // 'discount.max'=>'Phần trăm khuyến mãi nhỏ hơn 100%',
+            // 'discount.min'=>'Phần trăm khuyến mãi lớn hơn 0',
 
              ];
 }

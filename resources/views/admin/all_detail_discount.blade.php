@@ -33,6 +33,7 @@
                 <div class="panel-body">
                  
                     @foreach($product_km_add as $a)
+                    @if($time<=$a->ngaybd)
                     <div class="position-center">
                         <form role="form"   method="POST" action="{{ URL::to('/save-product-dis/'.$a->makm) }}">
                             {{ csrf_field() }}
@@ -56,11 +57,20 @@
                                <option selected value="">Rỗng</option>
                                @endif
                                </select>
+                                      
                               
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">% Khuyến mãi</label>
+                            <input type="number" style="width:75px" name="discount" class="form-control form-control-lg" id="exampleInputEmail1">
+
+                        </div>
+                      
                        <button type="submit" class="btn btn-info">Submit</button>
+                 
                         </form>
                     </div>
+                    @endif
             @endforeach
                 </div>
             </section>
@@ -108,6 +118,7 @@
             <th>Tên sản phẩm</th>
             <th>Giá giảm</th>
             <th>Giá gốc</th>
+            <th>Phần trăm</th>
         
             
             <th style="width:30px;"></th>
@@ -122,12 +133,15 @@
             <td>{{ $cat_pro->tensp }}</td>
             <td>{{number_format( $cat_pro->giagiam) }} VNĐ</td>
             <td>{{number_format( $cat_pro->giachuagiam)}} VNĐ</td>
+            <td><a style="color: red">{{ $cat_pro->phantramkm }}%<a></td>
            
             
         
                <td>
+                @if($time<=$cat_pro->ngaybd)
                 <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-dis-detail/'.$cat_pro->id)}}" class="active" ui-toggle-class="">
                   <i class="fa fa-times text-danger text"></i></a>
+                  @endif
           </tr>
           @endforeach
         </tbody>

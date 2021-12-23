@@ -27,7 +27,8 @@ class Sanphamreq extends FormRequest
         return [
         'product_id' => 'required|unique:sanpham,masp|max:50',
         'product_name' => 'required|unique:sanpham,tensp|max:250',
-        'product_img' => 'required'
+        'product_img' => 'required|mimes:jpg,jpeg,png|max:2048',
+
         ];
     }
     public function messages()
@@ -40,6 +41,7 @@ class Sanphamreq extends FormRequest
             'product_name.unique'=>'Mã bạn vừa nhập đã tồn tại',
             'product_name.max'=>'Vui lòng không nhập quá 250 ký tự',
             'product_img.required'=>'Vui lòng chèn hình ảnh',
+            'product_img.mimes'=>'Chỉ được định dạng jpg,jpeg,png'
             ];
     }
   

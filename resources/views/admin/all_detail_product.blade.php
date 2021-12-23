@@ -1,7 +1,18 @@
 @extends('admin_layout')
 @section('admin_content')
     
+@if(Session('message'))
 
+<div class="alert alert-danger">
+    <ul>
+        
+            <li>
+              {{Session('message')}}
+            </li>
+       
+    </ul>
+</div>
+@endif
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
@@ -52,7 +63,7 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td style="width:10px">{{ $cat_pro->mactsp }}</td>
-            <td style="width:200px">{{ $cat_pro->tensp }}</td>
+            <td style="width:200px"><a href="{{URL::to('/all-img/'.$cat_pro->mactsp)}}" style="color:darkblue">{{ $cat_pro->tensp }}</a></td>
             <td>{{ $cat_pro->khoiluong}}</td>
             <td>{{ $cat_pro->kichthuoc }}</td>
             

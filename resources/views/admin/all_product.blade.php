@@ -1,7 +1,16 @@
 @extends('admin_layout')
 @section('admin_content')
-    
-
+@if(Session('message')) 
+<div class="alert alert-danger">
+  <ul>
+      
+          <li>
+            {{Session('message')}}
+          </li>
+     
+  </ul>
+</div>
+@endif
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
@@ -40,13 +49,12 @@
             <th >Mã </th>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
-            <th>Sản phẩm đã bán</th>
             <th>Giá</th>
             <th>Hình</th>
-            <th>Mô tả</th>
+            <th>Tình Trạng</th>
             <th>NSX</th>
             <th>Loại</th>
-            
+
             <th style="width:30px;"></th>
           </tr>
         </thead>
@@ -59,9 +67,29 @@
             <td>{{ $cat_pro->tensp }}</td>
             <td>{{ $cat_pro->soluong }}</td>
             <td>{{ $cat_pro->gia }}</td>
-            <td>{{ $cat_pro->hinh }}</td>
-            <td>{{ $cat_pro->mota }}</td>
+            
+            <td>  <img width="120px" height="120px" src="{{URL::to('public/frontend/img/'.$cat_pro->hinh)}}"/></td>
+            @php
+              if($cat_pro->soluong>0)
+              {
+              
+            @endphp
+            <td><a style="color:green">Còn hàng<a></td>
+            
+            @php
+            
+              }
+              else {
+             
+            @endphp
+            <td><a style="color: red">Hết hàng<a></td>
+          @php
+        }
+          @endphp
+           
             <td>{{ $cat_pro->tennsx }}</td>
+     
+
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
             
             <td>
@@ -71,7 +99,7 @@
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>
-         
+          </td></td>
           </tr>
           @endforeach
         </tbody>

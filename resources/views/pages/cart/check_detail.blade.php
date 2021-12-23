@@ -14,10 +14,13 @@
        @foreach($dh2 as $b)
        @if($b->trangthai !="Hủy đơn" && $b->trangthai =="Đang chờ xử lý") 
        <div class="" style="padding-bottom: 22px;text-align: right">
- 
+        <form action="">
+
+     
         <input type="hidden" id="check" value="{{$id}}">
-       
+   
         <a id="test" href="{{ URL::to('/huydon/'.$id) }}" style="width: 100px;height:35px;" type="button" class="btn btn-danger">Hủy đơn</a>
+      </form>
             </div>
             @endif
             @endforeach
@@ -47,7 +50,7 @@
             @foreach($dh as $d)
           <tr>
             <td>{{ $i++}}</td>
-            <td>{{ $d->tensp }}</td>
+            <td>{{ $d->tensp }} ({{ $d->mausac }})</td>
             <td>{{ $d->soluong }}</td>
             <td>{{ $d->gia }}</td>
           
@@ -76,8 +79,11 @@
                 </tr>
                 <tr>
                     <td>Tổng cộng</td>
+                   
+                    
                     <td><span>{{ $d->tongtien }}</span></td>
-           
+                    
+               
             </table>
           </ul>
         </div>

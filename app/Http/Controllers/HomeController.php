@@ -22,19 +22,20 @@ class HomeController extends Controller
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
         ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         ->limit(10)->get();
-        $hinh = DB::table('hinhanh')->limit(1)->get();
+        // $hinh = DB::table('hinhanh')->get();
        
+ 
+    $hinh = DB::table('hinhanh')->where('status','1')->get();
   
     $product_km = DB::table('sanpham')
         ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
-        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
         ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
         ->get(); 
  
 
-
+ 
  
    $time=Carbon::now('Asia/Ho_Chi_Minh');
     

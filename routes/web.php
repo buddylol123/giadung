@@ -84,6 +84,8 @@ Route::post('/save-product-detail','ProductdetailController@save_product_detail'
 Route::get('/update-product-detail/{product_id}','ProductdetailController@update_product_detail');
 Route::get('/edit-product-detail/{product_id}','Productdetailcontroller@edit_product_detail');
 Route::get('/del-product-detail/{product_id}','Productdetailcontroller@del_product_detail');
+Route::get('/all-img/{id}','ProductController@all_img');
+Route::post('/save-img','ProductController@save_img');
 
 //donhang
 Route::get('/payment-admin','Payment@payment_admin');

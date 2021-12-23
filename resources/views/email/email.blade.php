@@ -166,7 +166,7 @@
 				@foreach( $data_ctdh as $data_mail)
 				<tr class="item">
 					
-					<td >{{ $data_mail['tensp'] }}</td>
+					<td >{{ $data_mail['tensp'] }} ({{$data_mail['mau']  }})</td>
           			<td >{{ $data_mail['soluong']}}</td>
 					<td>{{ $data_mail['gia'] }}</td>
 				

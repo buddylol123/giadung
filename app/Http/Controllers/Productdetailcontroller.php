@@ -44,10 +44,13 @@ class Productdetailcontroller extends Controller
     public function save_product_detail(Chitietspreq $request)
     {
         $data = array();
+        $data['mactsp'] = $request->product_id;
         $data['masp'] = $request->product_ctsp;
         $data['khoiluong'] = $request->product_kl;
         $data['kichthuoc'] = $request->product_kt;
-        $data['mactsp'] = $request->product_id;
+        $data['mota'] = $request->mota;
+        $data['mausac'] = $request->mau;
+       
         
          DB ::table('chitietsp')->insert($data);
          Session()->put('message','Thêm thành công');
@@ -69,7 +72,7 @@ class Productdetailcontroller extends Controller
         return Redirect::to('all-product-detail');
 
     }
-    public function del_product($product_id)
+    public function del_product_detail($product_id)
     {    
         DB::table('chitietsp')->where('mactsp',$product_id)->delete();
         Session()->put('message','cap nhat danh muc thanh cong');

@@ -11,16 +11,19 @@
 		<div class="single-products">
 			<div class="productinfo text-center">
 					<a  href="{{URL::to('/chitietsanpham/'.$product->mactsp)}}">
-						
-					<img width="200px" height="200px" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
 					
+						@foreach($hinh as $a)
+						@if($a->mactsp==$product->mactsp)
+					<img width="200px" height="200px" src="{{URL::to('public/frontend/img/'.$a->hinh)}}" alt="" />
+					@endif
+					@endforeach
 					<h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
 				@foreach ($product_km as $a )
 				@if($a->masp == $product->masp && $time <= $a->ngaykt && $time >=$a->ngaybd)
 				<h4 style="color:teal">Giá sốc: {{number_format($a->giagiam).''.'VNĐ'}}</h3>
 					
 				
-					@endif
+				@endif
 				@endforeach
 					
 				
@@ -34,6 +37,7 @@
 						{{ csrf_field() }}
 						<input name="sl" type="hidden" min="1" value="1" />
 						<input name="productid_hidden" type="hidden" value="{{$product->masp}}" />
+						<input name="mau" type="hidden" value="{{$product->mausac}}" />
 										
 										<button type="Submit" class="btn btn-fefault cart">
 											<i class="fa fa-shopping-cart"></i>

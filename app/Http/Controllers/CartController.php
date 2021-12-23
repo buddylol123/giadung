@@ -23,12 +23,16 @@ class CartController extends Controller
         $product_id =$req->productid_hidden;
         $sl = $req->sl;
         $sp =DB::table('sanpham')
-        // ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
-        ->where('masp',$product_id)
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->where('chitietsp.masp',$product_id)
+        ->where('chitietsp.mausac',$req->mau)
         ->first();
         $product_km = DB::table('sanpham')
+        ->join('chitietsp','sanpham.masp','=','chitietsp.masp')
+        ->join('hinhanh','chitietsp.mactsp','=','hinhanh.mactsp')
         ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
         ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+        ->where('hinhanh.status','1')
         ->where('sanpham.masp',$product_id)
         ->first();
 
@@ -46,7 +50,8 @@ class CartController extends Controller
         } 
         $data['weight']='123';
         $data['options']['hinh']=$sp->hinh;
-        if($sp->soluong > 0)
+        $data['options']['mau']=$req->mau;
+        if($sp->soluongsp > 0)
         {
         Cart::add($data);
         return Redirect::to('/show-cart');
@@ -70,16 +75,19 @@ class CartController extends Controller
 
     }
     public function update_cart(Request $rq)
-    {  
+    {  $mau=$rq->mau;
          $id=$rq->masp;
         $sl=$rq->sl;;
         $rowid=$rq->rowId;
         $sp =DB::table('sanpham')
-        ->where('masp',$id)
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->where('sanpham.masp',$id)
+        ->where('chitietsp.mausac',$mau)
         ->first();
-        if($sl > $sp->soluong)
+      
+        if($sl > $sp->soluongsp)
         {
-            Session()->put('message','Sản phẩm '.$sp->tensp.' còn số lượng là '.$sp->soluong.'.Vui lòng không nhập giá trị lớn hơn số lượng tồn');
+            Session()->put('message','Sản phẩm '.$sp->tensp.' còn số lượng là '.$sp->soluongsp.'.Vui lòng không nhập giá trị lớn hơn số lượng tồn');
             return Redirect::to('/show-cart');
       }
         else 
@@ -126,6 +134,7 @@ class CartController extends Controller
             'tensp'=> $m->name,
             'soluong' => $m->qty,
             'gia'=>$m->price,
+            'mau'=>$m->options->mau,
             'tongtien'=>Cart::subtotal()
         );
           
@@ -137,18 +146,20 @@ class CartController extends Controller
             $data_ctdh['masp'] = $c->id;
             $data_ctdh['soluong'] = $c->qty;
             $data_ctdh['gia'] = $c->price;
+            $data_ctdh['mausac'] = $c->options->mau;
             DB::table('chitietdh')->insert($data_ctdh);
-            $b=DB::table('sanpham')->select('soluong')->where('masp',$c->id)->get();
+            $b=DB::table('chitietsp')->select('soluongsp','mausac')->where('mausac',$c->options->mau)->where('masp',$c->id)->get();
             foreach($b as $q)
             {
-             $e=  $q->soluong-$c->qty;
+             $e=  $q->soluongsp-$c->qty;
              $d =(string)$e;
       
             //  echo '<pre>';
             //  print_r($d);
             //          echo '</pre>';
-            DB::table('sanpham')->where('masp',$c->id)->update(['soluong' =>$d]);
-
+            // DB::table('sanpham')->where('masp',$c->id)->update(['soluong' =>$d]);
+            DB::table('chitietsp')->where('masp',$c->id)->where('mausac',$q->mausac)
+            ->update(['soluongsp' =>$d]);
                  
             }
    
@@ -199,7 +210,7 @@ class CartController extends Controller
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
 
-        $dh = DB::table('donhang')->select('donhang.tenkh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.tenkh')
+        $dh = DB::table('donhang')->select('chitietdh.mausac','donhang.tenkh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.tenkh')
         ->where('makh',Session::get('makh'))
         ->where('donhang.madh',$id)->orderby('donhang.madh','desc')
         ->join('chitietdh', 'donhang.madh', '=', 'chitietdh.madh')
@@ -222,9 +233,23 @@ class CartController extends Controller
     }
     //huy don ben user
     public function huy_don($id)
-    {
+    {    $b=DB::table('chitietdh')->select('chitietdh.madh','chitietdh.soluong as 
+        slban','sanpham.masp','chitietdh.mausac')
+        ->join('sanpham', 'chitietdh.masp','=','sanpham.masp')
+        ->where('madh',$id)->get();
+
+        foreach($b as $q)
+        {
+        $c=DB::table('chitietsp')->where('masp',$q->masp)->where('mausac',$q->mausac)->first();
+        $e=  $q->slban + $c->soluongsp;
+  
+        $d =(string)$e;
+        DB::table('chitietsp')->where('masp',$q->masp)->where('mausac',$q->mausac)
+        ->update(['soluongsp' =>$d]);
         DB::table('donhang')->where('madh',$id)->update(['trangthai' => 'Hủy đơn']);
-        
+        }
+       
+     
         
         return Redirect()->back()->with('message','Hủy đơn thành công');
     }
