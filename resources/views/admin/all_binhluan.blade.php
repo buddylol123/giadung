@@ -50,7 +50,7 @@
               </label>
             </th>
             <th >Mã bình luận</th>
-            <th>Tên bình luận</th>
+            <th>Tên </th>
             <th>Vai trò</th>
             <th>Nội dung</th>
             <th>Ngày đánh giá</th>
@@ -68,9 +68,10 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
            
             <td>{{ $cat_pro->mabinhluan }}</td>
-            <td >{{ $cat_pro->ten }}</td>
+            <td >{{ $cat_pro->ten }}  (Đơn hàng <a href="{{URL::to('/detail-dh/'.$cat_pro->madh)}}" style="color:#DB4437">{{$cat_pro->madh }})</a></td>
             <td>Khách hàng</td>
             <td style="width:100px;">{{ $cat_pro->noidung }}</td>
+  
             <td>{{ $cat_pro->ngaydanhgia }}</td>
             <td>{{ $cat_pro->trangthai }}</td>
             

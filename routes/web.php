@@ -47,6 +47,8 @@ Route::get('/all-discount','DiscountController@all_dis');
 Route::get('/chi-tiet-km/{id}','DiscountController@all_discount_detail');
 Route::get('/del-dis-detail/{id}','DiscountController@del_dis_detail');
 Route::get('/del-dis/{id}','DiscountController@del_dis');
+Route::get('/edit-discount/{id}','DiscountController@edit_discount');
+Route::post('/save-edit-discount/{id}','DiscountController@save_edit_discount');
 Route::post('/save-product-dis/{id}','DiscountController@save_product_discount');
 //loaisp
 Route::get('/add-category-product','CategoryProduct@add_category');
@@ -73,7 +75,7 @@ Route::post('/update-brand-product/{brand_product_id}','NhaSanXuat@update_brand'
 Route::get('/all-product','ProductController@all_product');
 Route::get('/add-product','ProductController@add_product');
 Route::post('/save-product','ProductController@save_product');
-Route::get('/update-product/{product_id}','ProductController@update_product');
+Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::get('/edit-product/{product_id}','ProductController@edit_product');
 Route::get('/del-product/{product_id}','ProductController@del_product');
 
@@ -109,9 +111,14 @@ Route::get('/dangxuat','Pagecontroller@getdangxuat');
 Route::post('/save-account','Pagecontroller@postdangky');
 Route::get('/getinfo/{info_id}','Pagecontroller@getinfo');
 Route::post('/save-info','Pagecontroller@save_info');
-
+//forgot-pass
+Route::get('/forget-pass','Pagecontroller@forget_pass');
+Route::post('/save-pass','Pagecontroller@save_pass');
+Route::get('/update-mk','Pagecontroller@update_mk');
 Route::get('/dangnhap','Pagecontroller@getlogin');
 Route::post('/checkout','Pagecontroller@postlogin');
+Route::get('/update-pass','Pagecontroller@update_pass');
+Route::post('/save-repass','Pagecontroller@save_repass');
 Route::get('/dangky','Pagecontroller@getdangky');
 Route::get('/dangxuat','Pagecontroller@getdangxuat');
 Route::post('/save-account','Pagecontroller@postdangky');

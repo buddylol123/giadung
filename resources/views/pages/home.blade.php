@@ -5,7 +5,7 @@
 <div class="features_items"><!--features_items-->
 	<h2 class="title text-center">Sản phẩm mới</h2>
 	@foreach($all_product as $key => $product)
-	@if($product->soluong >0)
+
 	<div class="col-sm-4">
 	<div class="product-image-wrapper">
 		<div class="single-products">
@@ -59,14 +59,14 @@
 			
 				<img width="20%" src="{{URL::to('public/frontend/img/sale.png')}}" class="new" alt="">
 				
-					@endif
+				@endif
 				@endforeach
 			
 		</div>
 		
 	</div>
 </div>
-@endif
+
 @endforeach
 
 

@@ -39,14 +39,6 @@
                                     <label for="exampleInputPassword1">Ten san pham</label>
                                     <textarea type="Text" name="product_name" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Số lượng</label>
-                                    <input type="number" name="product_qty" class="form-control" id="exampleInputPassword1"/>
-                                </div>
-
-            
-
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Giá </label>
                                     <input type="number" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"/>

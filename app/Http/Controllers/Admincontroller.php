@@ -92,8 +92,13 @@ class Admincontroller extends Controller
    
 
     public function dash()
-    {
-        return view('admin.dashboard');
+    {   $sum_product=DB::table('chitietsp')->sum('soluongsp');
+        $sp_ban_chay=DB::table('chitietdh')->selectRaw('chitietsp.soluongsp,chitietdh.masp,sanpham.tensp,sum(chitietdh.soluong) as a')
+        ->join('sanpham','sanpham.masp','=','chitietdh.masp')
+        ->join('chitietsp','chitietsp.masp','=','sanpham.masp')
+        ->orderBy('chitietdh.masp','desc')->groupBy('chitietdh.masp')->get();
+        // dd($sp_ban_chay);
+        return view('admin.dashboard')->with('sp_ban_chay',$sp_ban_chay)->with('sum_product',$sum_product);
     }
 
    

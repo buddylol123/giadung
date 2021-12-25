@@ -90,29 +90,32 @@ class Payment extends Controller
         return Redirect::to('payment-admin')->with('message','Cập nhật thành công'); 
     }
     else if($data['trangthai']=='Đã giao')
-    {   $dh2 = DB::table('donhang')->select('khachhang.email','khachhang.name','donhang.madh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.ngaydathang','donhang.trangthai','donhang.tenkh','donhang.diachi','donhang.sodienthoai')
-        ->where('donhang.madh',$id)->orderby('donhang.madh','desc')
-        ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
-        ->join('chitietdh', 'donhang.madh', '=', 'chitietdh.madh')
-        ->join('sanpham', 'sanpham.masp', '=', 'chitietdh.masp')
-        ->get();
+    {
+        $dh2 = DB::table('donhang')->select('khachhang.email','khachhang.name','donhang.madh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.ngaydathang','donhang.trangthai','donhang.tenkh','donhang.diachi','donhang.sodienthoai')
+            ->where('donhang.madh',$id)->orderby('donhang.madh','desc')
+            ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
+            ->join('chitietdh', 'donhang.madh', '=', 'chitietdh.madh')
+            ->join('sanpham', 'sanpham.masp', '=', 'chitietdh.masp')
+            ->get();
         $pdf = PDF::loadHTML( $this->dh_pdf($id));
         $pdf->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
         $pdf->setPaper('A4', 'landscape');
         //  return $pdf->stream('pdf.pdf');
       foreach($dh2 as $a)
       {
-   
       $email=$a->email;
+      $madh=$a->madh;
       }
-         Mail::send('pdf.thanhcong',['dh2'=>$dh2],function($message)use($pdf,$email){
+      $arr = array();
+      $arr['a']='ok';
+         Mail::send('pdf.thanhcong',$arr,function($message)use($pdf,$email,$madh){
             $message->from('thanhloi486@gmail.com','Thanh Loi');
             $message->to($email);
             $message->subject('Test'); 
-            $message->attachData($pdf->output(),"invoice.pdf");
+            $message->attachData($pdf->output(),"HD".$madh.".pdf");
         });
-        // DB::table('donhang')->where('madh',$id)->update($data);
-        // return Redirect::to('payment-admin')->with('messcapnhat','Cập nhật thành công');
+        DB::table('donhang')->where('madh',$id)->update($data);
+        return Redirect::to('payment-admin')->with('messcapnhat','Cập nhật thành công');
     }
     else
     {
@@ -123,7 +126,6 @@ class Payment extends Controller
     public function dh_pdf($id)
     {  $dh2 = DB::table('donhang')->select('chitietdh.mausac','khachhang.email','khachhang.name','donhang.madh','donhang.tongtien','sanpham.tensp','chitietdh.soluong','chitietdh.gia','donhang.ngaydathang','donhang.trangthai','donhang.tenkh','donhang.diachi','donhang.sodienthoai')
       ->where('donhang.madh',$id)
-      ->where('donhang.trangthai','Đã giao')
       ->orderby('donhang.madh','desc')
       ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
       ->join('chitietdh', 'donhang.madh', '=', 'chitietdh.madh')

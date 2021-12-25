@@ -72,7 +72,7 @@
        
             <td>
               @if($time<=$cat_pro->ngaybd)
-              <a href="{{URL::to('/edit-product/')}}" class="active" ui-toggle-class="">
+              <a href="{{URL::to('/edit-discount/'.$cat_pro->makm)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
               <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-dis/'.$cat_pro->makm)}}" class="active" ui-toggle-class="">
 

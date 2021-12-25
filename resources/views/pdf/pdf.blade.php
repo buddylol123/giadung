@@ -228,7 +228,7 @@ footer {
           <h2 class="name">Họ và tên:{{ $a->tenkh }}</h2>
           <div class="address">{{ $a->diachi }}</div>
           <div class="email"><a href="mailto:john@example.com">{{ $a->email }}</a></div>
-          @endif
+   
         
         </div>
         <div id="invoice">
@@ -237,8 +237,9 @@ footer {
           <div class="date">Trạng thái: Đã thanh toán</div>
         </div>
       </div>
+      @endif
       @endforeach
-      @foreach ($dh2 as $d )
+     
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
@@ -250,13 +251,17 @@ footer {
           </tr>
         </thead>
         <tbody>
+          @foreach ($dh2 as $d )
           <tr>
+           
             <td class="no"></td>
             <td class="desc">{{ $d->tensp }}({{ $d->mausac }})</td>
             <td class="unit">{{number_format($d->gia) }}</td>
             <td class="qty">{{ $d->soluong }}</td>
             <td class="total">{{ number_format($d->soluong*$d->gia) }}</td>
+          
           </tr>
+          @endforeach
         </tbody>
         <tfoot>
           <tr>
@@ -271,7 +276,7 @@ footer {
           </tr>
         </tfoot>
       </table>
-      @endforeach
+
       <div id="thanks" style="">Cảm ơn bạn đã ủng hộ!</div>
       <div id="notices">
         <div>Chú ý:</div>

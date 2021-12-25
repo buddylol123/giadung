@@ -53,8 +53,14 @@ class CartController extends Controller
         $data['options']['mau']=$req->mau;
         if($sp->soluongsp > 0)
         {
+            if($sp->soluongsp > $sl)
+            {
         Cart::add($data);
         return Redirect::to('/show-cart');
+            }else
+            {
+                return redirect()->back()->with('message','Số lượng hàng còn '.$sp->soluongsp);
+            }
         }
         {
            return redirect()->back()->with('message','Sản phẩm hết hàng');

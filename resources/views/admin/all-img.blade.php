@@ -58,7 +58,19 @@
 
                         </div>
                       
-                      
+                        <div class="form-group">
+                          <select name="status" class="form-control m-bot15">
+                         
+                              
+                               <option value="1">Mặt trước</option>
+                               <option value="2">Mặt trái</option>
+                         
+                               <option value="3">Mặt phải</option>
+                               <option value="4">Mặt sau</option>
+                           
+                              
+                           </select>
+                        </div>
                        <button type="submit" class="btn btn-info">Submit</button>
                  
                         </form>

@@ -52,6 +52,8 @@
             <th>Tên sản phẩm</th>
             <th>Khối lượng</th>
             <th>Kích thước</th>
+            <th>Số lượng</th>
+            <th>Tình trạng</th>
             
             
             <th style="width:30px;"></th>
@@ -66,7 +68,14 @@
             <td style="width:200px"><a href="{{URL::to('/all-img/'.$cat_pro->mactsp)}}" style="color:darkblue">{{ $cat_pro->tensp }}</a></td>
             <td>{{ $cat_pro->khoiluong}}</td>
             <td>{{ $cat_pro->kichthuoc }}</td>
-            
+            <td>{{ $cat_pro->soluongsp }}</td>
+   
+            @if($cat_pro->soluongsp>0)
+            <td><p style="color:green">Còn hàng</p></td>
+            @else
+            <td><p style="color: red">Hết hàng</p></td>
+            @endif
+   
            
             
             <td>

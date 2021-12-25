@@ -35,7 +35,7 @@
                              
                                 <input type="text" name="name" placeholder="Họ và tên người nhận" value="{{ $name  }}">
                                 <input type="text" name="add" placeholder="Địa chỉ giao hàng" value="{{ $add  }}">
-                                <input type="text" name="phone" placeholder="Số điện thoại người nhận" value="{{ $phone }}">
+                                <input type="text" name="phone" placeholder="Số điện thoại người nhận" value="{{$phone}}">
                                 <textarea name="mess"  placeholder="Ghi chú thêm" rows="16"></textarea>
                                @if(Cart::count()>0)
                                <input type="submit" value="Mua hàng" name="send" class="btn btn-primary btn-sm" >

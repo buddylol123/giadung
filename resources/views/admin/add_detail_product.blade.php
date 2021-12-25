@@ -51,6 +51,10 @@
                                     <label for="exampleInputPassword1">Màu sắc</label>
                                     <input type="Text" name="mau" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Số lượng</label>
+                                    <input type="number" name="sl" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                </div>
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Sản phẩm</label>
                                    <select name="product_ctsp" class="form-control input-sm m-bot15">

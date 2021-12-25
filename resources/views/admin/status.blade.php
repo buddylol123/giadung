@@ -23,6 +23,7 @@
                         <option>Hủy đơn</option>
                         @else
                         <option>Đang Vận Chuyển</option>
+                        <option>Hủy đơn</option>
                         @endif
                        
                     </select>

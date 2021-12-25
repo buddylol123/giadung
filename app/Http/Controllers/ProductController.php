@@ -57,7 +57,6 @@ class ProductController extends Controller
         $data['gia'] = $request->product_price;
         $data['hinh'] = $request->product_img;
 
-        $data['soluong'] = $request->product_qty;
         $data['mansx'] = $request->product_mansx;
         $data['maloai'] = $request->product_maloai;
     
@@ -80,18 +79,24 @@ class ProductController extends Controller
          return Redirect::to('add-product');
     }
     public function update_product($product_id,Request $request)
-    {
+    {   
+        $validated = $request->validate([
+            'product_name' => 'required|max:250',
+            'product_img' => 'mimes:jpg,jpeg,png|max:2048',
+            
+        ],[
+            'product_name.required'=>'Vui lòng không bỏ trống tên sản phẩm',
+          
+        ]);
         $data = array();
         $data['tensp'] = $request->product_name;
-        $data['soluong'] = $request->product_qty;
         $data['gia'] = $request->product_price;
-        $data['hinh'] = $request->product_img;
-       
         $data['mansx'] = $request->product_mansx;
         $data['maloai'] = $request->product_maloai;
         $get_img = $request->file('product_img');
         if($get_img)
-        {   $get_name_img = $get_img->getClientOriginalExtension();
+        {     
+            $get_name_img = $get_img->getClientOriginalExtension();
             $name_img = current(explode('.',$get_name_img));
             $new_img = $name_img.rand(0,99).'.'.$get_name_img;
             $get_img->move('public/frontend/img',$new_img);
@@ -102,7 +107,6 @@ class ProductController extends Controller
 
         }
 
-     
         DB::table('sanpham')->where('masp',$product_id)->update($data);
         Session()->put('message','cap nhat san pham thanh cong thanh cong');
         return Redirect::to('all-product');
@@ -134,7 +138,10 @@ class ProductController extends Controller
 
     }
     public function save_img(Request $request)
-    {  $data = array();
+    {  
+       
+
+        $data = array();
         $data['tenhinh'] = $request->name;
         $get_img = $request->file('img');
         if($get_img)
@@ -144,6 +151,7 @@ class ProductController extends Controller
             $get_img->move('public/frontend/img',$new_img);
             $data['hinh'] = $new_img;
             $data['mactsp'] = $request->id;
+            $data['status']=$request->status;
             DB::table('hinhanh')->insert($data);
         return redirect()->back()->with('message','Thêm thành công');
 

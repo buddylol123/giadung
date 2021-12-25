@@ -165,4 +165,17 @@ class DiscountController extends Controller
         DB::table('chitietkm')->where('id',$id)->delete();
         return Redirect()->back()->with('message','Xóa thành công');
     }
+  public function edit_discount($id)
+  { $km =DB::table('khuyemai')->where('makm',$id)->first();
+      return view('admin.edit_discount')->with('km',$km)->with('id',$id);
+  }
+  public function save_edit_discount(Request $request,$id)
+  { 
+    $data = array();
+    $data['tenkhuyenmai']=$request->name;
+    $data['ngaybd']=$request->ngaybd;
+    $data['ngaykt']=$request->ngaykt;
+    DB ::table('khuyemai')->where('makm',$id)->update($data);
+    return redirect('/all-discount')->with('message','Sửa Chương khuyến mãi thành công');
+  }
 }

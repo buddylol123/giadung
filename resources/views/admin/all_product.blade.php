@@ -48,7 +48,6 @@
             </th>
             <th >Mã </th>
             <th>Tên sản phẩm</th>
-            <th>Số lượng</th>
             <th>Giá</th>
             <th>Hình</th>
             <th>Tình Trạng</th>
@@ -65,28 +64,9 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cat_pro->masp }}</td>
             <td>{{ $cat_pro->tensp }}</td>
-            <td>{{ $cat_pro->soluong }}</td>
             <td>{{ $cat_pro->gia }}</td>
             
-            <td>  <img width="120px" height="120px" src="{{URL::to('public/frontend/img/'.$cat_pro->hinh)}}"/></td>
-            @php
-              if($cat_pro->soluong>0)
-              {
-              
-            @endphp
-            <td><a style="color:green">Còn hàng<a></td>
-            
-            @php
-            
-              }
-              else {
-             
-            @endphp
-            <td><a style="color: red">Hết hàng<a></td>
-          @php
-        }
-          @endphp
-           
+            <td>  <img width="120px" height="120px" src="{{URL::to('public/frontend/img/'.$cat_pro->hinh)}}"/></td>           
             <td>{{ $cat_pro->tennsx }}</td>
      
 

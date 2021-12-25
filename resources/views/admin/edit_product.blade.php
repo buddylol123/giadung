@@ -29,29 +29,24 @@
                             <div class="position-center">
                             @foreach($edit_product as $key=>$edit_value)
 
-                           <form role="form" action="{{URL::to('/update-product/'.$edit_value->masp)}}" method="get" enctype="multipart/form-data">
+                           <form role="form" action="{{URL::to('/update-product/'.$edit_value->masp)}}" method="POST" enctype="multipart/form-data">
                            {{csrf_field()}}
                            <div class="form-group">
                             <label for="exampleInputPassword1">Mã sản phẩm</label>
                             <textarea type="Text" readonly value="{{($edit_value->masp)}}"  name="product_name" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->masp);?></textarea>
-                        </div>
+                             </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Ten san pham</label>
                                     <textarea type="Text" value="{{($edit_value->tensp)}}"  name="product_name" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->tensp);?></textarea>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">So Luong</label>
-                                    <textarea type="Text" value="{{($edit_value->tensp)}}"  name="product_qty" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->soluong);?></textarea>
-                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Gia </label>
-                                    <input type="Text" value="{{$edit_value->gia}}" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+                                    <input type="Text" value="{{$edit_value->gia}}" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hình sản phẩm</label>
-                                    <input type="file" name="product_img" class="form-control" id="exampleInputPassword1" value="{{$edit_value->hinh}}" placeholder="Password"></input>
+                                    <input type="file" name="product_img" class="form-control" id="exampleInputPassword1" value="{{$edit_value->hinh}}" placeholder="Password">
                                     <img src="{{URL::to('public/frontend/img/'.$edit_value->hinh)}}" height="200" width="200">
 
                                 </div>

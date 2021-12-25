@@ -11,7 +11,9 @@ class comment extends Controller
 {
     public function binh_luan()
     {
-      $cmt = DB::table('danhgia')->get();
+      $cmt = DB::table('danhgia')
+      ->join('chitietdh','danhgia.mactdh','=','chitietdh.id')
+      ->get();
       $manager= view('admin.all_binhluan')
         ->with('cmt',$cmt);
         return view ('admin_layout')->with('admin.all_binhluan',$manager);
@@ -48,6 +50,7 @@ class comment extends Controller
         $data['noidung']=$rq->cmt;
         $data['trangthai']="Hiện";
         $data['parent_id']=$id;
+        $data['idnv']=Auth::user()->id;
         DB::table('danhgia')->insert($data);
         return Redirect('/binh-luan')->with('message','Thêm bình luận thành công');
         

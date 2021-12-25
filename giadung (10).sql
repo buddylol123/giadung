@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 23, 2021 lúc 12:48 PM
+-- Thời gian đã tạo: Th12 25, 2021 lúc 07:44 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -90,7 +90,26 @@ INSERT INTO `chitietdh` (`id`, `madh`, `masp`, `soluong`, `gia`, `mausac`) VALUE
 (137, 171, 'sp22', 1, 400000, 'trắng'),
 (138, 172, 'sp22', 1, 400000, 'trắng'),
 (139, 173, 'sp22', 1, 400000, 'Đen'),
-(140, 173, 'sp22', 1, 400000, 'trắng');
+(140, 173, 'sp22', 1, 400000, 'trắng'),
+(141, 174, 'sp09', 1, 1500000, 'Đen'),
+(142, 174, 'sp20', 1, 100000, 'Đen'),
+(143, 175, 'sp09', 1, 1500000, 'Đen'),
+(144, 175, 'sp20', 1, 100000, 'Đen'),
+(145, 176, 'sp09', 1, 1500000, 'Đen'),
+(146, 176, 'sp20', 1, 100000, 'Đen'),
+(147, 177, 'sp09', 1, 1500000, 'Đen'),
+(148, 177, 'sp20', 1, 100000, 'Đen'),
+(149, 178, 'sp20', 1, 100000, 'Đen'),
+(150, 178, 'sp22', 1, 400000, 'Đen'),
+(151, 179, 'sp20', 1, 100000, 'Đen'),
+(152, 179, 'sp22', 1, 400000, 'trắng'),
+(153, 180, 'sp20', 1, 100000, 'Đen'),
+(154, 180, 'sp04', 1, 140000, 'Đen'),
+(155, 181, 'sp20', 2, 100000, 'Đen'),
+(156, 181, 'sp22', 1, 400000, 'trắng'),
+(157, 182, 'sp20', 1, 70000, 'Đen'),
+(158, 183, 'sp07', 1, 280000, 'Anh kim'),
+(159, 184, 'sp07', 1, 280000, 'Anh kim');
 
 -- --------------------------------------------------------
 
@@ -117,7 +136,9 @@ INSERT INTO `chitietkm` (`id`, `masp`, `makm`, `giagiam`, `giachuagiam`, `phantr
 (59, 'sp10', 13, 245000, 490000, 50),
 (60, 'sp02', 13, 472000, 590000, 20),
 (61, 'sp23', 15, 100000, 200000, 50),
-(62, 'sp01', 12, 1045000, 1900000, 45);
+(62, 'sp01', 12, 1045000, 1900000, 45),
+(63, 'sp01', 23, 950000, 1900000, 50),
+(64, 'sp20', 23, 70000, 100000, 30);
 
 -- --------------------------------------------------------
 
@@ -140,21 +161,23 @@ CREATE TABLE `chitietsp` (
 --
 
 INSERT INTO `chitietsp` (`mactsp`, `masp`, `khoiluong`, `kichthuoc`, `mota`, `mausac`, `soluongsp`) VALUES
-('1', 'sp01', '220kg', '10inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
-('10', 'sp06', '1', '1', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 1),
-('11', 'sp08', '2', '2', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'xanh', 0),
-('12', 'sp09', '3', '3', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 4),
+('1', 'sp01', '220kg', '10inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 100),
+('10', 'sp06', '1', '1', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 20),
+('11', 'sp08', '2', '2', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'xanh', 1),
+('12', 'sp09', '3', '3', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
 ('13', 'sp10', '4', '4', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'hồng', 0),
 ('14', 'sp11', '5', '5', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
 ('15', 'sp12', '3kg', '5inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'đỏ', 0),
 ('16', 'sp23', 'ád', 'ád', 'ád', 'de', 0),
-('2', 'sp22', '10kg', '20kg', 'sản phẩm 2.0', 'Đen', 27),
-('4', 'sp22', '20kg', '6inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'trắng', 2),
-('5', 'sp07', '20kg', '5inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Anh kim', 0),
+('17', 'sp20', '22kg', '10inch', 'San pham nhap khau', 'Đen', 10),
+('18', 'sp22', '20kg', '10cm', 'Sản phẩm cao cấp', 'Cam', 50),
+('2', 'sp22', '10kg', '20kg', 'sản phẩm 2.0', 'Đen', 26),
+('4', 'sp22', '20kg', '6inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'trắng', 0),
+('5', 'sp07', '20kg', '5inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Anh kim', 99),
 ('6', 'sp02', '300kg', '7inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
-('7', 'sp03', '500kg', '9inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
-('8', 'sp04', '170kg', '9inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
-('9', 'sp05', '190kg', '11inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0);
+('7', 'sp03', '500kg', '9inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 100),
+('8', 'sp04', '170kg', '9inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 99),
+('9', 'sp05', '190kg', '11inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 100);
 
 -- --------------------------------------------------------
 
@@ -169,38 +192,19 @@ CREATE TABLE `danhgia` (
   `noidung` text NOT NULL,
   `ngaydanhgia` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `trangthai` varchar(50) NOT NULL,
-  `parent_id` int(11) NOT NULL
+  `parent_id` int(11) NOT NULL,
+  `idnv` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhgia`
 --
 
-INSERT INTO `danhgia` (`mabinhluan`, `mactdh`, `ten`, `noidung`, `ngaydanhgia`, `trangthai`, `parent_id`) VALUES
-(39, 118, 'thành lợi', 'hang dep', '2021-12-22 06:38:29', 'Hiện', 0),
-(40, 118, 'thành lợi', 'hang dep', '2021-12-22 06:38:40', 'Hiện', 0),
-(41, 118, 'thành lợi', 'a', '2021-12-22 06:42:57', 'Hiện', 0),
-(42, 118, 'thành lợi', 'ok', '2021-12-22 06:48:52', 'Hiện', 0),
-(43, 118, 'thành lợi', 'hang dep', '2021-12-22 06:49:02', 'Hiện', 0),
-(44, 119, 'thành lợi', 'ok', '2021-12-22 06:49:47', 'Hiện', 0),
-(45, 118, 'thành lợi', 'cam on da ung ho', '2021-12-22 06:50:21', 'Hiện', 39),
-(46, 119, 'thành lợi', 'hagndep', '2021-12-22 06:59:31', 'Hiện', 0),
-(47, 118, 'thành lợi', 'asdasd', '2021-12-23 08:12:47', 'Hiện', 0),
-(48, 118, 'thành lợi', 'asdasd', '2021-12-23 08:12:59', 'Hiện', 0),
-(49, 118, 'thành lợi', 'asdasd', '2021-12-23 08:13:05', 'Hiện', 0),
-(50, 118, 'thành lợi', 'asdasd', '2021-12-23 08:13:11', 'Hiện', 0),
-(51, 118, 'thành lợi', 'asdasdasd', '2021-12-23 08:21:34', 'Hiện', 0),
-(52, 118, 'thành lợi', 'asdasdasd', '2021-12-23 08:22:15', 'Hiện', 0),
-(53, 118, 'thành lợi', 'asdasdasd', '2021-12-23 08:23:24', 'Hiện', 0),
-(54, 118, 'thành lợi', 'asdasdasd', '2021-12-23 08:23:30', 'Hiện', 0),
-(55, 118, 'thành lợi', 'asdasdasd', '2021-12-23 08:23:53', 'Hiện', 0),
-(56, 118, 'thành lợi', 'asdasdasd', '2021-12-23 08:25:35', 'Hiện', 0),
-(57, 118, 'thành lợi', 'a', '2021-12-23 08:26:46', 'Hiện', 0),
-(58, 118, 'thành lợi', 'a', '2021-12-23 08:27:18', 'Hiện', 0),
-(59, 118, 'thành lợi', 'a', '2021-12-23 08:27:29', 'Hiện', 0),
-(60, 118, 'thành lợi', 'a', '2021-12-23 08:29:56', 'Hiện', 0),
-(61, 118, 'thành lợi', 'a', '2021-12-23 08:30:10', 'Hiện', 0),
-(62, 118, 'thành lợi', 'a', '2021-12-23 08:30:20', 'Hiện', 0);
+INSERT INTO `danhgia` (`mabinhluan`, `mactdh`, `ten`, `noidung`, `ngaydanhgia`, `trangthai`, `parent_id`, `idnv`) VALUES
+(63, 142, 'thành lợi', 'Hàng đẹp', '2021-12-25 14:22:49', 'Hiện', 0, NULL),
+(64, 142, 'thành lợi', 'Cảm ơn đã ủng hộ', '2021-12-25 14:03:10', 'Hiện', 63, 9),
+(65, 142, 'thành lợi', 'ok', '2021-12-25 14:25:18', 'Hiện', 0, NULL),
+(66, 158, 'thành lợi', 'ok', '2021-12-25 14:27:46', 'Hiện', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -227,7 +231,7 @@ CREATE TABLE `donhang` (
 INSERT INTO `donhang` (`madh`, `makh`, `tenkh`, `diachi`, `ngaydathang`, `sodienthoai`, `ghichu`, `trangthai`, `tongtien`) VALUES
 (158, 13, 'thành lợi', '123/123 p3', '2021-12-22 06:38:11', '917239144', NULL, 'Đã giao', '1,000,000.00'),
 (159, 13, 'thành lợi', '123/123 p3', '2021-12-22 06:49:40', '917239144', NULL, 'Đã giao', '500,000.00'),
-(160, 13, 'thành lợi', '123/123 p3', '2021-12-23 11:00:29', '917239144', 'ok', 'Đang Vận Chuyển', '5,500,000.00'),
+(160, 13, 'thành lợi', '123/123 p3', '2021-12-24 07:30:01', '917239144', 'ok', 'Đã giao', '5,500,000.00'),
 (161, 13, 'thành lợi', '123/123 p3', '2021-12-23 06:20:47', '917239144', 'giao nhanh', 'Hủy đơn', '1,880,000.00'),
 (162, 13, 'thành lợi', '123/123 p3', '2021-12-23 06:21:54', '917239144', 'asad', 'Hủy đơn', '400,000.00'),
 (163, 13, 'thành lợi', '123/123 p3', '2021-12-23 07:42:54', '917239144', NULL, 'Đang Vận Chuyển', '400,000.00'),
@@ -240,7 +244,18 @@ INSERT INTO `donhang` (`madh`, `makh`, `tenkh`, `diachi`, `ngaydathang`, `sodien
 (170, 13, 'thành lợi', '123/123 p3', '2021-12-23 10:58:01', '917239144', NULL, 'Đã giao', '400,000.00'),
 (171, 13, 'thành lợi', '123/123 p3', '2021-12-23 10:50:06', '917239144', NULL, 'Đã giao', '400,000.00'),
 (172, 13, 'thành lợi', '123/123 p3', '2021-12-23 07:19:53', '917239144', NULL, 'Đã giao', '400,000.00'),
-(173, 13, 'thành lợi', '123/123 p3', '2021-12-23 07:07:01', '917239144', 'ok', 'Hủy đơn', '800,000.00');
+(173, 13, 'thành lợi', '123/123 p3', '2021-12-23 07:07:01', '917239144', 'ok', 'Hủy đơn', '800,000.00'),
+(174, 13, 'thành lợi', '123/123 p3', '2021-12-24 07:04:52', '917239144', 'ok', 'Đã giao', '1,600,000.00'),
+(175, 13, 'thành lợi', '123/123 p3', '2021-12-24 07:07:30', '917239144', NULL, 'Đã giao', '1,600,000.00'),
+(176, 13, 'thành lợi', '123/123 p3', '2021-12-24 07:11:13', '917239144', NULL, 'Đã giao', '1,600,000.00'),
+(177, 13, 'thành lợi', '123/123 p3', '2021-12-24 07:16:11', '917239144', NULL, 'Đã giao', '1,600,000.00'),
+(178, 13, 'thành lợi', '123/123 p3', '2021-12-24 07:21:20', '917239144', NULL, 'Đã giao', '500,000.00'),
+(179, 14, 'Ngọc Nhung', '132 q5', '2021-12-24 07:35:17', '0917249241', NULL, 'Đã giao', '500,000.00'),
+(180, 15, 'Nguyễn Thái Thanh', '123/13', '2021-12-24 07:37:55', '0917239144', 'Giao lúc 10h', 'Đã giao', '240,000.00'),
+(181, 15, 'Nguyễn Thái Thanh', '123/13', '2021-12-24 07:42:12', '0917239144', 'giao lúc 7h', 'Đã giao', '600,000.00'),
+(182, 13, 'thành lợi', '123/123 p3', '2021-12-25 14:10:55', '917239144', 'giao nhanh', 'Đang chờ xử lý', '70,000.00'),
+(183, 13, 'thành lợi', '123/123 p3', '2021-12-25 14:27:44', '917239144', 'ok', 'Đã giao', '280,000.00'),
+(184, 13, 'thành lợi', '123/123 p3', '2021-12-25 16:26:27', '0917239144', 'kjghi', 'Hủy đơn', '280,000.00');
 
 -- --------------------------------------------------------
 
@@ -294,9 +309,9 @@ INSERT INTO `hinhanh` (`mahinh`, `tenhinh`, `hinh`, `mactsp`, `status`) VALUES
 (16, 'bep gas sunhouse', 'image-22.jpg', '10', '1'),
 (17, 'bep gas sunhouse mat trai', 'mattrai-bep-gas-don-sunhouse-shb212kg-2-org.jpg', '10', ''),
 (18, 'bep gas sunhouse mat phai', 'matphai-bep-gas-don-sunhouse-shb212kg-3-org.jpg', '10', ''),
-(19, 'am dun tra daewoo', 'image-44.jpg', '11', ''),
-(20, 'am dun tra daewoo mat truoc', 'mattruoc-am-dun-tra-daewoo-1-8l-dek-ma980-2.jpg', '11', '1'),
-(21, 'am dun tra daewoo mat sau', 'matsau-am-dun-tra-daewoo-1-8l-dek-ma980-3.jpg', '11', ''),
+(19, 'am dun tra daewoo', 'image-44.jpg', '11', '1'),
+(20, 'am dun tra daewoo mat truoc', '1.jpg', '11', ''),
+(21, 'am dun tra daewoo mat sau', '2.jpg', '11', ''),
 (22, 'noi com dien supor', 'image-111.jpg', '12', '1'),
 (23, 'noi com dien supor mat giua', 'matgiua-noi-com-dien-supor-1-5l-cfxb40fc33vn-75-2.jpg', '12', ''),
 (24, 'noi com dien supor mat phai', 'matphai-noi-com-dien-supor-1-5l-cfxb40fc33vn-75-3.jpg', '12', ''),
@@ -316,7 +331,8 @@ INSERT INTO `hinhanh` (`mahinh`, `tenhinh`, `hinh`, `mactsp`, `status`) VALUES
 (38, 'Bo 3 noi inox Fivestar mat duoi', 'matduoi-image-33.jpg', '5', ''),
 (39, 'Bo 3 noi inox Fivestar mat cat', 'matcat-image-33.jpg', '5', ''),
 (40, 'Hình mặt 360', 'png48.png', '1', '1'),
-(41, 'hình đen', 'png75.png', '2', '1');
+(41, 'hình đen', 'png75.png', '2', '1'),
+(45, 'bàn ủi', 'jpg28.jpg', '17', '1');
 
 -- --------------------------------------------------------
 
@@ -330,23 +346,26 @@ CREATE TABLE `khachhang` (
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `diachi` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL
+  `diachi` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
-INSERT INTO `khachhang` (`id`, `name`, `email`, `password`, `phone`, `diachi`) VALUES
-(1, 'thành lợi', 'thanhloi123@gmail.com', '$2y$10$CNab1sJD3Ht3n4lOmBEV7.OJDcKAbrKWuhZYjH2mEdTDUaR/fL2P6', '123', '123/123 da nam'),
-(2, 'Trần Văn A', 'a_quick123@yahoo.com.vn', '$2y$10$1DqHsyQPyumesCkD1kW/DuQ4T7tiw/eqVcMDYxaCboMeBPSg0olqa', '917239146', '163/15 Dạ Nam'),
-(6, 'thành lợi', 'b@gmail.com', '$2y$10$80XJ5OMas8LhvtVgfk6a2.flQPHSEoE6iBT36EQLWvP7fpFdrHu0e', '0917239145', '119/32/23'),
-(8, 'thành lợi', 'c@gmail.com', '12345678910', '917239146', '123/123 p3'),
-(9, 'thành lợi', 'd@gmail.com', '12345678910', '1287445875', '123/123 p3'),
-(10, 'Than Sang', 'x@gmail.com', '1', '917239146', '123/123 p3'),
-(11, 'Nguyên', 'minhnguyen020699@gmail.com', '$2y$10$wZcxcefLE5yLXcB1v8T3tea64yZt1XDncKFsnbCGr4nSHb6GmRUpS', '917239143', '123/13 dạ nam'),
-(12, 'nguyên', 'tl@gmail.com', '12345678910', '917239143', '163/15 Dạ Nam'),
-(13, 'thành lợi', 'dh51705268@student.stu.edu.vn', '$2y$10$80XJ5OMas8LhvtVgfk6a2.flQPHSEoE6iBT36EQLWvP7fpFdrHu0e', '917239144', '123/123 p3');
+INSERT INTO `khachhang` (`id`, `name`, `email`, `password`, `phone`, `diachi`, `token`) VALUES
+(1, 'thành lợi', 'thanhloi123@gmail.com', '$2y$10$CNab1sJD3Ht3n4lOmBEV7.OJDcKAbrKWuhZYjH2mEdTDUaR/fL2P6', '123', '123/123 da nam', NULL),
+(2, 'Trần Văn A', 'a_quick123@yahoo.com.vn', '$2y$10$1DqHsyQPyumesCkD1kW/DuQ4T7tiw/eqVcMDYxaCboMeBPSg0olqa', '917239146', '163/15 Dạ Nam', NULL),
+(6, 'thành lợi', 'b@gmail.com', '$2y$10$80XJ5OMas8LhvtVgfk6a2.flQPHSEoE6iBT36EQLWvP7fpFdrHu0e', '0917239145', '119/32/23', NULL),
+(8, 'thành lợi', 'c@gmail.com', '12345678910', '917239146', '123/123 p3', NULL),
+(9, 'thành lợi', 'd@gmail.com', '12345678910', '1287445875', '123/123 p3', NULL),
+(10, 'Than Sang', 'x@gmail.com', '1', '917239146', '123/123 p3', NULL),
+(11, 'Nguyên', 'minhnguyen020699@gmail.com', '$2y$10$wZcxcefLE5yLXcB1v8T3tea64yZt1XDncKFsnbCGr4nSHb6GmRUpS', '917239143', '123/13 dạ nam', NULL),
+(12, 'nguyên', 'tl@gmail.com', '12345678910', '917239143', '163/15 Dạ Nam', NULL),
+(13, 'thành lợi', 'dh51705268@student.stu.edu.vn', '$2y$10$VYbJFMj8ebgymznKubfDE.1v4S8uDqyQnPriAmUjrlDC3t61cUmhm', '0917239144', '123/123 p3', 'qX6Yu3SwWnyIi8rgPKfG'),
+(14, 'Ngọc Nhung', 'ngocnhung012015@gmail.com', '$2y$10$9037nHLU4sjGC6gsH0L48OPa9T.Ym2URL3JIVsN78ote6tL/9yZ9O', '0917249241', '132 q5', NULL),
+(15, 'Nguyễn Thái Thanh', 'dh51704135@student.stu.edu.vn', '$2y$10$l0TZaEqQsMjvULfNYx0PnuggGNfvlNf7pR3sP1pv6tcRDBb9CTjkG', '0917239144', '123/13', NULL);
 
 -- --------------------------------------------------------
 
@@ -366,16 +385,18 @@ CREATE TABLE `khuyemai` (
 --
 
 INSERT INTO `khuyemai` (`makm`, `tenkhuyenmai`, `ngaybd`, `ngaykt`) VALUES
-(12, 'ct20-22', '2021-12-20 19:37:00', '2021-12-22 19:37:00'),
-(13, 'ctkm 24-28', '2021-12-24 19:38:00', '2021-12-28 19:38:00'),
-(14, 'ct22-23', '2021-12-22 23:13:00', '2021-12-23 01:13:00'),
-(15, '20->28', '2021-12-20 01:32:00', '2021-12-28 01:32:00'),
-(16, '25-29', '2021-12-25 11:23:00', '2021-12-29 11:23:00'),
-(17, '29-30', '2021-12-29 11:24:00', '2021-12-30 11:24:00'),
-(18, 'kms1', '2021-12-19 15:40:00', '2021-12-21 15:40:00'),
-(19, 'kms2', '2021-12-20 15:40:00', '2021-12-30 15:40:00'),
-(20, 'thành lợi', '2021-12-22 16:18:00', '2021-12-23 16:18:00'),
-(21, 'Chương trình flash sale', '2021-12-21 16:23:00', '2021-12-22 16:24:00');
+(12, '30-31', '2021-12-30 11:24:00', '2021-12-31 11:24:00'),
+(13, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(14, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(15, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(16, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(17, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(18, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(19, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(20, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(21, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(22, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(23, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00');
 
 -- --------------------------------------------------------
 
@@ -482,7 +503,6 @@ CREATE TABLE `nhasx` (
 
 INSERT INTO `nhasx` (`mansx`, `tennsx`, `xuatxu`) VALUES
 ('dt', 'Duxton', 'Japan'),
-('ho', 'home', 'vietnam'),
 ('psn', 'Panasonic', 'Japan'),
 ('sh', 'SunHouse', 'y'),
 ('skr', 'Sakura', 'Japan'),
@@ -559,7 +579,6 @@ CREATE TABLE `sanpham` (
   `tensp` varchar(250) NOT NULL,
   `gia` int(11) NOT NULL,
   `hinh` varchar(50) NOT NULL,
-  `soluong` int(11) NOT NULL,
   `maloai` varchar(10) NOT NULL,
   `mansx` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -568,21 +587,22 @@ CREATE TABLE `sanpham` (
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`masp`, `tensp`, `gia`, `hinh`, `soluong`, `maloai`, `mansx`) VALUES
-('sp01', 'Nồi cơm điện Toshiba 1.8 Lít RC-18NMFVN(WT)', 1900000, 'image-1.jpg', 50, 'ncd', 'tsb'),
-('sp02', 'Bếp điện từ Kangaroo KG420I', 590000, 'image-2.jpg', 50, 'bd', 'skr'),
-('sp03', 'Bếp gas Sakura SA-690NK', 620000, 'image-3.jpg', 49, 'bg', 'skr'),
-('sp04', 'Bình đun siêu tốc Sunhouse 1.5 lít SHD1057', 140000, 'image-4.jpg', 49, 'bdn', 'sh'),
-('sp05', 'Nồi cơm điện Philips 0.7 lít HD3060', 1590000, 'image-11.jpg', 50, 'ncd', 'skr'),
-('sp06', 'BẾP GAS SUNHOUSE SHB212KG', 380000, 'image-22.jpg', 42, 'bg', 'sh'),
-('sp07', 'Bộ 3 nồi inox Fivestar FS06S1', 280000, 'image-33.jpg', 5, 'ncd', 'dt'),
-('sp08', 'Ấm đun trà Daewoo 1.8 lít DEK-MA980', 750000, 'image-44.jpg', 0, 'bdn', 'dt'),
-('sp09', 'Nồi cơm điện Supor 1.5 lít CFXB40FC33VN-75', 1500000, 'image-111.jpg', 31, 'ncd', 'dt'),
-('sp10', 'Bếp gas Sunhouse SHB204MT', 490000, 'image-222.jpg', 50, 'bg', 'sh'),
-('sp11', 'Bộ 3 nồi inox Duxton DG-03MD', 300000, 'image-333.jpg', 31, 'ncd', 'dt'),
-('sp12', 'BÌNH ĐUN NƯỚC ĐIỆN PANASONIC NC-SK1RRA', 1290000, 'image-444.jpg', 0, 'bdn', 'psn'),
-('sp22', 'nồi', 500000, 'noimautrangtruoc.jpg', 40, 'ncd', 'dt'),
-('sp23', 'Sản phẩm a', 200000, 'loi.png', 20, 'vm', 'dt');
+INSERT INTO `sanpham` (`masp`, `tensp`, `gia`, `hinh`, `maloai`, `mansx`) VALUES
+('sp01', 'Nồi cơm điện Toshiba 1.8 Lít RC-18NMFVN(WT)', 1900000, 'image-1.jpg', 'ncd', 'tsb'),
+('sp02', 'Bếp điện từ Kangaroo KG420I', 590000, 'image-2.jpg', 'bd', 'skr'),
+('sp03', 'Bếp gas Sakura SA-690NK', 620000, 'image-3.jpg', 'bg', 'skr'),
+('sp04', 'Bình đun siêu tốc Sunhouse 1.5 lít SHD1057', 140000, 'image-4.jpg', 'bdn', 'sh'),
+('sp05', 'Nồi cơm điện Philips 0.7 lít HD3060', 1590000, 'image-11.jpg', 'ncd', 'skr'),
+('sp06', 'BẾP GAS SUNHOUSE SHB212KG', 380000, 'image-22.jpg', 'bg', 'sh'),
+('sp07', 'Bộ 3 nồi inox Fivestar FS06S12', 280000, 'jpg14.jpg', 'ncd', 'dt'),
+('sp08', 'Ấm đun trà Daewoo 1.8 lít DEK-MA980', 750000, 'image-44.jpg', 'bdn', 'dt'),
+('sp09', 'Nồi cơm điện Supor 1.5 lít CFXB40FC33VN-75', 1500000, 'image-111.jpg', 'ncd', 'dt'),
+('sp10', 'Bếp gas Sunhouse SHB204MT', 490000, 'image-222.jpg', 'bg', 'sh'),
+('sp11', 'Bộ 3 nồi inox Duxton DG-03MD', 300000, 'image-333.jpg', 'ncd', 'dt'),
+('sp12', 'BÌNH ĐUN NƯỚC ĐIỆN PANASONIC NC-SK1RRA', 1290000, 'image-444.jpg', 'bdn', 'psn'),
+('sp20', 'Ban ui', 100000, 'DATN_2021_NguyenThanhLoi_ThaiChauThanh (1).pdf', 'bu', 'dt'),
+('sp22', 'nồi chiên không dầu', 500000, 'noimautrangtruoc.jpg', 'ncd', 'dt'),
+('sp23', 'Sản phẩm a', 200000, 'loi.png', 'vm', 'dt');
 
 -- --------------------------------------------------------
 
@@ -639,7 +659,8 @@ ALTER TABLE `chitietsp`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`mabinhluan`),
-  ADD KEY `fk_danhgia_chitietdh` (`mactdh`);
+  ADD KEY `fk_danhgia_chitietdh` (`mactdh`),
+  ADD KEY `fk_danhgia_nv` (`idnv`);
 
 --
 -- Chỉ mục cho bảng `donhang`
@@ -761,25 +782,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT cho bảng `chitietdh`
 --
 ALTER TABLE `chitietdh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietkm`
 --
 ALTER TABLE `chitietkm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
-  MODIFY `mabinhluan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `mabinhluan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `madh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `madh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -791,19 +812,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `mahinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `mahinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `khuyemai`
 --
 ALTER TABLE `khuyemai`
-  MODIFY `makm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `makm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -857,7 +878,8 @@ ALTER TABLE `chitietsp`
 -- Các ràng buộc cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
-  ADD CONSTRAINT `fk_danhgia_chitietdh` FOREIGN KEY (`mactdh`) REFERENCES `chitietdh` (`id`);
+  ADD CONSTRAINT `fk_danhgia_chitietdh` FOREIGN KEY (`mactdh`) REFERENCES `chitietdh` (`id`),
+  ADD CONSTRAINT `fk_danhgia_nv` FOREIGN KEY (`idnv`) REFERENCES `admin` (`id`);
 
 --
 -- Các ràng buộc cho bảng `donhang`

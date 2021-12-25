@@ -11,6 +11,7 @@ use Session;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\infocusrequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -138,7 +139,68 @@ class Pagecontroller extends Controller
 
         return redirect()->back();
     }
+    public function forget_pass()
+    {   $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
 
+        $brand_product = DB::table('nhasx')->orderby('mansx','desc')->get();
+        return view('pages.forget')->with('cate_product',$cate_product)->with('brand_product',$brand_product);
+    }
+    public function loai()
+    {
+        $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+
+       return $cate_product;
+    }
+    public function nsx()
+    {
+        $brand_product = DB::table('nhasx')->orderby('mansx','desc')->get();
+
+       return $brand_product;
+    }
+    public function save_pass(Request $rq)
+    {   $email = $rq->email;
+          $length=20;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength -1)];
+        }
+        $data['token']=$randomString;
+        $data['email']=$email;
+        DB::table('khachhang')->where('email',$email)->update($data);
+     Mail::send('email.forgot_pass',['data'=>$data],function($message) use($email){
+            $message->from('thanhloi486@gmail.com','SHOP E-PIE');
+            $message->to($email);
+            $message->subject('EPIE-ResetPassword'); 
+            });  
+          
+        
+    }
+    public function update_mk(Request $rq)
+    { 
+    $check =  DB::table('khachhang')->where('email',$rq->email)->where('token',$rq->token)->count();
+    if($check>0)
+    {   $cus= DB::table('khachhang')->where('email',$rq->email)->first();
+        return view('email.update_pass')
+        ->with('cate_product', $this->loai())
+        ->with('brand_product',$this->nsx())
+        ->with('email',$cus->email);
+    }else
+         {
+            return Redirect::to('forget-pass')->with('message','Không hợp lệ hoặc token hết hạn');
+        }
+   
+    }
+    public function save_repass(Request $rq)
+    { 
+        $data = array();
+        $data['password']=bcrypt($rq->password);
+
+      $a=  DB::table('khachhang')->where('email',$rq->name)->update($data);
+      return Redirect::to('dangnhap')->with('message','Thay đổi thành công');
+
+    }
     // public function getGiohang()
     // {
     //     return view('pages.giohang');   
