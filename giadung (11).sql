@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 25, 2021 lúc 07:44 PM
+-- Thời gian đã tạo: Th12 26, 2021 lúc 10:25 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -138,7 +138,8 @@ INSERT INTO `chitietkm` (`id`, `masp`, `makm`, `giagiam`, `giachuagiam`, `phantr
 (61, 'sp23', 15, 100000, 200000, 50),
 (62, 'sp01', 12, 1045000, 1900000, 45),
 (63, 'sp01', 23, 950000, 1900000, 50),
-(64, 'sp20', 23, 70000, 100000, 30);
+(64, 'sp20', 23, 70000, 100000, 30),
+(65, 'sp08', 16, 525000, 750000, 30);
 
 -- --------------------------------------------------------
 
@@ -168,9 +169,7 @@ INSERT INTO `chitietsp` (`mactsp`, `masp`, `khoiluong`, `kichthuoc`, `mota`, `ma
 ('13', 'sp10', '4', '4', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'hồng', 0),
 ('14', 'sp11', '5', '5', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Đen', 0),
 ('15', 'sp12', '3kg', '5inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'đỏ', 0),
-('16', 'sp23', 'ád', 'ád', 'ád', 'de', 0),
 ('17', 'sp20', '22kg', '10inch', 'San pham nhap khau', 'Đen', 10),
-('18', 'sp22', '20kg', '10cm', 'Sản phẩm cao cấp', 'Cam', 50),
 ('2', 'sp22', '10kg', '20kg', 'sản phẩm 2.0', 'Đen', 26),
 ('4', 'sp22', '20kg', '6inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'trắng', 0),
 ('5', 'sp07', '20kg', '5inch', 'Công nghệ Rapid Air giảm đến 80% lượng chất béo\r\nLòng nồi hợp kim nhôm chống dính siêu bền, dễ vệ sinh\r\nĐiều khiển dễ dàng bằng núm xoay cơ đơn giản\r\nTự ngắt khi quá nhiệt đảm bảo an toàn tối đa người dùng\r\nChất liệu vỏ nồi nhựa PP cao cấp cách nhiệt tốt\r\nThiết kế nhỏ gọn, không chiếm nhiều diện tích', 'Anh kim', 99),
@@ -304,7 +303,7 @@ INSERT INTO `hinhanh` (`mahinh`, `tenhinh`, `hinh`, `mactsp`, `status`) VALUES
 (11, 'binh dun nuoc mat giua', 'matgiua-binh-dun-sieu-toc-sunhouse-1-5l-shd1057-2.jpg', '8', ''),
 (12, 'binh dun nuoc mat sau', 'matsau-binh-dun-sieu-toc-sunhouse-1-5l-shd1057-4.jpg', '8', ''),
 (13, 'noi com dien mat truoc', 'image-11.jpg', '9', '1'),
-(14, 'noi com dien mat trai', 'mattrai-noi-com-dien-philips-0-7l-hd3060-2.jpg', '9', '1'),
+(14, 'noi com dien mat trai', 'mattrai-noi-com-dien-philips-0-7l-hd3060-2.jpg', '9', ''),
 (15, 'noi com dien bat nap', 'batnap-noi-com-dien-philips-0-7l-hd3060-3.jpg', '9', ''),
 (16, 'bep gas sunhouse', 'image-22.jpg', '10', '1'),
 (17, 'bep gas sunhouse mat trai', 'mattrai-bep-gas-don-sunhouse-shb212kg-2-org.jpg', '10', ''),
@@ -330,7 +329,7 @@ INSERT INTO `hinhanh` (`mahinh`, `tenhinh`, `hinh`, `mactsp`, `status`) VALUES
 (37, 'Bo 3 noi inox Fivestar', 'image-33.jpg', '5', '1'),
 (38, 'Bo 3 noi inox Fivestar mat duoi', 'matduoi-image-33.jpg', '5', ''),
 (39, 'Bo 3 noi inox Fivestar mat cat', 'matcat-image-33.jpg', '5', ''),
-(40, 'Hình mặt 360', 'png48.png', '1', '1'),
+(40, 'Hình mặt 360', 'png48.png', '1', ''),
 (41, 'hình đen', 'png75.png', '2', '1'),
 (45, 'bàn ủi', 'jpg28.jpg', '17', '1');
 
@@ -347,25 +346,26 @@ CREATE TABLE `khachhang` (
   `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `diachi` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expired` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
-INSERT INTO `khachhang` (`id`, `name`, `email`, `password`, `phone`, `diachi`, `token`) VALUES
-(1, 'thành lợi', 'thanhloi123@gmail.com', '$2y$10$CNab1sJD3Ht3n4lOmBEV7.OJDcKAbrKWuhZYjH2mEdTDUaR/fL2P6', '123', '123/123 da nam', NULL),
-(2, 'Trần Văn A', 'a_quick123@yahoo.com.vn', '$2y$10$1DqHsyQPyumesCkD1kW/DuQ4T7tiw/eqVcMDYxaCboMeBPSg0olqa', '917239146', '163/15 Dạ Nam', NULL),
-(6, 'thành lợi', 'b@gmail.com', '$2y$10$80XJ5OMas8LhvtVgfk6a2.flQPHSEoE6iBT36EQLWvP7fpFdrHu0e', '0917239145', '119/32/23', NULL),
-(8, 'thành lợi', 'c@gmail.com', '12345678910', '917239146', '123/123 p3', NULL),
-(9, 'thành lợi', 'd@gmail.com', '12345678910', '1287445875', '123/123 p3', NULL),
-(10, 'Than Sang', 'x@gmail.com', '1', '917239146', '123/123 p3', NULL),
-(11, 'Nguyên', 'minhnguyen020699@gmail.com', '$2y$10$wZcxcefLE5yLXcB1v8T3tea64yZt1XDncKFsnbCGr4nSHb6GmRUpS', '917239143', '123/13 dạ nam', NULL),
-(12, 'nguyên', 'tl@gmail.com', '12345678910', '917239143', '163/15 Dạ Nam', NULL),
-(13, 'thành lợi', 'dh51705268@student.stu.edu.vn', '$2y$10$VYbJFMj8ebgymznKubfDE.1v4S8uDqyQnPriAmUjrlDC3t61cUmhm', '0917239144', '123/123 p3', 'qX6Yu3SwWnyIi8rgPKfG'),
-(14, 'Ngọc Nhung', 'ngocnhung012015@gmail.com', '$2y$10$9037nHLU4sjGC6gsH0L48OPa9T.Ym2URL3JIVsN78ote6tL/9yZ9O', '0917249241', '132 q5', NULL),
-(15, 'Nguyễn Thái Thanh', 'dh51704135@student.stu.edu.vn', '$2y$10$l0TZaEqQsMjvULfNYx0PnuggGNfvlNf7pR3sP1pv6tcRDBb9CTjkG', '0917239144', '123/13', NULL);
+INSERT INTO `khachhang` (`id`, `name`, `email`, `password`, `phone`, `diachi`, `token`, `expired`) VALUES
+(1, 'thành lợi', 'thanhloi123@gmail.com', '$2y$10$CNab1sJD3Ht3n4lOmBEV7.OJDcKAbrKWuhZYjH2mEdTDUaR/fL2P6', '123', '123/123 da nam', NULL, NULL),
+(2, 'Trần Văn A', 'a_quick123@yahoo.com.vn', '$2y$10$1DqHsyQPyumesCkD1kW/DuQ4T7tiw/eqVcMDYxaCboMeBPSg0olqa', '917239146', '163/15 Dạ Nam', NULL, NULL),
+(6, 'thành lợi', 'b@gmail.com', '$2y$10$80XJ5OMas8LhvtVgfk6a2.flQPHSEoE6iBT36EQLWvP7fpFdrHu0e', '0917239145', '119/32/23', NULL, NULL),
+(8, 'thành lợi', 'c@gmail.com', '12345678910', '917239146', '123/123 p3', NULL, NULL),
+(9, 'thành lợi', 'd@gmail.com', '12345678910', '1287445875', '123/123 p3', NULL, NULL),
+(10, 'Than Sang', 'x@gmail.com', '1', '917239146', '123/123 p3', NULL, NULL),
+(11, 'Nguyên', 'minhnguyen020699@gmail.com', '$2y$10$wZcxcefLE5yLXcB1v8T3tea64yZt1XDncKFsnbCGr4nSHb6GmRUpS', '917239143', '123/13 dạ nam', NULL, NULL),
+(12, 'nguyên', 'tl@gmail.com', '12345678910', '917239143', '163/15 Dạ Nam', NULL, NULL),
+(13, 'thành lợi', 'dh51705268@student.stu.edu.vn', '$2y$10$VYbJFMj8ebgymznKubfDE.1v4S8uDqyQnPriAmUjrlDC3t61cUmhm', '0917239144', '123/123 p3', 'qX6Yu3SwWnyIi8rgPKfG', NULL),
+(14, 'Ngọc Nhung', 'ngocnhung012015@gmail.com', '$2y$10$9037nHLU4sjGC6gsH0L48OPa9T.Ym2URL3JIVsN78ote6tL/9yZ9O', '0917249241', '132 q5', NULL, NULL),
+(15, 'Nguyễn Thái Thanh', 'dh51704135@student.stu.edu.vn', '$2y$10$l0TZaEqQsMjvULfNYx0PnuggGNfvlNf7pR3sP1pv6tcRDBb9CTjkG', '0917239144', '123/13', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -385,11 +385,11 @@ CREATE TABLE `khuyemai` (
 --
 
 INSERT INTO `khuyemai` (`makm`, `tenkhuyenmai`, `ngaybd`, `ngaykt`) VALUES
-(12, '30-31', '2021-12-30 11:24:00', '2021-12-31 11:24:00'),
-(13, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
-(14, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
-(15, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
-(16, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
+(12, '30-31', '2021-12-26 03:40:00', '2021-12-31 11:24:00'),
+(13, '29-30', '2021-12-26 03:45:00', '2021-12-30 11:24:00'),
+(14, '29-30', '2021-12-26 15:50:00', '2021-12-30 11:24:00'),
+(15, 'Chương trình sale tháng 12', '2021-12-26 04:03:00', '2021-12-30 11:24:00'),
+(16, 'giáng sinh', '2021-12-26 16:05:00', '2021-12-30 11:24:00'),
 (17, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
 (18, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
 (19, '29-30', '2021-12-27 11:24:00', '2021-12-30 11:24:00'),
@@ -788,7 +788,7 @@ ALTER TABLE `chitietdh`
 -- AUTO_INCREMENT cho bảng `chitietkm`
 --
 ALTER TABLE `chitietkm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `danhgia`

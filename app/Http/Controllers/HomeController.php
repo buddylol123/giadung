@@ -58,28 +58,40 @@ class HomeController extends Controller
         $keywords = $request->tukhoa;
 
 
-        $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
+        $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')
+        ->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
 
         $search_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
-        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->where('sanpham.tensp','like','%'.$keywords.'%')->orwhere('loaisanpham.tenloai','like','%'.$keywords.'%')->orwhere('nhasx.tennsx','like','%'.$keywords.'%')->get();
-
-        if($product>0)
-        {
-        return view('pages.product.search')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
-
-        }
-        else
-        {   
-        return view('pages.notfound');
-        }
-
-        $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
-        $search_product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->get();
-
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->where('sanpham.tensp','like','%'.$keywords.'%')
+        ->orwhere('loaisanpham.tenloai','like','%'.$keywords.'%')
+        ->orwhere('nhasx.tennsx','like','%'.$keywords.'%')->orderBy('sanpham.masp','asc')->get();
+    
+        $hinh = DB::table('hinhanh')->where('status','1')->get();
+  
+        $product_km = DB::table('sanpham')
+            ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+            ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+            ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+            ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+            ->get(); 
+     
+    
+     
+     
+       $time=Carbon::now('Asia/Ho_Chi_Minh');
+        
         
     if($product>0)
     {
-        return view('pages.product.search')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
+        return view('pages.product.search')
+        ->with('cate_product',$cate_product)
+        ->with('product_km',$product_km)
+        ->with('hinh',$hinh)
+        ->with('time',$time)
+        ->with('brand_product',$cate_brand)
+        ->with('search_product', $search_product);
 
 
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LoaiSP;
+use Illuminate\Support\Carbon;
 session_start();
 class CategoryProduct extends Controller
 {
@@ -76,7 +77,32 @@ class CategoryProduct extends Controller
         ->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')
         ->join('chitietsp','sanpham.masp','=','chitietsp.masp')
         ->where('loaisanpham.slug_loaisp',$category_id)->get();
+        //km 
+        
+    $hinh = DB::table('hinhanh')->where('status','1')->get();
+  
+    $product_km = DB::table('sanpham')
+        ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+        ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+        ->get(); 
+ 
+
+ 
+ 
+   $time=Carbon::now('Asia/Ho_Chi_Minh');
+    
+
+
         $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
-        return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
+        return view ('pages.category.show_category')
+        ->with('cate_product',$cate_product)
+        ->with('brand_product',$cate_brand)
+        ->with('category_by_id',$category_by_id)
+        ->with('category_name',$category_name)
+        ->with('hinh',$hinh)
+        ->with('product_km',$product_km)
+        ->with('time',$time);
     }
 }

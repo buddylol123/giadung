@@ -5,11 +5,11 @@
 <div class="features_items"><!--features_items-->
 	<h2 class="title text-center">Sản phẩm mới</h2>
 	@foreach($all_product as $key => $product)
-
+@if($product->soluongsp>0)
 	<div class="col-sm-4">
-	<div class="product-image-wrapper">
-		<div class="single-products">
-			<div class="productinfo text-center">
+		<div class="product-image-wrapper">
+			<div class="single-products">
+				<div class="productinfo text-center">
 					<a  href="{{URL::to('/chitietsanpham/'.$product->mactsp)}}">
 					
 						@foreach($hinh as $a)
@@ -52,7 +52,7 @@
 					<?php 
 					}
 					?>
-
+		
 			</div>
 			@foreach ($product_km as $a )
 				@if($a->masp == $product->masp && $time <= $a->ngaykt && $time >=$a->ngaybd)
@@ -66,7 +66,7 @@
 		
 	</div>
 </div>
-
+@endif
 @endforeach
 
 
