@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Carbon;
+use App\loaisanpham;
+use App\sanpham;
 session_start();
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -37,8 +39,31 @@ class HomeController extends Controller
 
  
  
-   $time=Carbon::now('Asia/Ho_Chi_Minh');
-    
+        $time=Carbon::now('Asia/Ho_Chi_Minh');
+
+        $category_by_slug = loaisanpham::where('slug_loaisp')->get();
+        foreach ($category_by_slug as $key => $cate) {
+            $category_id = $cate->maloai;
+         }
+
+        $min_price = sanpham::min('gia');
+        $max_price = sanpham::max('gia');
+        if(isset($_GET['sort_by']))
+        {
+            $sort_by = $_GET['sort_by'];
+            if ($sort_by=='1-50') {
+                $all_product = DB::table('sanpham')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->whereBetween('chitietsp.khoiluong',[1,50])->orderby('chitietsp.khoiluong','asc')->paginate(9);
+            }
+            elseif ($sort_by=='100-500') {
+                $all_product = DB::table('sanpham')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->whereBetween('chitietsp.khoiluong',[100,500])->orderby('chitietsp.khoiluong','asc')->paginate(9);
+            }
+        }
+        if(isset($_GET['start_price']) && isset($_GET['end_price']))
+        {
+            $min_price = $_GET['start_price'];
+            $max_price = $_GET['end_price'];
+            $all_product = DB::table('sanpham')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->whereBetween('sanpham.gia',[$min_price,$max_price])->orderby('sanpham.gia','asc')->paginate(9);
+        }
         // select sanpham.tensp,chitietsp.mactsp,hinhanh.tenhinh,loaisanpham.tenloai
         // FROM sanpham  INNER JOIN chitietsp on sanpham.masp=chitietsp.masp
         // INNER JOIN hinhanh ON chitietsp.mactsp=hinhanh.mactsp
@@ -47,9 +72,11 @@ class HomeController extends Controller
         ->with('all_product',$all_product)
         ->with('hinh',$hinh)
         ->with('product_km',$product_km)
-        ->with('time',$time);
+        ->with('time',$time)->with('min_price',$min_price)->with('max_price',$max_price);
        
     }
+
+    
 
     public function search(Request $request){
     	$cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();

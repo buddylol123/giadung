@@ -148,6 +148,40 @@
 					</ul>
 				</div>
 			</div><!--/brands_products-->
+			<div class="mass_products">
+				<h2 >Lọc theo kg</h2>
+				<div class="mass-name">
+						<form>
+						@csrf
+							<ul class="nav nav-pills nav-stacked" name="sort" id="sort">
+								<!-- <option value="{{Request::url()}}?sort_by=none">lọc</option> -->
+								<li><a style="color: black" href="{{Request::url()}}?sort_by=1-50">1kg-50kg</a></li>
+								<li><a style="color: black" href="{{Request::url()}}?sort_by=100-500">100kg-500kg</a></li>
+							</ul>
+
+						</form>
+				</div>
+			</div>
+			<div class="price-range">
+				<h2 for="amount" >Lọc giá theo</h2>
+				<form>
+					<div id="slider-range"></div>
+					<style type="text/css">
+						.style-range p{
+							float: left;
+							width: 37%
+						}
+					</style>
+					<div class="style-range">
+						<p><input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></p>
+							<input type="hidden" name="start_price" id="start_price">
+							<input type="hidden" name="end_price" id="end_price">
+						<br>
+						<div class="clearfix"></div>
+						<p><input type="submit" name="filter_price" value="Lọc giá" class="btn btn-sm btn-default"></p>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	

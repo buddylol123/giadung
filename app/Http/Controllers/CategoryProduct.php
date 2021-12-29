@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LoaiSP;
+use App\loaisanpham;
 use Illuminate\Support\Carbon;
 session_start();
 class CategoryProduct extends Controller
 {
     public function add_category()
     {
-        return view ('admin.add_category_product');
+        $category = loaisanpham::where('category_parent','0')->get();
+        return view ('admin.add_category_product')->with(compact('category'));
     }
     public function all_category()
-    {   $all_category_product = DB::table('loaisanpham')->paginate(5);
-        $manager_category_product = view('admin.all_category_product')->with('all_category',$all_category_product);
+    {   
+        $all_category_product = DB::table('loaisanpham')->paginate(5);
+        $category_product = loaisanpham::where('category_parent','0')->get();
+        $manager_category_product = view('admin.all_category_product')->with('all_category',$all_category_product)->with('category_product',$category_product);
 
         return view ('admin_layout')->with('admin.all_category_product',$manager_category_product);
     }
@@ -36,8 +40,9 @@ class CategoryProduct extends Controller
     }
     public function edit_category($category_product_id)
     {   
+        $category = loaisanpham::orderby('maloai','desc')->get();
         $edit_category_product = DB::table('loaisanpham')->where('maloai',$category_product_id)->get();
-        $manager_category_product = view('admin.edit_category_product')->with('edit_category',$edit_category_product);
+        $manager_category_product = view('admin.edit_category_product')->with('edit_category',$edit_category_product)->with('category',$category);
 
         return view ('admin_layout')->with('admin.edit_category_product',$manager_category_product);
     }
