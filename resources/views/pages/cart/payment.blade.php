@@ -33,7 +33,7 @@
                             <form method="POST" action="{{ URL::to('/save-payment') }}">
                                 {{ csrf_field() }}
                              
-                                <input type="text" name="name" placeholder="Họ và tên người nhận" value="{{ $name  }}">
+                                <input type="text" name="name" placeholder="Họ và tên người nhận" value="{{ ucwords($name)  }}">
                                 <input type="text" name="add" placeholder="Địa chỉ giao hàng" value="{{ $add  }}">
                                 <input type="text" name="phone" placeholder="Số điện thoại người nhận" value="{{$phone}}">
                                 <textarea name="mess"  placeholder="Ghi chú thêm" rows="16"></textarea>
@@ -85,9 +85,10 @@
                             <div class="cart_quantity_button">
                                 <form action="{{ URL::to('/update-cart') }}" method="POST">
                                     {{ csrf_field() }}
-                                <input class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" autocomplete="off" size="2">
+                                <input style="width: 50px;" class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" autocomplete="off" size="2">
                                 <input type="hidden" value="{{ $c->rowId }}" name="rowId" class="form-control">
                                 <input type="hidden" value="{{ $c->id }}" name="masp" class="form-control">
+                                <input type="hidden" value="{{ $c->options->mau }}" name="mau" class="form-control">
                                 <input class="btn btn-default btn-sm" type="submit" Value="Cập Nhật">
                                 </form>
                             </div>

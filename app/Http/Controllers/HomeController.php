@@ -21,7 +21,7 @@ class HomeController extends Controller
         ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
         ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
-        ->limit(10)->get();
+        ->get();
         // $hinh = DB::table('hinhanh')->get();
        
  

@@ -7,11 +7,11 @@
 
         <div class="alert alert-danger">
             <ul>
-                
+        
                     <li>
                       {{Session('message')}}
                     </li>
-               
+           
             </ul>
         </div>
 
@@ -62,7 +62,7 @@
 										<span>{{number_format($value->gia).'VND'}}</span>
 										<?php } ?>
 										<label>Số lượng:</label>
-										<input name="sl" type="number" min="1" value="1" />
+										<input name="sl" type="number" min="1" max="{{ $value->soluongsp }}" value="1" />
 										<input name="productid_hidden" type="hidden" value="{{$value->masp}}" />
 										<input name="mau" type="hidden" value="{{$value->mausac}}" />
 										<button type="Submit" class="btn btn-fefault cart">

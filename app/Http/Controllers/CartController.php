@@ -51,20 +51,12 @@ class CartController extends Controller
         $data['weight']='123';
         $data['options']['hinh']=$sp->hinh;
         $data['options']['mau']=$req->mau;
-        if($sp->soluongsp > 0)
-        {
-            if($sp->soluongsp > $sl)
-            {
+    
         Cart::add($data);
         return Redirect::to('/show-cart');
-            }else
-            {
-                return redirect()->back()->with('message','Số lượng hàng còn '.$sp->soluongsp);
-            }
-        }
-        {
-           return redirect()->back()->with('message','Sản phẩm hết hàng');
-        }
+
+         
+        
     }
     public function show_cart()
     {   $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
@@ -93,9 +85,8 @@ class CartController extends Controller
       
         if($sl > $sp->soluongsp)
         {
-            Session()->put('message','Sản phẩm '.$sp->tensp.' còn số lượng là '.$sp->soluongsp.'.Vui lòng không nhập giá trị lớn hơn số lượng tồn');
-            return Redirect::to('/show-cart');
-      }
+            return Redirect::to('/show-cart')->with('message','Sản phẩm '.$sp->tensp.' còn số lượng là '.$sp->soluongsp.'.Vui lòng không nhập giá trị lớn hơn số lượng tồn');
+        }
         else 
       {
         Cart::update($rowid,$sl);
@@ -154,18 +145,27 @@ class CartController extends Controller
             $data_ctdh['gia'] = $c->price;
             $data_ctdh['mausac'] = $c->options->mau;
             DB::table('chitietdh')->insert($data_ctdh);
-            $b=DB::table('chitietsp')->select('soluongsp','mausac')->where('mausac',$c->options->mau)->where('masp',$c->id)->get();
+            $b=DB::table('chitietsp')
+            ->select('tensp','soluongsp','mausac')
+            ->join('sanpham','chitietsp.masp','=','sanpham.masp')
+            ->where('chitietsp.mausac',$c->options->mau)
+            ->where('chitietsp.masp',$c->id)->get();
             foreach($b as $q)
             {
              $e=  $q->soluongsp-$c->qty;
              $d =(string)$e;
-      
+                if($d>=0)
+                {
             //  echo '<pre>';
             //  print_r($d);
             //          echo '</pre>';
             // DB::table('sanpham')->where('masp',$c->id)->update(['soluong' =>$d]);
             DB::table('chitietsp')->where('masp',$c->id)->where('mausac',$q->mausac)
             ->update(['soluongsp' =>$d]);
+                }else
+                {
+                    return Redirect::to('/show-cart')->with('message','Không thể thanh toán!Số lượng sản phẩm '.$q->tensp.' còn '.$q->soluongsp);
+                }
                  
             }
    
@@ -182,13 +182,14 @@ class CartController extends Controller
         $message->to($email,$name);
         $message->subject('Xác nhận đơn hàng'); 
         });  
-      
-        Cart::destroy();
         return Redirect::to('/thanh-cong/'.$order_id);
+        Cart::destroy();
+        
         
         
      
     }
+
     public function send_e()
     {
         return view('email.email');

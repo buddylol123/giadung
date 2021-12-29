@@ -230,7 +230,7 @@ class ProductController extends Controller
     }
     public function danh_gia($id,Request $rq)
     {
-        $b=DB::table('chitietdh')->select('chitietdh.madh','chitietdh.id','donhang.makh','chitietdh.soluong as slban','sanpham.soluong as slton','sanpham.masp','donhang.trangthai')
+        $b=DB::table('chitietdh')->select('chitietdh.madh','chitietdh.id','donhang.makh','chitietdh.soluong as slban','sanpham.masp','donhang.trangthai')
         ->join('sanpham', 'chitietdh.masp','=','sanpham.masp')
         ->join('donhang', 'chitietdh.madh','=','donhang.madh')
         ->where('chitietdh.masp',$id)

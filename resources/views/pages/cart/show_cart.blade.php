@@ -13,7 +13,7 @@
 
         <div class="alert alert-danger">
             <ul>
-                
+    
                     <li>
                       {{Session('message')}}
                     </li>
@@ -57,7 +57,7 @@
                             <div class="cart_quantity_button">
                                 <form action="{{ URL::to('/update-cart') }}" method="POST">
                                     {{ csrf_field() }}
-                                <input style="width: 80px" class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" autocomplete="off" size="2">
+                                <input style="width: 80px" class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" min="1" autocomplete="off" size="2">
                                 <input type="hidden" value="{{ $c->rowId }}" name="rowId" class="form-control">
                                 <input type="hidden" value="{{ $c->id }}" name="masp" class="form-control">
                                 <input type="hidden" value="{{ $c->options->mau }}" name="mau" class="form-control">

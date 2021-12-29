@@ -111,26 +111,6 @@
     });  
   });
             </script>
-  {{-- <script>
-$(document).ready(function(){
-    $('#test').on('click',function(e){
-      e.preventDefault();
-     var id =$('#check').val();
-      $.ajax({
-          method: "POST",
-          url: "/huydon/"+id,
-          data: "data",
-          dataType: {id},
-          success: function (data) 
-            {
-             
-            alert('thanh cong');
-           
-              
-          }
-      });
-  }
-
-  </script> --}}
+ 
         </body>
     </html>
