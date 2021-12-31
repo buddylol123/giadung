@@ -73,6 +73,7 @@ Route::post('/update-brand-product/{brand_product_id}','NhaSanXuat@update_brand'
 
 //SP
 Route::get('/all-product','ProductController@all_product');
+Route::get('/search','ProductController@search_product');
 Route::get('/add-product','ProductController@add_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
@@ -94,6 +95,7 @@ Route::get('/payment-admin','Payment@payment_admin');
 Route::get('/detail-dh/{id}','Payment@detail_dh');
 Route::get('/status/{id}','Payment@status');
 Route::post('/save-status/{id}','Payment@save_status');
+
 //PDF ĐƠN Hàng
 
 Route::get('/dh-pdf/{id}','Payment@dh_pdf');
@@ -152,7 +154,7 @@ Route::get('/check-history','CartController@check');
 Route::get('/check-detail/{id}','CartController@check_detail');
 Route::get('/huydon/{id}','CartController@huy_don');
 Route::post('/confirm-payment/{id}','CartController@confirm_payment');
-
+Route::get('/search-dh','CartController@search_dh_user');
 
 
 // Route::get('/dangnhap',[

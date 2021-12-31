@@ -30,7 +30,7 @@
       </div>
       <div class="col-sm-3">
         <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
+          <input type="text" class="input-sm form-control" placeholder="Search" id="keyword" name="keyword">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
@@ -50,16 +50,17 @@
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th>Hình</th>
-            <th>Tình Trạng</th>
+
             <th>NSX</th>
             <th>Loại</th>
 
             <th style="width:30px;"></th>
           </tr>
         </thead>
-        @foreach($all_product as $key => $cat_pro)
+      
         
-        <tbody>
+        <tbody id="list">
+          @foreach($all_product as $key => $cat_pro)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cat_pro->masp }}</td>
@@ -80,6 +81,7 @@
               <i class="fa fa-times text-danger text"></i></a>
             </td>
           </td></td>
+
           </tr>
           @endforeach
         </tbody>

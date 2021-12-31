@@ -15,7 +15,40 @@ session_start();
 
 class ProductController extends Controller
 {    
-   
+   public function search_product(Request $rq)
+   { $op ='';
+        $product = DB::table('sanpham')
+        ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->where('tensp','like','%'.$rq->keyword.'%')
+        ->get();
+        foreach($product as $cat_pro)
+        {
+            $op .='<tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td> '.$cat_pro->masp.'</td>
+            <td>'.$cat_pro->tensp.'</td>
+            <td>'. $cat_pro->gia.'</td>
+            
+            <td>  <img width="120px" height="120px" src="http://localhost/giadung/public/frontend/img/'.$cat_pro->hinh.'"/></td>           
+            <td>'.$cat_pro->tennsx.'</td>
+     
+
+            <td><span class="text-ellipsis">'. $cat_pro->tenloai.'</span></td>
+            
+            <td>
+              <a href="http://localhost/giadung/edit-product/'.$cat_pro->masp.' class="active" ui-toggle-class="">
+              <i class="fa fa-pencil-square text-success text-active"></i></a>
+              <a onclick="return confirm("Ban co that su muon xoa?")" href=""http://localhost/giadung/edit-product/'.$cat_pro->masp.'class="active" ui-toggle-class="">
+
+              <i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </td></td>
+          </tr>';
+        }
+        return response()->json($op);
+      
+   }
     public function edit_product($product_id)
     {
         $edit_product = DB::table('sanpham')->where('masp',$product_id)->get();

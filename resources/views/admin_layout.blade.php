@@ -33,6 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset("public/backend/js/morris.js")}}"></script>
 </head>
 <body>
+
 <section id="container">
 <!--header start-->
 <header class="header fixed-top clearfix">
@@ -241,6 +242,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </section>
 <!--main content end-->
 </section>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <script src="{{asset("public/backend/js/bootstrap.js")}}"></script>
 <script src="{{asset("public/backend/js/jquery.dcjqaccordion.2.7.js")}}"></script>
 <script src="{{asset("public/backend/js/scripts.js")}}"></script>
@@ -369,6 +376,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         alert('Just a heads-up, events will not work when run locally.');
         }
         });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('keyup', '#keyword', function () {
+            var keyword = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "{{ URL::to("/search") }}",
+                data: { 
+                    keyword: keyword
+                },
+                dataType: "json",
+                success: function (response) {
+                    $('#list').html(response); 
+                    // alert(response);
+                },
+                error: function(response) { 
+         console.log(response);
+    }
+            });
+            
+        });
+    });
+    </script>
+    <script>
+     $(document).ready(function(){
+        function hideMsg(){
+        //alert("hi");
+            $(".alert-danger").fadeOut();
+        }
+        setTimeout(hideMsg,10000);
+    });
     </script>
     <!-- //calendar -->
 </body>

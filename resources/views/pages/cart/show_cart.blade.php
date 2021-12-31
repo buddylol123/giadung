@@ -2,7 +2,7 @@
 @section('content')
 
 <section id="cart_items">
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="breadcrumbs">
             <ol class="breadcrumb">
               <li><a href="{{URL::to('/trang-chu')}}">Home</a></li>
@@ -22,7 +22,7 @@
         </div>
 
                @endif
-        <div class="table-responsive cart_info">
+        <div class="table-responsive cart_info" style="width:950px">
             <?php 
             $content = Cart::content();
             ?>
@@ -45,7 +45,7 @@
                         <td class="cart_product">
                             <a href=""><img src="{{URL::to('public/frontend/img/'.$c->options->hinh)}}" width="50px" height="50px" alt=""></a>
                         </td>
-                        <td class="cart_description">
+                        <td class="cart_description" >
                             <h4><a href="">{{ $c->name }}(màu {{$c->options->mau}})</a></h4>
                        
                         </td>
@@ -57,7 +57,7 @@
                             <div class="cart_quantity_button">
                                 <form action="{{ URL::to('/update-cart') }}" method="POST">
                                     {{ csrf_field() }}
-                                <input style="width: 80px" class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" min="1" autocomplete="off" size="2">
+                                <input style="width: 50px" class="cart_quantity_input" type="number" name="sl" value="{{$c->qty}}" min="1" autocomplete="off" size="2">
                                 <input type="hidden" value="{{ $c->rowId }}" name="rowId" class="form-control">
                                 <input type="hidden" value="{{ $c->id }}" name="masp" class="form-control">
                                 <input type="hidden" value="{{ $c->options->mau }}" name="mau" class="form-control">
@@ -83,12 +83,12 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    {{-- </div> --}}
 </section>
 <section id="do_action">
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="heading">
-            <h3>What would you like to do next?</h3>
+            <h3>Nhấn next để qua bước kế tiếp</h3>
             <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
         </div>
         <div class="row">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 </section><!--/#do_action--> <!--/#cart_items-->
 
 

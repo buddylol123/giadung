@@ -32,10 +32,13 @@
                         <div class="form-one">
                             <form method="POST" action="{{ URL::to('/save-payment') }}">
                                 {{ csrf_field() }}
-                             
+                                <label>Họ và tên</label>
                                 <input type="text" name="name" placeholder="Họ và tên người nhận" value="{{ ucwords($name)  }}">
+                                <label>Địa chỉ giao hàng</label>
                                 <input type="text" name="add" placeholder="Địa chỉ giao hàng" value="{{ $add  }}">
+                                <label>Số điện thoại người nhận</label>
                                 <input type="text" name="phone" placeholder="Số điện thoại người nhận" value="{{$phone}}">
+                                <label>Ghi chú thêm</label>
                                 <textarea name="mess"  placeholder="Ghi chú thêm" rows="16"></textarea>
                                @if(Cart::count()>0)
                                <input type="submit" value="Mua hàng" name="send" class="btn btn-primary btn-sm" >

@@ -3,7 +3,7 @@
 
 
 <div class="features_items"><!--features_items-->
-	<h2 class="title text-center">Sản phẩm mới</h2>
+	<h2 class="title text-center">Sản phẩm</h2>
 	@foreach($all_product as $key => $product)
 @if($product->soluongsp>0)
 	<div class="col-sm-4">
@@ -28,7 +28,6 @@
 					
 				
 					<p>{{$product->tensp}}</p>
-					<p>{{$product->khoiluong}}</p>
 					<?php
 					$cus = Session()->get('makh');
 					if($cus)
@@ -58,8 +57,21 @@
 			@foreach ($product_km as $a )
 				@if($a->masp == $product->masp && $time <= $a->ngaykt && $time >=$a->ngaybd)
 			
-				<img width="20%" src="{{URL::to('public/frontend/img/sale.png')}}" class="new" alt="">
-				
+				{{-- <img width="20%" src="{{URL::to('public/frontend/img/sale.png')}}" class="new" alt=""> --}}
+<div style="position: absolute;
+right: 0;
+top: 0;
+z-index: 5;">
+	<div style=" background:#ed3324;
+    padding: 4px 10px;
+    border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+    color: #fff;
+    font-weight: 50;width:47px;align-items: center">
+	<span>{{$a->phantramkm}}%</span>
+	</div>
+</div>
+	
 				@endif
 				@endforeach
 			

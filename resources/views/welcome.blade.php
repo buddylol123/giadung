@@ -34,7 +34,6 @@
         <body>
             
             @include('header')
-            
             @include('footer')
             <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
             <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
@@ -134,6 +133,37 @@
     });  
   });
             </script>
- 
+            <script>
+ $(document).ready(function(){
+    function hideMsg(){
+    //alert("hi");
+        $(".alert-danger").fadeOut();
+    }
+    setTimeout(hideMsg,10000);
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('keyup', '#tkhd', function () {
+            var keyword = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "{{ URL::to("/search-dh") }}",
+                data: { 
+                    tkhd: keyword
+                },
+                dataType: "json",
+                success: function (response) {
+                    $('#listhd').html(response); 
+                    // alert(response);
+                },
+                error: function(response) { 
+                console.log(response);
+    }
+            });
+            
+        });
+    });
+    </script>
         </body>
     </html>

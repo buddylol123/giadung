@@ -133,11 +133,42 @@
 										</li>
 										<li><a href=""><i class="fa fa-clock-o"></i>{{ ($d->ngaydanhgia) }}
 										</a></li>
-										<li><a style="color:black;background:yellow">Khách hàng
+										<li><a style="color:black;background:yellow;border-radius: 5px">Đã mua hàng
 										</a></li>
 										{{-- <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li> --}}
 										</ul>
-									<p>{{ $d->noidung }}</p>
+									<p >{{ $d->noidung }}</p>
+									<div style="cursor: pointer;
+									display: inline-block;
+									margin-right: 8px;
+									margin-top: 10px;
+									vertical-align: top;padding-bottom: 10px;margin-top: 10px">
+									<img data-toggle="modal" data-target="#exampleModal" style="width: 125px;
+									height: 135px;
+									object-fit: cover;
+									border-radius: 5px;" src="{{URL::to('public/frontend/img/tivi1.jpg')}}">
+									</div>
+							  <!-- Modal -->
+									  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+										  <div class="modal-content">
+											<div class="modal-header">
+											  <h5 class="modal-title" id="exampleModalLabel">Zoom</h5>
+											  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											  </button>
+											</div>
+											<div class="modal-body">
+												<img data-toggle="modal" data-target="#exampleModal" style="width:500px"
+												 src="{{URL::to('public/frontend/img/tivi1.jpg')}}">
+											</div>
+											<div class="modal-footer">
+											  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+											</div>
+										  </div>
+										</div>
+									  </div>
 									@endif
 									
 									
@@ -148,7 +179,7 @@
 									<ul>
 										<li><a href=""><i class="fa fa-bullhorn"></i>{{ $a->ten }}</a></li>
 										<li><a href=""><i class="fa fa-clock-o"></i>{{ ($a->ngaydanhgia) }}
-										<li><a style="color:black;background:yellow">Nhân Viên
+										<li><a style="color:aliceblue;background:rgb(255, 0, 0);border-radius: 5px">Nhân Viên
 										</a></li>
 									
 										{{-- <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li> --}}

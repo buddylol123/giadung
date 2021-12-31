@@ -4,7 +4,7 @@
 
      <div class="features_items"><!--features_items-->
                            
-         <h2 class="title text-center">Kết quả tìm kiếm {{count($search_product)}}</h2>
+         <h2 class="title text-center">Kết quả tìm kiếm</h2>
             @foreach($search_product as $key => $product)
             @if($product->soluongsp>0)   
                 <div class="col-sm-4">

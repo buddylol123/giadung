@@ -94,7 +94,9 @@ class HomeController extends Controller
         ->where('sanpham.tensp','like','%'.$keywords.'%')
         ->orwhere('loaisanpham.tenloai','like','%'.$keywords.'%')
         ->orwhere('nhasx.tennsx','like','%'.$keywords.'%')->orderBy('sanpham.masp','asc')->get();
-    
+      
+
+
         $hinh = DB::table('hinhanh')->where('status','1')->get();
   
         $product_km = DB::table('sanpham')

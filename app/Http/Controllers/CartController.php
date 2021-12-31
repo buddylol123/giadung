@@ -174,7 +174,7 @@ class CartController extends Controller
         }
        
         
-    
+       
         $email = Session::get('email');
         $name = Session::get('tenkh');
         Mail::send('email.email',['data_dh'=>$data_dh,'data_ctdh'=>$arr_mail,'data_madh'=>$data_ctdh],function($message) use($email,$name){
@@ -206,7 +206,7 @@ class CartController extends Controller
     {
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
-        $dh = DB::table('donhang')->where('makh',Session::get('makh'))->orderby('madh','desc')->get();
+        $dh = DB::table('donhang')->where('makh',Session::get('makh'))->orderby('madh','desc')->paginate(10);;
         return view('pages.cart.check')
         ->with('cate_product',$cate_product)
         ->with('brand_product',$cate_brand)
@@ -259,6 +259,42 @@ class CartController extends Controller
      
         
         return Redirect()->back()->with('message','Hủy đơn thành công');
+    }
+    public function search_dh_user(Request $rq)
+    {
+        $op ='';
+        $dh = DB::table('donhang')
+        ->where('makh',Session::get('makh'))
+        // ->Where('madh','like',"%$rq->tkhd%")
+        // ->where('madh','like',"%$rq->tkhd%")
+        // ->orderby('donhang.madh','desc')
+        ->where(function ($query) use ($rq) {
+            $query->where('madh','like',"%$rq->tkhd%")
+            ->orwhere('trangthai','like',"%$rq->tkhd%");
+        })->get();
+        $i=1;
+        foreach($dh as $d)
+        {
+        $op .='
+        <tr>
+        <td>'. $i++.'</td>
+            <td>'.$d->madh.'</td>
+            <td>'.$d->ngaydathang.'</td>
+            <td>'.$d->trangthai.'</td>
+            <td>
+            <a href="http://localhost/giadung/check-detail/'.$d->madh.'" class="active" ui-toggle-class="">
+                    <i class="fa fa-eye text-success text-active"></i>
+                    
+             </tr>
+        
+        
+      
+      
+          
+
+        ';
+    } 
+    return response()->json($op);  
     }
 
 
