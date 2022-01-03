@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\infocusrequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
-
+use App\Jobs\EmailJob;
+use App\Mail\TestMail;
+use Illuminate\Support\Carbon;
 
 use App\Model\khachhang;
 use Illuminate\Support\Facades\Hash as FacadesHash;
@@ -158,7 +159,8 @@ class Pagecontroller extends Controller
        return $brand_product;
     }
     public function save_pass(Request $rq)
-    {   $email = $rq->email;
+    {   
+        $email = $rq->email;
           $length=20;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -174,7 +176,24 @@ class Pagecontroller extends Controller
             $message->to($email);
             $message->subject('EPIE-ResetPassword'); 
             });  
-          
+            return redirect()->back()->with('message','Vui lòng kiểm tra gmail của bạn');
+        // return view('email.forgot_pass');
+
+    // $data=[
+       
+    //     "email"=>$rq->email,
+    //     "token"=>$randomString
+    // ];
+    //    
+        
+    // dispatch(new \App\Jobs\EmailJob($data))->delay(Carbon::now('Asia/Ho_Chi_Minh')->addMinutes(10));
+
+
+  
+    // dd('Send Email Successfully');
+      
+ 
+        
         
     }
     public function update_mk(Request $rq)
