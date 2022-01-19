@@ -200,7 +200,7 @@ class ProductController extends Controller
     //end admin page
     //front end
     public function show_details_product($product_id)
-    {
+    {  $time=Carbon::now('Asia/Ho_Chi_Minh');
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
 
@@ -233,12 +233,16 @@ class ProductController extends Controller
             ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
             ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
             ->where('chitietkm.masp',$a->masp)
+            ->where('khuyemai.ngaybd','<=',$time)
+            ->where('khuyemai.ngaykt','>=',$time)
             ->first();
-      
+    // echo '<pre>';
+    //     print_r($product_km);
+    //     echo '</pre>';
 
         }
        
-        $time=Carbon::now('Asia/Ho_Chi_Minh');
+       
         // $dt_product = DB::table('chitietsp')
         // ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
         // ->get();
@@ -250,6 +254,7 @@ class ProductController extends Controller
         // ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
         // ->where('loaisanpham.maloai', $category_id)->whereNotIn('sanpham.masp', [$product_id])
         // ->limit(3)->get();
+
 
         return view('pages.product.show_details')->with('product',$product)
         ->with('cate_product',$cate_product)->with('brand_product',$cate_brand)

@@ -32,22 +32,30 @@ class CartController extends Controller
         ->join('hinhanh','chitietsp.mactsp','=','hinhanh.mactsp')
         ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
         ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
-        ->where('hinhanh.status','1')
         ->where('sanpham.masp',$product_id)
-        ->first();
+        ->get();
+     
 
         $data['id']=$sp->masp;
         $data['qty']=$sl;
         $data['name']=$sp->tensp;
         $time=Carbon::now('Asia/Ho_Chi_Minh');
-        if($product_km && $time <= $product_km->ngaykt && $time >=$product_km->ngaybd )
+     foreach($product_km as $pr)
+     {
+        if($pr && $time <= $pr->ngaykt && $time >=$pr->ngaybd )
         {
-            $data['price']=$product_km->giagiam;
+            $data['price']=$pr->giagiam;
+            
+          
         }
+   
         else
         {
-            $data['price']=$sp->gia;   
+            $data['price']=$sp->gia;  
+            
+           
         } 
+    }
         $data['weight']='123';
         $data['options']['hinh']=$sp->hinh;
         $data['options']['mau']=$req->mau;
@@ -61,6 +69,15 @@ class CartController extends Controller
     public function show_cart()
     {   $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        $content = Cart::content();
+        foreach($content as $v)
+        {
+            $product=DB::table('chitietsp')->where('masp',$v->id)->where('mausac',$v->options->mau)->first();
+            if($product->soluongsp<$v->qty)
+            {   $sl=$product->soluongsp;
+                Cart::update($v->rowId,$sl);
+            }
+        }
         return view('pages.cart.show_cart')
         ->with('cate_product',$cate_product)
         ->with('brand_product',$cate_brand);
@@ -154,18 +171,14 @@ class CartController extends Controller
             {
              $e=  $q->soluongsp-$c->qty;
              $d =(string)$e;
-                if($d>=0)
-                {
+               
             //  echo '<pre>';
             //  print_r($d);
             //          echo '</pre>';
             // DB::table('sanpham')->where('masp',$c->id)->update(['soluong' =>$d]);
             DB::table('chitietsp')->where('masp',$c->id)->where('mausac',$q->mausac)
             ->update(['soluongsp' =>$d]);
-                }else
-                {
-                    return Redirect::to('/show-cart')->with('message','Không thể thanh toán!Số lượng sản phẩm '.$q->tensp.' còn '.$q->soluongsp);
-                }
+               
                  
             }
    
@@ -206,7 +219,7 @@ class CartController extends Controller
     {
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
-        $dh = DB::table('donhang')->where('makh',Session::get('makh'))->orderby('madh','desc')->paginate(10);;
+        $dh = DB::table('donhang')->where('makh',Session::get('makh'))->orderby('madh','desc')->paginate(10);
         return view('pages.cart.check')
         ->with('cate_product',$cate_product)
         ->with('brand_product',$cate_brand)

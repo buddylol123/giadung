@@ -118,15 +118,20 @@
 						</div>
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
+						{{-- <div class="single-widget">
 							<h2>About Shopper</h2>
 							<form action="#" class="searchform">
 								<input type="text" placeholder="Your email address" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
 								<p>Get the most recent updates from <br />our site and be updated your self...</p>
 							</form>
+						</div> --}}
+						<div id="map" style="width:200px;height:200px;">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9540678643425!2d106.67567691480046!3d10.738023592347597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fad027e3727%3A0x2a77b414e887f86d!2zMTgwIMSQLiBDYW8gTOG7lywgUGjGsOG7nW5nIDQsIFF14bqtbiA4LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1sen!2s!4v1642402302996!5m2!1sen!2s" 
+							width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 						</div>
 					</div>
+				
 					
 				</div>
 			</div>

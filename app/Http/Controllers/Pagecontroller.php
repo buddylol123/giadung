@@ -160,6 +160,8 @@ class Pagecontroller extends Controller
     }
     public function save_pass(Request $rq)
     {   
+       
+
         $email = $rq->email;
           $length=20;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -171,7 +173,7 @@ class Pagecontroller extends Controller
         $data['token']=$randomString;
         $data['email']=$email;
         DB::table('khachhang')->where('email',$email)->update($data);
-     Mail::send('email.forgot_pass',['data'=>$data],function($message) use($email){
+        Mail::send('email.forgot_pass',['data'=>$data],function($message) use($email){
             $message->from('thanhloi486@gmail.com','SHOP E-PIE');
             $message->to($email);
             $message->subject('EPIE-ResetPassword'); 
@@ -198,6 +200,7 @@ class Pagecontroller extends Controller
     }
     public function update_mk(Request $rq)
     { 
+
     $check =  DB::table('khachhang')->where('email',$rq->email)->where('token',$rq->token)->count();
     if($check>0)
     {   $cus= DB::table('khachhang')->where('email',$rq->email)->first();
@@ -213,6 +216,18 @@ class Pagecontroller extends Controller
     }
     public function save_repass(Request $rq)
     { 
+        $validated = $rq->validate([
+        'password' => 'required',
+        'repassword' => 'required|same:password',
+        
+    ],[
+        'password.required'=>'Vui lòng không bỏ trống',
+        'repassword.required'=>'Vui lòng không bỏ trống',
+        'repassword.same'=>'Mật khẩu không khớp với nhau',
+      
+      
+    ]);
+
         $data = array();
         $data['password']=bcrypt($rq->password);
 

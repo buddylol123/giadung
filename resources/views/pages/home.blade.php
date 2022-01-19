@@ -19,10 +19,10 @@
 					@endforeach
 					<h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
 				@foreach ($product_km as $a )
-				@if($a->masp == $product->masp && $time <= $a->ngaykt && $time >=$a->ngaybd)
-				<h4 style="color:teal">Giá sốc: {{number_format($a->giagiam).''.'VNĐ'}}</h3>
-					
+				@if($a->masp == $product->masp &&  $time <= $a->ngaykt && $time >=$a->ngaybd)
+				<h4 style="color:teal">Giá sốc: {{number_format($a->giagiam).''.'VNĐ'}}</h4>
 				
+		
 				@endif
 				@endforeach
 					

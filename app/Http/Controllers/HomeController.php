@@ -26,7 +26,7 @@ class HomeController extends Controller
         ->get();
         // $hinh = DB::table('hinhanh')->get();
        
- 
+        $time=Carbon::now('Asia/Ho_Chi_Minh');
     $hinh = DB::table('hinhanh')->where('status','1')->get();
   
     $product_km = DB::table('sanpham')
@@ -34,12 +34,14 @@ class HomeController extends Controller
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
         ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
         ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+        ->where('khuyemai.ngaybd','<=',$time)
+        ->where('khuyemai.ngaykt','>=',$time)
         ->get(); 
  
 
  
  
-        $time=Carbon::now('Asia/Ho_Chi_Minh');
+      
 
         $category_by_slug = loaisanpham::where('slug_loaisp')->get();
         foreach ($category_by_slug as $key => $cate) {

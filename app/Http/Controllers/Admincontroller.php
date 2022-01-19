@@ -96,9 +96,20 @@ class Admincontroller extends Controller
         $sp_ban_chay=DB::table('chitietdh')->selectRaw('chitietsp.soluongsp,chitietdh.masp,sanpham.tensp,sum(chitietdh.soluong) as a')
         ->join('sanpham','sanpham.masp','=','chitietdh.masp')
         ->join('chitietsp','chitietsp.masp','=','sanpham.masp')
-        ->orderBy('chitietdh.masp','desc')->groupBy('chitietdh.masp')->get();
+        ->join('donhang','donhang.madh','=','chitietdh.madh')
+        ->orderBy('chitietdh.masp','desc') ->where('donhang.trangthai','Đã giao')->groupBy('chitietdh.masp')->get();
         // dd($sp_ban_chay);
-        return view('admin.dashboard')->with('sp_ban_chay',$sp_ban_chay)->with('sum_product',$sum_product);
+        $doanh_thu = DB::table('donhang')->where('trangthai','Đã giao')
+        ->join('chitietdh','donhang.madh','=','chitietdh.madh')
+        ->sum('gia');
+        $kh = DB::table('khachhang')->count();
+        $dh_chuaxl = DB::table('donhang')->where('trangthai','Đang chờ xử lý')->count();
+        return view('admin.dashboard')
+        ->with('sp_ban_chay',$sp_ban_chay)
+        ->with('sum_product',$sum_product)
+        ->with('dt',$doanh_thu)
+        ->with('dh',$dh_chuaxl)
+        ->with('kh',$kh);
     }
 
    

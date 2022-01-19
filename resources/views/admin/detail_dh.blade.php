@@ -6,7 +6,6 @@
     <div class="panel-heading">
     Chi tiết đơn hàng
     </div>
-
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
         <thead>
@@ -120,9 +119,9 @@ Thông tin người nhận
               
               </label>
             </th>
-            <th ><a class="text-danger">Mã đơn hàng</a></th>
-            <th><a class="text-danger">Tên khách hàng đặt</a></th>
-            <th><a class="text-danger">Ngày đặt hàng</a></th>
+            <th ><a class="text-danger">Tên khách hàng</a></th>
+            <th><a class="text-danger">Địa chỉ</a></th>
+            <th><a class="text-danger">Số điện thoại</a></th>
             <th><a class="text-danger">Ghi chú</a></th>
             
             <th style="width:30px;"></th>

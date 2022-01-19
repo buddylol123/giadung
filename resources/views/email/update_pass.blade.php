@@ -9,6 +9,17 @@
                       
                          <!--login form-->
                         <h2>Điền mật khẩu mới</h2>
+                        @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $err)
+                                    <li>
+                                        {!!$err  !!}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                           @if(Session('message'))
 
                   <div class="alert alert-danger">
@@ -26,7 +37,7 @@
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" name="name" value="{{$email}}">
                             <input type="password" name="password" placeholder="Mật khẩu" />
-                            {{-- <input type="password" name="repassword" placeholder="Nhập lại mật khẩu" /> --}}
+                            <input type="password" name="repassword" placeholder="Nhập lại mật khẩu" />
                             
                           
                             <button type="submit" class="btn btn-default">Update</button>

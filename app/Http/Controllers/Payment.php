@@ -19,7 +19,7 @@ class Payment extends Controller
     {
         $dh2 = DB::table('donhang')->orderby('madh','desc')
         ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
-        ->get();
+        ->paginate(10);
         $manager_payment = view('admin.payment')
         ->with('dh',$dh2);
         
@@ -153,6 +153,34 @@ class Payment extends Controller
         });
     echo 'dc';
     }
+
+    public function search_dh_admin(Request $rq)
+    {
+        $op ='';
+        $dh = DB::table('donhang')
+        ->Where('madh','like',"%$rq->keyword%")
+        ->orwhere('trangthai','like',"%$rq->keyword%")
+        ->orwhere('ngaydathang','like',"%$rq->keyword%")
+        ->orderby('donhang.madh','desc')
+        ->join('khachhang', 'donhang.makh', '=', 'khachhang.id')
+        ->get();
+        foreach($dh as $d)
+        {
+        $op .='<tr>
+        <td></td>
+            <td>'.$d->madh.'</td>
+            <td>'.$d->name.'</td>
+            <td>'.$d->ngaydathang.'</td>
+            <td><span class="text-ellipsis">'.$d->trangthai.'</span></td>
+            <td>
+            <a href="http://localhost/giadung/detail-dh/'.$d->madh.'" class="active" ui-toggle-class="">
+                    <i class="fa fa-eye text-info text-active"></i>
+            </td>      
+             </tr>
+        ';
+    }
+    return response()->json($op);
+}
 
 }
 

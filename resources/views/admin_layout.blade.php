@@ -410,6 +410,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         setTimeout(hideMsg,10000);
     });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('keyup', '#kw', function () {
+                var keyword = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ URL::to("/search-dh-admin") }}",
+                    data: { 
+                        keyword: keyword
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        $('#listadmin').html(response);
+                    },
+                    error: function(response) { 
+                    console.log(response);
+            }
+                });
+                
+            });
+        });
+        </script>
     <!-- //calendar -->
 </body>
 </html>
