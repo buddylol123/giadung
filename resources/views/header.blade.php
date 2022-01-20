@@ -86,7 +86,7 @@
 							<span class="icon-bar"></span>
 						</button>
 					</div>
-					<div class="mainmenu pull-left">
+					{{-- <div class="mainmenu pull-left">
 						<ul class="nav navbar-nav collapse navbar-collapse">
 							<li class="dropdown"><a href="#">E-Pie<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 </div><!--/header-bottom-->
 </header><!--/header-->
 <section>

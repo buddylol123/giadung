@@ -180,7 +180,27 @@ class Payment extends Controller
         ';
     }
     return response()->json($op);
-}
+    }
+    public function edit_detail_dh($id)
+    {
+        $edit_dh = DB::table('donhang')->where('madh',$id)->first();
+      
+
+        $manager_product = view('admin.edit_detail_dh')->with('edit_dh',$edit_dh);
+      
+
+        return view ('admin_layout')->with('admin.edit_detail_dh',$manager_product);
+    }
+    public function save_edit_dh(Request $rq,$id)
+    {
+        
+    $data = array();
+    $data['diachi'] = $rq->add;
+    $data['sodienthoai'] = $rq->phone;
+    DB::table('donhang')->where('madh',$id)->update($data);
+    
+    return Redirect::to('detail-dh/'.$id)->with('message','Cập nhật thông tin thành công');
+    }
 
 }
 

@@ -14,7 +14,17 @@
         </div>
     
 
- 
+        @if(count($errors)>0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $err)
+                    <li>
+                        {!!$err  !!}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
         <div class="shopper-informations">
             <div class="row">
@@ -37,7 +47,7 @@
                                 <label>Địa chỉ giao hàng</label>
                                 <input type="text" name="add" placeholder="Địa chỉ giao hàng" value="{{ $add  }}">
                                 <label>Số điện thoại người nhận</label>
-                                <input type="text" name="phone" placeholder="Số điện thoại người nhận" value="{{$phone}}">
+                                <input type="text" name="phone" pattern="(0[3|5|7|8|9])+([0-9]{8})" placeholder="Số điện thoại người nhận" value="{{$phone}}">
                                 <label>Ghi chú thêm</label>
                                 <textarea name="mess"  placeholder="Ghi chú thêm" rows="16"></textarea>
                                @if(Cart::count()>0)

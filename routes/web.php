@@ -93,6 +93,8 @@ Route::post('/save-img','ProductController@save_img');
 //donhang
 Route::get('/payment-admin','Payment@payment_admin');
 Route::get('/detail-dh/{id}','Payment@detail_dh');
+Route::get('/edit-detail-dh/{id}','Payment@edit_detail_dh');
+Route::post('/save-edit-dh/{id}','Payment@save_edit_dh');
 Route::get('/status/{id}','Payment@status');
 Route::post('/save-status/{id}','Payment@save_status');
 Route::get('/search-dh-admin','Payment@search_dh_admin');

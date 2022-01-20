@@ -2,6 +2,19 @@
 @section('admin_content')
 
 <div class="table-agile-info">
+  @if(Session('message'))
+
+  <div class="alert alert-danger">
+      <ul>
+          
+              <li>
+                {{Session('message')}}
+              </li>
+         
+      </ul>
+  </div>
+
+   @endif 
     <div class="panel panel-default">
     <div class="panel-heading">
     Chi tiết đơn hàng
@@ -137,7 +150,25 @@ Thông tin người nhận
             <td>{{ $d->sodienthoai }}</td>
             <td>{{ $d->ghichu }}</td>
             <td></td>
-        
+            <td>
+              <?php
+              if($d->trangthai=='Hủy đơn')
+              {
+              }else if($d->trangthai=='Đã giao')
+              {
+              
+              }else{
+         ?>
+            <a href="{{URL::to('/edit-detail-dh/'.$d->madh)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>
+          
+              <?php
+              } 
+              ?>   
+     
+  
+      
+             
+            </td>
          
           </tr>
           @endforeach

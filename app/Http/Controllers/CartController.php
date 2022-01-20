@@ -124,6 +124,16 @@ class CartController extends Controller
     }
     public function save_payment(Request $rq)
     {
+        $validated = $rq->validate([
+            'name' => 'required',
+            'add' => 'required',
+            'phone' => 'required',
+            
+        ],[
+            'name.required'=>'Vui lòng điền trường tên ',
+            'add.required'=>'Vui lòng điền trường địa chỉ ',
+            'phone.required'=>'Vui lòng điền trường số điện thoại',
+        ]);
         $now =Carbon::now('Asia/Ho_Chi_Minh');
         $data_dh= array();
         $data_dh['makh']=Session::get('makh');
@@ -195,8 +205,9 @@ class CartController extends Controller
         $message->to($email,$name);
         $message->subject('Xác nhận đơn hàng'); 
         });  
-        return Redirect::to('/thanh-cong/'.$order_id);
         Cart::destroy();
+        return Redirect::to('/thanh-cong/'.$order_id);
+
         
         
         

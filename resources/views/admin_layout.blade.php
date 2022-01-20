@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li>
                     <a class="active" href="index.html">
                         <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
+                        <span>Trang chủ</span>
                     </a>
                 </li>
                 @role('quanly')
@@ -94,8 +94,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Danh mục loại sản phẩm</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{URL::to("/add-category-product")}}">Them danh muc</a></li>
-                        <li><a href="{{URL::to("/all-category-product")}}">Liet ke danh muc</a></li>
+                        <li><a href="{{URL::to("/add-category-product")}}">Thêm danh mục</a></li>
+                        <li><a href="{{URL::to("/all-category-product")}}">Liệt kê danh mục</a></li>
                         
                     </ul>
                 </li>
@@ -110,8 +110,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Nhà sản xuất</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{URL::to("/add-brand-product")}}">Them thuong hieu</a></li>
-                        <li><a href="{{URL::to("/all-brand-product")}}">Liet ke </a></li>
+                        <li><a href="{{URL::to("/add-brand-product")}}">Thêm thương hiệu</a></li>
+                        <li><a href="{{URL::to("/all-brand-product")}}">Liệt kê </a></li>
                         
                     </ul>
                 </li>
@@ -123,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 
-                        <li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
+                        <li><a href="{{URL::to("/add-product")}}">Thêm sản phẩm</a></li>
                         <li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
                         
                     </ul>
@@ -153,18 +153,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-user"></i>
-                        <span>Quản lý tài khoản khách hàng</span>
-                    </a>
-                    <ul class="sub">
-
-                        <li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
-                        <li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
-                        
-                    </ul>
-                </li>
                 @endrole
                 @role('nhanvien')
                 <li class="sub-menu">
@@ -174,7 +162,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 
-                        <li><a href="{{URL::to("/payment-admin")}}">Liet ke</a></li>
+                        <li><a href="{{URL::to("/payment-admin")}}">Liệt kê</a></li>
                         
 
 					
@@ -190,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 
-                        <li><a href="{{URL::to("/binh-luan")}}">Liet ke</a></li>
+                        <li><a href="{{URL::to("/binh-luan")}}">Liệt kê</a></li>
                         
 
 					
