@@ -1,20 +1,22 @@
 @extends('admin_layout')
 @section('admin_content')
-@if(Session('message')) 
+    
+@if(Session('message'))
+
 <div class="alert alert-danger">
-  <ul>
-      
-          <li>
-            {{Session('message')}}
-          </li>
-     
-  </ul>
+    <ul>
+        
+            <li>
+              {{Session('message')}}
+            </li>
+       
+    </ul>
 </div>
 @endif
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
-      Chi Tiết Sản Phẩm
+      Thông Tin Chi Tiết Sản Phẩm
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -30,7 +32,7 @@
       </div>
       <div class="col-sm-3">
         <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search" id="keyword" name="keyword">
+          <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
@@ -48,40 +50,42 @@
             </th>
             <th >Mã </th>
             <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Hình</th>
-
-            <th>NSX</th>
-            <th>Loại</th>
-
+            <th>Khối lượng</th>
+            <th>Kích thước</th>
+            <th>Số lượng</th>
+            <th>Tình trạng</th>
+            
+            
             <th style="width:30px;"></th>
           </tr>
         </thead>
-      
+        @foreach($all_product_detail as $key => $cat_pro)
         
-        <tbody id="list">
-          @foreach($all_product as $key => $cat_pro)
+        <tbody>
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $cat_pro->masp }}</td>
-            <td><a href="{{URL::to('/detail-pr/'.$cat_pro->masp)}}">{{ $cat_pro->tensp }}</a></td>
-            <td>{{ $cat_pro->gia }}</td>
-            
-            <td>  <img width="120px" height="120px" src="{{URL::to('public/frontend/img/'.$cat_pro->hinh)}}"/></td>           
-            <td>{{ $cat_pro->tennsx }}</td>
-     
-
-            <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
+            <td style="width:10px">{{ $cat_pro->mactsp }}</td>
+            <td style="width:200px"><a href="{{URL::to('/all-img/'.$cat_pro->mactsp)}}" style="color:darkblue">{{ $cat_pro->tensp }}</a></td>
+            <td>{{ $cat_pro->khoiluong}}</td>
+            <td>{{ $cat_pro->kichthuoc }}</td>
+            <td>{{ $cat_pro->soluongsp }}</td>
+   
+            @if($cat_pro->soluongsp>0)
+            <td><p style="color:green">Còn hàng</p></td>
+            @else
+            <td><p style="color: red">Hết hàng</p></td>
+            @endif
+   
+           
             
             <td>
-              <a href="{{URL::to('/edit-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
+              <a href="{{URL::to('/edit-product-detail/'.$cat_pro->mactsp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
-              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
+              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product-detail/'.$cat_pro->mactsp)}}" class="active" ui-toggle-class="">
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>
-          </td></td>
-
+         
           </tr>
           @endforeach
         </tbody>
@@ -89,16 +93,20 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-
-         <div class="col-sm-5 text-center">
-
+        
+        {{-- <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-        </div>
-        <div class="col-sm-7 text-right text-center-xs">                
+        </div> --}}
+        {{-- <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-            {!!$all_product->links()!!}
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
           </ul>
-        </div>
+        </div> --}}
       </div>
     </footer>
   </div>

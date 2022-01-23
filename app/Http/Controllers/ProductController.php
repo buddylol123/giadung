@@ -289,7 +289,7 @@ class ProductController extends Controller
         $a['trangthai']='Hiện';
        
         DB::table('danhgia')->insert($a);
-        return redirect()->back()->with('loibinhluan','them binh luan thanh cong');
+        return redirect()->back()->with('loibinhluan','Thêm bình luận thành công');
         // return Redirect::to('/chitietsanpham/2','body');
     
         }
@@ -316,6 +316,19 @@ class ProductController extends Controller
         //     $randomString .= $characters[rand(0, $charactersLength -1)];
         // }
         // echo $randomString;
+        }
+        public function detail_pr($id)
+        {
+            $all_product_detail = DB::table('chitietsp')
+        ->join('sanpham', 'sanpham.masp', '=','chitietsp.masp')->orderBy('soluongsp','desc')
+        ->where('chitietsp.masp',$id)
+        ->get();
+        
+        $manager_product = view('admin.detail_pr')
+        ->with('all_product_detail',$all_product_detail);
+        
+
+        return view ('admin_layout')->with('admin.all_product',$manager_product);
         }
     
 }

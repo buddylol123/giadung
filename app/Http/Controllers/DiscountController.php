@@ -33,7 +33,7 @@ class DiscountController extends Controller
 
     public function all_dis()
     { $time = Carbon::now('Asia/Ho_Chi_Minh');
-        $product_km = DB::table('khuyemai')
+        $product_km = DB::table('khuyemai')->orderBy('makm','DESC')
         ->get();
     
         
@@ -121,7 +121,7 @@ class DiscountController extends Controller
         else
         {
             
-            return Redirect()->back()->with('message','k them dc!');
+            return Redirect()->back()->with('message','Không thêm được!');
         }
     }
     }

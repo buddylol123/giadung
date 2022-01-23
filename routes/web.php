@@ -79,6 +79,7 @@ Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::get('/edit-product/{product_id}','ProductController@edit_product');
 Route::get('/del-product/{product_id}','ProductController@del_product');
+Route::get('/detail-pr/{product_id}','ProductController@detail_pr');
 
 //chi tiet sp
 Route::get('/all-product-detail','ProductdetailController@all_product_detail');

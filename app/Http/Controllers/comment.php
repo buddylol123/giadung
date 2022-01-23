@@ -13,6 +13,7 @@ class comment extends Controller
     {
       $cmt = DB::table('danhgia')
       ->join('chitietdh','danhgia.mactdh','=','chitietdh.id')
+      ->orderBy('mabinhluan','DESC')
       ->get();
       $manager= view('admin.all_binhluan')
         ->with('cmt',$cmt);

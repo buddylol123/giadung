@@ -99,7 +99,7 @@ class Payment extends Controller
             ->get();
         $pdf = PDF::loadHTML( $this->dh_pdf($id));
         $pdf->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-        $pdf->setPaper('A4', 'landscape');
+        $pdf->setPaper('A3', 'landscape');
         //  return $pdf->stream('pdf.pdf');
       foreach($dh2 as $a)
       {
@@ -111,7 +111,7 @@ class Payment extends Controller
          Mail::send('pdf.thanhcong',$arr,function($message)use($pdf,$email,$madh){
             $message->from('thanhloi486@gmail.com','Thanh Loi');
             $message->to($email);
-            $message->subject('Test'); 
+            $message->subject('Gửi hóa đơn'); 
             $message->attachData($pdf->output(),"HD".$madh.".pdf");
         });
         DB::table('donhang')->where('madh',$id)->update($data);
